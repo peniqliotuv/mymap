@@ -12,9 +12,8 @@ export class PostList extends Component {
       byId: PropTypes.objectOf(PropTypes.shape({
         id: PropTypes.string,
         title: PropTypes.string,
-        user: PropTypes.shape({
-          username: PropTypes.string,
-        }),
+        user: PropTypes.string,
+        username: PropTypes.string,
         votes: PropTypes.number,
       })),
       allIds: PropTypes.arrayOf(PropTypes.number),

@@ -11,9 +11,8 @@ export class PostInformation extends Component {
     post: PropTypes.shape({
       id: PropTypes.string,
       title: PropTypes.string,
-      user: PropTypes.shape({
-        username: PropTypes.string,
-      }),
+      user: PropTypes.string,
+      username: PropTypes.string,
       votes: PropTypes.number,
     }),
     readPostById: PropTypes.func,
