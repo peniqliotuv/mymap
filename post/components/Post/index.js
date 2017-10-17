@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-const s = {};
+import colors from '~/styles/colors';
+import s from './styles';
 
 const propTypes = {
   title: PropTypes.string,
@@ -21,22 +22,24 @@ const propTypes = {
 function Post({ title, user, votes, selectPost, upvotePost, downvotePost }) {
   return (
     <TouchableHighlight onPress={selectPost}>
-      <View className={s.post}>
-        <View className={s.voteContainer}>
+      <View style={s.post}>
+        <View style={s.voteContainer}>
           <Button
-            title="⬆"
-            className={s.upvote}
+            title="^"
+            color={colors.upvoteOrange}
             onPress={upvotePost}
           />
           <Text>{votes}</Text>
           <Button
-            title="⬇"
-            className={s.downvote}
+            title="v"
+            color={colors.downvoteBlue}
             onPress={downvotePost}
           />
         </View>
-        <Text>{title}</Text>
-        <Text>by {user}</Text>
+        <View>
+          <Text>{title}</Text>
+          <Text>by {user}</Text>
+        </View>
       </View>
     </TouchableHighlight>
   );

@@ -20,7 +20,7 @@ export class PostInformation extends Component {
       navigate: PropTypes.func,
       state: PropTypes.shape({
         params: PropTypes.shape({
-          id: PropTypes.number,
+          id: PropTypes.string,
         }),
       }),
     }),

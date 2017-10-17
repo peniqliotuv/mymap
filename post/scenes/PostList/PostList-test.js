@@ -37,7 +37,7 @@ describe('<PostList />', () => {
         },
         allIds: ['1', '2', '3'],
       };
-      const postList = shallow(<PostList posts={data} />);
+      const postList = shallow(<PostList posts={data} readPosts={() => {}} />);
       const posts = postList.find(Post);
 
       expect(posts.length).to.equal(3);

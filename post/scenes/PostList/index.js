@@ -16,7 +16,7 @@ export class PostList extends Component {
         username: PropTypes.string,
         votes: PropTypes.number,
       })),
-      allIds: PropTypes.arrayOf(PropTypes.number),
+      allIds: PropTypes.arrayOf(PropTypes.string),
     }),
     readPosts: PropTypes.func,
     votePostById: PropTypes.func,

@@ -14,9 +14,10 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "chai-enzyme": "^0.8.0",
+    "chai-enzyme": "^1.0.0-beta.0",
     "cross-env": "^5.0.5",
-    "enzyme": "2.8.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -25,8 +26,10 @@
     "jest-expo": "^21.0.2",
     "mocha": "^4.0.1",
     "react-native-mock": "^0.3.1",
+    "react-native-mock-render": "^0.0.11",
     "react-native-scripts": "1.5.0",
-    "react-test-renderer": "15.4.2",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -44,15 +47,14 @@
   "dependencies": {
     "expo": "^21.0.0",
     "prop-types": "^15.6.0",
-    "react": "15.4.0",
-    "react-dom": "15.4.0",
-    "react-native": "0.38.0",
+    "react": "16.0.0-alpha.12",
+    "react-dom": "^16.0.0",
+    "react-native": "^0.48.4",
     "react-navigation": "^1.0.0-beta.13",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "sinon": "^4.0.1"
+    "redux-thunk": "^2.2.0"
   }
 }
