@@ -16,19 +16,22 @@ describe('<PostList />', () => {
           '1': {
             id: '1',
             title: 'Post 1',
-            user: { username: 'liquidfired' },
+            user: 'something defined',
+            username: 'liquidfired',
             votes: 1,
           },
           '2': {
             id: '2',
             title: 'Post 2',
-            user: { username: 'liquidfired' },
+            user: 'something defined',
+            username: 'frostedsolid',
             votes: 1,
           },
           '3': {
             id: '3',
             title: 'Post 3',
-            user: { username: 'liquidfired' },
+            user: 'something defined',
+            username: 'alex',
             votes: 1,
           },
         },
@@ -43,7 +46,7 @@ describe('<PostList />', () => {
         const postFromData = data.byId[data.allIds[index]];
         expect(post).to.have.props({
           title: postFromData.title,
-          user: postFromData.user.username,
+          user: postFromData.username,
           votes: postFromData.votes,
         });
 

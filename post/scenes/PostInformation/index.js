@@ -9,7 +9,7 @@ import { readPostById } from '../../actions';
 export class PostInformation extends Component {
   static propTypes = {
     post: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       title: PropTypes.string,
       user: PropTypes.shape({
         username: PropTypes.string,

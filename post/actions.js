@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import fetcher from '~/utils/fetcher';
+// import fetcher from '~/utils/fetcher';
 
 // Actions we dispatch in our Action Creators
 export const readPostByIdSucceeded = createAction('READ_POST_BY_ID_SUCCEEDED');
@@ -8,40 +8,40 @@ export const votePostByIdSucceeded = createAction('VOTE_POST_BY_ID_SUCCEEDED');
 
 const fakePosts = [
   {
-    'id': 4,
+    'id': '4',
     'url': 'http://localhost:8000/api/posts/4',
     'created': '2017-10-14T03:28:30.463977Z',
-    'owner': 'http://localhost:8000/api/profiles/1',
-    'owner_name': 'liquidfired',
+    'user': 'http://localhost:8000/api/profiles/1',
+    'username': 'liquidfired',
     'title': 'cool post m8',
-    'vote_count': 0,
+    'votes': 0,
   },
   {
-    'id': 3,
+    'id': '3',
     'url': 'http://localhost:8000/api/posts/3',
     'created': '2017-10-10T04:28:11.820238Z',
-    'owner': 'http://localhost:8000/api/profiles/1',
-    'owner_name': 'liquidfired',
+    'user': 'http://localhost:8000/api/profiles/1',
+    'username': 'liquidfired',
     'title': 'Title',
-    'vote_count': 0,
+    'votes': 0,
   },
   {
-    'id': 2,
+    'id': '2',
     'url': 'http://localhost:8000/api/posts/2',
     'created': '2017-10-05T01:27:34.174526Z',
-    'owner': 'http://localhost:8000/api/profiles/1',
-    'owner_name': 'liquidfired',
+    'user': 'http://localhost:8000/api/profiles/1',
+    'username': 'liquidfired',
     'title': 'Cool beans :',
-    'vote_count': 0,
+    'votes': 0,
   },
   {
-    'id': 1,
+    'id': '1',
     'url': 'http://localhost:8000/api/posts/1',
     'created': '2017-10-05T01:27:27.948864Z',
-    'owner': 'http://localhost:8000/api/profiles/1',
-    'owner_name': 'liquidfired',
+    'user': 'http://localhost:8000/api/profiles/1',
+    'username': 'liquidfired',
     'title': 'My Awesome Post',
-    'vote_count': 0,
+    'votes': 0,
   },
 ];
 
@@ -69,11 +69,11 @@ export const votePostById = (postId, isUpvote) => {
     const post = fakePosts.find((p) => p.id === postId);
 
     if (isUpvote) {
-      post.vote_count += 1;
+      post.votes += 1;
       // body = await fetcher.post(`localhost:8000/api/posts/${postId}/vote`);
     }
     else {
-      post.vote_count -= 1;
+      post.votes -= 1;
       // body = await fetcher.delete(`localhost:8000/api/posts/${postId}/vote`);
     }
 

@@ -1,6 +1,4 @@
-import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
-import Cookies from 'js-cookie';
 
 async function request(url, userOptions, dispatch) {
   const defaultOptions = {
@@ -11,7 +9,6 @@ async function request(url, userOptions, dispatch) {
       'Content-Security-Policy': 'default-src \'self\'',
       'X-Frame-Options': 'SAMEORIGIN',
       'X-XSS-Protection': 1,
-      'X-CSRFToken': Cookies.get('csrftoken'),
     },
   };
 

@@ -10,7 +10,7 @@ export class PostList extends Component {
   static propTypes = {
     posts: PropTypes.shape({
       byId: PropTypes.objectOf(PropTypes.shape({
-        id: PropTypes.number,
+        id: PropTypes.string,
         title: PropTypes.string,
         user: PropTypes.shape({
           username: PropTypes.string,
@@ -61,8 +61,8 @@ export class PostList extends Component {
             key={`post-${p.id}`}
             id={p.id}
             title={p.title}
-            user={p.owner && p.owner_name}
-            votes={p.vote_count}
+            user={p.user && p.username}
+            votes={p.votes}
             selectPost={() => this.selectPost(p.id)}
             upvotePost={() => this.votePost(p.id, true)}
             downvotePost={() => this.votePost(p.id, false)}
