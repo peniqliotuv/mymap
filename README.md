@@ -1,4 +1,5 @@
 # Greendot React Native App
+[![Build Status](https://travis-ci.com/ctcusc/greendot-mobile.svg?token=xy29s3KFjbDSoUJfVgcQ&branch=master)](https://travis-ci.com/ctcusc/greendot-mobile/)
 
 ## Table of Contents
 
