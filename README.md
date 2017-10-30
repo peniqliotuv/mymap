@@ -1,5 +1,5 @@
 # Medmind React Native App
-[![Build Status](https://travis-ci.com/ctcusc/medmind-mobile.svg?token=xy29s3KFjbDSoUJfVgcQ&branch=master)](https://travis-ci.com/ctcusc/medmind-mobile/)
+[![Build Status](https://travis-ci.com/ctcusc/mymap-mobile.svg?token=xy29s3KFjbDSoUJfVgcQ&branch=master)](https://travis-ci.com/ctcusc/mymap-mobile/)
 
 ## Table of Contents
 
