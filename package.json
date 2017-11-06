@@ -27,17 +27,12 @@
     "mocha": "^4.0.1",
     "react-native-mock": "^0.3.1",
     "react-native-mock-render": "^0.0.11",
-    "react-native-scripts": "1.5.0",
     "react-test-renderer": "16.0.0-alpha.12",
     "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
     "test": "cross-env NODE_PATH=. mocha --opts test/mocha.opts \"./!(node_modules)/**/{*-test,*.spec}.js\"",
     "test-watch": "npm test -- --watch"
   },
@@ -49,7 +44,7 @@
     "prop-types": "^15.6.0",
     "react": "16.0.0-alpha.12",
     "react-dom": "^16.0.0",
-    "react-native": "^0.48.4",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.0.tar.gz",
     "react-navigation": "^1.0.0-beta.13",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
