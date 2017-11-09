@@ -5,4 +5,5 @@ export default {
   blue: '#5f99cf',
   upvoteOrange: '#ff8b60',
   downvoteBlue: '#9494ff',
+  purple: '#6D5AF6',
 };
