@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Post from '../../components/Post';
-import { PostList } from './';
+import Post from '../../post/components/Post';
+import { PostList } from '../../post/scenes/PostList';
 
 chai.use(chaiEnzyme());
 

@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 
-import reducer from './reducer';
-import { readPostByIdSucceeded, readPostsSucceeded } from './actions';
+import reducer from '../../post/reducer';
+import {
+  readPostByIdSucceeded,
+  readPostsSucceeded
+} from '../../post/actions';
 
 describe('Post Reducer', () => {
   context('when given an undefined action', () => {
