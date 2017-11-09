@@ -13,4 +13,4 @@ before_install:
 install:
   - "yarn install"
 script:
-  - "cross-env NODE_PATH=. mocha --opts test/mocha-ci.opts \"./!(node_modules)/**/{*-test,*.spec}.js\""
+  - "cross-env NODE_PATH=. mocha --opts App/test/mocha-ci.opts \"./!(node_modules)/**/{*-test,*.spec}.js\""
