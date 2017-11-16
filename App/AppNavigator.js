@@ -5,7 +5,7 @@ import TimelineNavigator from './timeline/TimelineNavigator';
 
 const AppNavigator = StackNavigator({
   Post: { screen: PostNavigator },
-  Timeline: { screen: TimelineNavigator }
+  Timeline: {screen: TimelineNavigator },
 }, {
   initialRouteName: 'Timeline',
   headerMode: 'none',

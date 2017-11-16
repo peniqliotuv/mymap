@@ -5,10 +5,15 @@ import s from './styles';
 
 const TimelineEvent = ({ appName, timestamp, body }) => {
   return (
-    <View>
-      <Text>{appName}</Text>
-      <Text>{timestamp}</Text>
-      <Text>{body}</Text>
+    <View style={s.container}>
+      <View style={s.date}>
+        <Text style={{'textAlign': 'center'}}>{timestamp}</Text>
+      </View>
+      <View style={s.card}>
+        <Text style={s.appName}>{appName}</Text>
+        <View style={s.lineBreak} />
+        <Text numberOfLines={5}>{body}</Text>
+      </View>
     </View>
   );
 };

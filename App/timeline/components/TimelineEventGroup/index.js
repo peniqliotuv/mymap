@@ -11,7 +11,7 @@ const TimelineEventGroup = ({ data }) => {
 
 
   return (
-    <View>
+    <View style={s.timelineEventGroup}>
       {
         events.map((item, index) => {
           return (
@@ -24,6 +24,7 @@ const TimelineEventGroup = ({ data }) => {
           );
         })
       }
+      <View style={s.lineBreak}/>
     </View>
   );
 };

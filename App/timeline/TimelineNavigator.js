@@ -6,7 +6,7 @@ const TimelineNavigator = StackNavigator({
   Timeline: { screen: Timeline },
 }, {
   initialRouteName: 'Timeline',
-  headerMode: 'screen',
+  headerMode: 'none',
 });
 
 export default TimelineNavigator;
