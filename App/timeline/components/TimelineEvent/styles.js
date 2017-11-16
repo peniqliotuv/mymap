@@ -28,6 +28,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     borderBottomRightRadius: 15,
     borderTopRightRadius: 15,
+    borderRightWidth: 15,
   },
   lineBreak: {
     width: '80%',
