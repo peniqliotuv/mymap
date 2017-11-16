@@ -7,30 +7,34 @@ import colors from '~/App/styles/colors';
 const TimelineEvent = ({ appName, timestamp, body }) => {
 
   // Border Color is determined based off of the app
-  let borderColor;
+  let highlightColor;
   switch (appName) {
     case 'side effect':
-      borderColor = colors.sideEffectGreen;
+      highlightColor = colors.sideEffectGreen;
       break;
     case 'medmind':
-      borderColor = colors.medMindBlue;
+      highlightColor = colors.medMindBlue;
       break;
     case 'infusion':
-      borderColor = colors.infusionYellow;
+      highlightColor = colors.infusionYellow;
       break;
     default:
-      borderColor= colors.purple;
+      highlightColor= colors.purple;
   }
 
-  const cardStyle = StyleSheet.flatten([s.card, { borderColor }]);
-  console.log(cardStyle)
+  const cardStyle = StyleSheet.flatten([s.card, { borderColor: highlightColor }]);
+  const iconStyle = StyleSheet.flatten([s.appIcon, { backgroundColor: highlightColor }]);
+
   return (
     <View style={s.container}>
-      <View style={s.date}>
-        <Text style={{'textAlign': 'center'}}>{timestamp}</Text>
+      <View style={s.dateContainer}>
+        <Text style={s.date}>{timestamp}</Text>
       </View>
       <View style={cardStyle}>
-        <Text style={s.appName}>{appName}</Text>
+        <View style={s.appHeader}>
+          <View style={iconStyle}/>
+          <Text style={s.appName}>{appName}</Text>
+        </View>
         <View style={s.lineBreak} />
         <Text numberOfLines={5}>{body}</Text>
       </View>
