@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import s from './styles';
 
@@ -69,15 +70,38 @@ class TimelineList extends Component {
     ];
 
 
+
     return (
-      <View>
-        <Text>My CancerBase Timeline</Text>
-        <ScrollView style={s.scrollView}>
-          {data.map((item, index) => {
-            return <TimelineEventGroup data={item} key={index}/>;
-          })}
-        </ScrollView>
-      </View>
+      <ParallaxScrollView
+        style={s.scrollView}
+        parallaxHeaderHeight={150}
+        backgroundColor="white"
+        renderBackground={() => (
+          <View key='background' style={{backgroundColor: 'blue', height: 150}}>
+
+          </View>
+        )}
+        renderForeground={() => (
+          <View key='parallax-header'
+               style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Text>Hello World! Welcome to CancerBase</Text>
+          </View>
+        )}
+        stickyHeaderHeight={60}
+        renderStickyHeader={() => (
+          <View key='sticky-header'
+                style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: 'red', flexDirection: 'column' }}
+          >
+            <Text style={{color: 'black', margin: 10, fontSize: 20}}>This is the sticky header.</Text>
+            <Text> This will be displayed if you scroll down </Text>
+          </View>
+        )}
+      >
+        {data.map((item, index) => {
+          return <TimelineEventGroup data={item} key={index}/>;
+        })}
+      </ParallaxScrollView>
     );
   }
 };
