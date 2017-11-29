@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
+import TimelineHeader from '../../components/TimelineHeader';
 import s from './styles';
 
 class TimelineList extends Component {
@@ -70,13 +71,16 @@ class TimelineList extends Component {
 
 
     return (
-      <View>
-        <Text>My CancerBase Timeline</Text>
-        <ScrollView style={s.scrollView}>
-          {data.map((item, index) => {
-            return <TimelineEventGroup data={item} key={index}/>;
-          })}
-        </ScrollView>
+      <View style={{flex: 1}}>
+
+        <TimelineHeader/>
+        <View style={s.scrollView}>
+          <ScrollView >
+            {data.map((item, index) => {
+              return <TimelineEventGroup data={item} key={index}/>;
+            })}
+          </ScrollView>
+        </View>
       </View>
     );
   }
