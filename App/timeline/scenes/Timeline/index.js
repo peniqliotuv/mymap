@@ -72,36 +72,42 @@ class TimelineList extends Component {
 
 
     return (
-      <ParallaxScrollView
-        style={s.scrollView}
-        parallaxHeaderHeight={150}
-        backgroundColor="white"
-        renderBackground={() => (
-          <View key='background' style={{backgroundColor: 'blue', height: 150}}>
+      <View style={{flex: 1}}>
+        <View style={{ position: 'absolute', height: 40, backgroundColor: 'yellow', bottom: -50}}>
+          <Text> Return to the top </Text>
+        </View>
+        <ParallaxScrollView
+          style={s.scrollView}
+          parallaxHeaderHeight={150}
+          backgroundColor="white"
+          renderBackground={() => (
+            <View key='background' style={{backgroundColor: 'blue', height: 150}}>
 
-          </View>
-        )}
-        renderForeground={() => (
-          <View key='parallax-header'
-               style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Text>Hello World! Welcome to CancerBase</Text>
-          </View>
-        )}
-        stickyHeaderHeight={60}
-        renderStickyHeader={() => (
-          <View key='sticky-header'
-                style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: 'red', flexDirection: 'column' }}
-          >
-            <Text style={{color: 'black', margin: 10, fontSize: 20}}>This is the sticky header.</Text>
-            <Text> This will be displayed if you scroll down </Text>
-          </View>
-        )}
-      >
-        {data.map((item, index) => {
-          return <TimelineEventGroup data={item} key={index}/>;
-        })}
-      </ParallaxScrollView>
+            </View>
+          )}
+          renderForeground={() => (
+            <View key='parallax-header'
+                 style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            >
+              <Text>Hello World! Welcome to CancerBase</Text>
+            </View>
+          )}
+          stickyHeaderHeight={60}
+          renderStickyHeader={() => (
+            <View key='sticky-header'
+                  style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: 'red', flexDirection: 'column' }}
+            >
+              <Text style={{color: 'black', margin: 10, fontSize: 20}}>This is the sticky header.</Text>
+              <Text> This will be displayed if you scroll down </Text>
+            </View>
+          )}
+        >
+
+          {data.map((item, index) => {
+            return <TimelineEventGroup data={item} key={index}/>;
+          })}
+        </ParallaxScrollView>
+      </View>
     );
   }
 };
