@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineHeader from '../../components/TimelineHeader';
+import ParallaxHeader from '../../components/ParallaxHeader';
 import s from './styles';
+import colors from '~/App/styles/colors';
 
 class TimelineList extends Component {
 
@@ -71,37 +73,24 @@ class TimelineList extends Component {
     ];
 
 
+    const user = {
+      name: 'Jane Doe',
+      imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
+    };
 
     return (
-      <View style={{flex: 1}}>
-        <View style={{ position: 'absolute', height: 40, backgroundColor: 'yellow', bottom: -50}}>
-          <Text> Return to the top </Text>
-        </View>
+      <View style={{ flex: 1 }}>
+        <TimelineHeader />
         <ParallaxScrollView
           style={s.scrollView}
-          parallaxHeaderHeight={150}
-          backgroundColor="white"
+          parallaxHeaderHeight={135}
           renderBackground={() => (
-            <View key='background' style={{backgroundColor: 'blue', height: 150}}>
-
-            </View>
+            <View key='background' style={{backgroundColor: colors.purple, height: 150}}></View>
           )}
           renderForeground={() => (
-            <View key='parallax-header'
-                 style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Text>Hello World! Welcome to CancerBase</Text>
-            </View>
+            <ParallaxHeader user={user}/>
           )}
-          stickyHeaderHeight={60}
-          renderStickyHeader={() => (
-            <View key='sticky-header'
-                  style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: 'red', flexDirection: 'column' }}
-            >
-              <Text style={{color: 'black', margin: 10, fontSize: 20}}>This is the sticky header.</Text>
-              <Text> This will be displayed if you scroll down </Text>
-            </View>
-          )}
+
         >
 
           {data.map((item, index) => {

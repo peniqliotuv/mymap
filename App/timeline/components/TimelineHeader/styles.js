@@ -4,10 +4,11 @@ import colors from '~/App/styles/colors';
 export default StyleSheet.create({
   header: {
     backgroundColor: colors.purple,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    flex: 1,
+    height: 60,
     flexDirection: 'row',
+    zIndex: 10,
   },
   headerText: {
     fontSize: 36,
@@ -23,5 +24,9 @@ export default StyleSheet.create({
   },
   settingsIcon: {
 
+  },
+  image: {
+    margin: 10,
+    marginTop: 20,
   },
 });

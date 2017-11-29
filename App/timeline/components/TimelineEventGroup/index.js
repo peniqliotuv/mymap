@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import TimelineEvent from '../TimelineEvent';
 import s from './styles';
@@ -7,11 +7,14 @@ import s from './styles';
 
 const TimelineEventGroup = ({ data }) => {
 
-  const { events = [] } = data;
+  const { events = [], date } = data;
 
 
   return (
     <View style={s.timelineEventGroup}>
+      <View style={s.dateContainer}>
+        <Text style={s.date}>{ date.toUpperCase() }</Text>
+      </View>
       {
         events.map((item, index) => {
           return (
@@ -24,6 +27,7 @@ const TimelineEventGroup = ({ data }) => {
           );
         })
       }
+
       <View style={s.lineBreak}/>
     </View>
   );
