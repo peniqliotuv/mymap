@@ -12,4 +12,5 @@ export default {
   grey: 'rgba(0, 0, 0, 0.4)',
   backgroundGrey: '#E5E5E5',
   white: '#FFFFFF',
+  purple: '#6665ff',
 };

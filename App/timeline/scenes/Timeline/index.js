@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
+import TimelineHeader from '../../components/TimelineHeader';
 import s from './styles';
 
 class TimelineList extends Component {
