@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
@@ -20,9 +21,154 @@
 		EBB8117C1BFA0514F79CAF74 /* libPods-react-native-boilerplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-react-native-boilerplate.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A9BE62CB1FCFC3E300C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CancerBaseSDK;
+		};
+		A9BE62FB1FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 91317FDFC1B4C0C51BAC6F18B9F4FE45;
+			remoteInfo = "Amplitude-iOS";
+		};
+		A9BE62FD1FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F440C9E0FC922925EAC42F8E45A23ACA;
+			remoteInfo = Analytics;
+		};
+		A9BE62FF1FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5455DC2B357F344AFE73E9FE44844BD8;
+			remoteInfo = AppAuth;
+		};
+		A9BE63011FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEC99643085E937612BC8398EF39F111;
+			remoteInfo = Bolts;
+		};
+		A9BE63031FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 26DD8613E55124FF3030CBA623EFCBEC;
+			remoteInfo = Branch;
+		};
+		A9BE63051FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F5D62D5E7090A684DA03C04E71429B35;
+			remoteInfo = CocoaLumberjack;
+		};
+		A9BE63071FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64B37D276C68533A08DAA960B0F31D4C;
+			remoteInfo = DoubleConversion;
+		};
+		A9BE63091FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D18EE25C5ABF1E2BEF4634D0B65191;
+			remoteInfo = ExpoKit;
+		};
+		A9BE630B1FCFD17900C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58F269F717E158C1F0C6F8DC10E612DE;
+			remoteInfo = FBSDKCoreKit;
+		};
+		A9BE630D1FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8FD9FAC7A9A44F27A152F470DB6388B;
+			remoteInfo = FBSDKLoginKit;
+		};
+		A9BE630F1FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 41A80DA47B04D4F0C3F5C8890B7AB627;
+			remoteInfo = FBSDKShareKit;
+		};
+		A9BE63111FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4508B19D76AC2D504E34DA84475098A;
+			remoteInfo = Folly;
+		};
+		A9BE63131FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D1E20AF83900F17830E4F6BDE935066;
+			remoteInfo = GLog;
+		};
+		A9BE63151FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EED7D7D20516305C4B76BA2A255D0039;
+			remoteInfo = GPUImage;
+		};
+		A9BE63171FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 31A9A859B565D99FB78CE407D2DA7D32;
+			remoteInfo = KVOController;
+		};
+		A9BE63191FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2B2DCAF8DA02422612F28046C7ABEC36;
+			remoteInfo = "lottie-ios";
+		};
+		A9BE631B1FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3126805C31194EB20846AB184B5EF4C6;
+			remoteInfo = "Pods-react-native-boilerplate";
+		};
+		A9BE631D1FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0367F0EAC460E0003B8B19724ED50FD;
+			remoteInfo = React;
+		};
+		A9BE631F1FCFD17A00C58AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED5C779517CFEAE97B97D68D08569E1D;
+			remoteInfo = Yoga;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-react-native-boilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-boilerplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate.debug.xcconfig"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-react-native-boilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-boilerplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate.release.xcconfig"; sourceTree = "<group>"; };
+		A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CancerBaseSDK.xcodeproj; path = "../../platform/sdk/react-native/cancerbase-sdk/CancerBaseSDK.xcodeproj"; sourceTree = "<group>"; };
+		A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* react-native-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "react-native-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-react-native-boilerplate.a in Frameworks */,
+				A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,9 +215,45 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A9BE62C71FCFC3E300C58AA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9BE62E51FCFD17900C58AA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9BE62FC1FCFD17900C58AA9 /* libAmplitude-iOS.a */,
+				A9BE62FE1FCFD17900C58AA9 /* libAnalytics.a */,
+				A9BE63001FCFD17900C58AA9 /* libAppAuth.a */,
+				A9BE63021FCFD17900C58AA9 /* libBolts.a */,
+				A9BE63041FCFD17900C58AA9 /* libBranch.a */,
+				A9BE63061FCFD17900C58AA9 /* libCocoaLumberjack.a */,
+				A9BE63081FCFD17900C58AA9 /* libDoubleConversion.a */,
+				A9BE630A1FCFD17900C58AA9 /* libExpoKit.a */,
+				A9BE630C1FCFD17900C58AA9 /* libFBSDKCoreKit.a */,
+				A9BE630E1FCFD17A00C58AA9 /* libFBSDKLoginKit.a */,
+				A9BE63101FCFD17A00C58AA9 /* libFBSDKShareKit.a */,
+				A9BE63121FCFD17A00C58AA9 /* libFolly.a */,
+				A9BE63141FCFD17A00C58AA9 /* libGLog.a */,
+				A9BE63161FCFD17A00C58AA9 /* libGPUImage.a */,
+				A9BE63181FCFD17A00C58AA9 /* libKVOController.a */,
+				A9BE631A1FCFD17A00C58AA9 /* liblottie-ios.a */,
+				A9BE631C1FCFD17A00C58AA9 /* libPods-react-native-boilerplate.a */,
+				A9BE631E1FCFD17A00C58AA9 /* libReact.a */,
+				A9BE63201FCFD17A00C58AA9 /* libYoga.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */,
+				A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */,
 				B56386431DB9693800A0598C /* react-native-boilerplate */,
 				B56386421DB9693800A0598C /* Products */,
 				5B29BC350A332C58878A9F13 /* Pods */,
@@ -164,12 +347,165 @@
 			mainGroup = B56386381DB9693800A0598C;
 			productRefGroup = B56386421DB9693800A0598C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A9BE62C71FCFC3E300C58AA9 /* Products */;
+					ProjectRef = A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */;
+				},
+				{
+					ProductGroup = A9BE62E51FCFD17900C58AA9 /* Products */;
+					ProjectRef = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B56386401DB9693800A0598C /* react-native-boilerplate */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCancerBaseSDK.a;
+			remoteRef = A9BE62CB1FCFC3E300C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE62FC1FCFD17900C58AA9 /* libAmplitude-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libAmplitude-iOS.a";
+			remoteRef = A9BE62FB1FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE62FE1FCFD17900C58AA9 /* libAnalytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAnalytics.a;
+			remoteRef = A9BE62FD1FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63001FCFD17900C58AA9 /* libAppAuth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppAuth.a;
+			remoteRef = A9BE62FF1FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63021FCFD17900C58AA9 /* libBolts.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBolts.a;
+			remoteRef = A9BE63011FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63041FCFD17900C58AA9 /* libBranch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBranch.a;
+			remoteRef = A9BE63031FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63061FCFD17900C58AA9 /* libCocoaLumberjack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaLumberjack.a;
+			remoteRef = A9BE63051FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63081FCFD17900C58AA9 /* libDoubleConversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDoubleConversion.a;
+			remoteRef = A9BE63071FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE630A1FCFD17900C58AA9 /* libExpoKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libExpoKit.a;
+			remoteRef = A9BE63091FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE630C1FCFD17900C58AA9 /* libFBSDKCoreKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBSDKCoreKit.a;
+			remoteRef = A9BE630B1FCFD17900C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE630E1FCFD17A00C58AA9 /* libFBSDKLoginKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBSDKLoginKit.a;
+			remoteRef = A9BE630D1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63101FCFD17A00C58AA9 /* libFBSDKShareKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBSDKShareKit.a;
+			remoteRef = A9BE630F1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63121FCFD17A00C58AA9 /* libFolly.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFolly.a;
+			remoteRef = A9BE63111FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63141FCFD17A00C58AA9 /* libGLog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGLog.a;
+			remoteRef = A9BE63131FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63161FCFD17A00C58AA9 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = A9BE63151FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63181FCFD17A00C58AA9 /* libKVOController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKVOController.a;
+			remoteRef = A9BE63171FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE631A1FCFD17A00C58AA9 /* liblottie-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblottie-ios.a";
+			remoteRef = A9BE63191FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE631C1FCFD17A00C58AA9 /* libPods-react-native-boilerplate.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-react-native-boilerplate.a";
+			remoteRef = A9BE631B1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE631E1FCFD17A00C58AA9 /* libReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReact.a;
+			remoteRef = A9BE631D1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A9BE63201FCFD17A00C58AA9 /* libYoga.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libYoga.a;
+			remoteRef = A9BE631F1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B563863F1DB9693800A0598C /* Resources */ = {
@@ -196,13 +532,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-react-native-boilerplate-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D34C7FE3D99F20E5EA1B18A /* [CP] Embed Pods Frameworks */ = {
@@ -226,9 +565,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate-resources.sh",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -247,7 +601,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -eo pipefail\n\npushd ${SRCROOT}/..\nvalue=$(cat ~/.expo/PATH)\nPATH=\"$PATH:$value\" exp prepare-detached-build --platform ios\npopd\n";
+			shellScript = "set -eo pipefail\n\npushd ${SRCROOT}/..\nvalue=$(cat ~/.expo/PATH)\nPATH=\"$PATH:$value\" exp prepare-detached-build --platform ios\necho \"Reached here\"\npopd\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -372,6 +726,42 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2DAZ3V2PJG;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/boost\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Amplitude-iOS\"",
+					"\"${PODS_ROOT}/Headers/Public/Analytics\"",
+					"\"${PODS_ROOT}/Headers/Public/AppAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/Bolts\"",
+					"\"${PODS_ROOT}/Headers/Public/Branch\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/ExpoKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBAudienceNetwork\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKCoreKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKLoginKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKShareKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/GLog\"",
+					"\"${PODS_ROOT}/Headers/Public/GPUImage\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAppUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAuthUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSignIn\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/KVOController\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/boost\"",
+					"\"${PODS_ROOT}/Headers/Public/lottie-ios\"",
+					"\"${SRC_ROOT}/../node_modules/react-native/React\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
@@ -385,6 +775,42 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2DAZ3V2PJG;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/boost\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Amplitude-iOS\"",
+					"\"${PODS_ROOT}/Headers/Public/Analytics\"",
+					"\"${PODS_ROOT}/Headers/Public/AppAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/Bolts\"",
+					"\"${PODS_ROOT}/Headers/Public/Branch\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/ExpoKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBAudienceNetwork\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKCoreKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKLoginKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKShareKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/GLog\"",
+					"\"${PODS_ROOT}/Headers/Public/GPUImage\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAppUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAuthUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSignIn\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/KVOController\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/boost\"",
+					"\"${PODS_ROOT}/Headers/Public/lottie-ios\"",
+					"\"${SRC_ROOT}/../node_modules/react-native/React\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;

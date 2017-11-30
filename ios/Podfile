@@ -46,24 +46,40 @@ target 'react-native-boilerplate' do
 
     installer.pod_targets.each do |target|
 
-    if target.pod_name == 'ExpoKit'
+      if target.pod_name == 'ExpoKit'
+        target.native_target.build_configurations.each do |config|
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'EX_DETACHED=1'
+          # needed for GoogleMaps 2.x
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= []
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Base/Frameworks'
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Maps/Frameworks'
+        end
+      end
+
+
+
+      if target.name == 'AppAuth'
+        puts target.inspect
+
+        puts target.file_accessors[0].source_files
+        #target.file_accessors[0].source_files.each do |file|
+        #  puts file.extname
+        #end
+        target.file_accessors[0].source_files.delete_if {|file| file.extname == '.m'}
+        puts "Deleted?"
+        puts target.file_accessors[0].source_files
+        puts target.should_build?
+        puts target.file_accessors.flat_map(&:source_files)
+      end
+
+      # Build React Native with RCT_DEV enabled
+      next unless target.pod_name == 'React'
       target.native_target.build_configurations.each do |config|
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'EX_DETACHED=1'
-        # needed for GoogleMaps 2.x
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= []
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Base/Frameworks'
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Maps/Frameworks'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'RCT_DEV=1'
       end
-    end
 
-
-    # Build React Native with RCT_DEV enabled
-    next unless target.pod_name == 'React'
-    target.native_target.build_configurations.each do |config|
-      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'RCT_DEV=1'
-    end
 
     end
   end
