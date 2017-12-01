@@ -2,23 +2,23 @@ const path = require('path');
 const metroBundler = require('metro-bundler');
 
 // based on https://github.com/facebook/metro-bundler/issues/1#issuecomment-333658773
+const projectRoot = path.resolve(__dirname);
+const sdkRoot = path.resolve(__dirname, '../platform/sdk/react-native/');
 
-const config = {
+module.exports = {
   extraNodeModules: {
+    // force resolution of these modules locally
     'react-native': path.resolve(__dirname, 'node_modules/react-native'),
     react: path.resolve(__dirname, 'node_modules/react')
   },
   getProjectRoots() {
-    return [
-      // Keep your project directory.
-      path.resolve(__dirname),
-      path.resolve(__dirname, '../../../platform/sdk/react-native/')
-    ];
+    return [projectRoot, sdkRoot];
   },
   getBlacklistRE: function() {
+    // ignore modules loaded from the sdk
     return metroBundler.createBlacklist([
-      /USER[/\\]PATH[/\\]TOLIBRARY[/\\]node_modules[/\\]react-native[/\\].*/
+      /cancerbase-sdk\/node_modules\/react\/.*/,
+      /cancerbase-sdk\/node_modules\/react-native\/.*/
     ]);
   }
 };
-module.exports = config;
