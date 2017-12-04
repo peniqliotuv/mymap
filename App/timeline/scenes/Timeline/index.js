@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions } from 'react-native';
+import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
@@ -8,14 +9,29 @@ import ParallaxHeader from '../../components/ParallaxHeader';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
+
+const MY_APP_SCOPES = [
+  'cb.appData.read',
+  'cb.profile',
+  'cb.timeline'
+];
+
 class TimelineList extends Component {
 
-  componentDidMount() {
-    console.log('TimelineList mounted');
-  }
+  onError = error => {
+    console.log('there was an error');
+    console.log(error);
+  };
 
-  componentWillUnmount() {
-    console.log('Timelinelist will unmount');
+  // callback for login success
+  onLogin = async () => {
+    if (CancerBaseSDK.isLoggedIn()) {
+      console.log(CancerBaseSDK.user.details);
+    }
+  };
+
+  componentDidCatch(err, info) {
+    console.log('did catch');
   }
 
   render() {
@@ -78,6 +94,15 @@ class TimelineList extends Component {
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     };
 
+
+    const loginButton = (
+      <LoginButton
+        scope={MY_APP_SCOPES}
+        onLogin={this.onLogin}
+        onError={this.onError}
+      />
+    );
+
     return (
       <View style={{ flex: 1 }}>
         <TimelineHeader />
@@ -92,7 +117,6 @@ class TimelineList extends Component {
           )}
 
         >
-
           {data.map((item, index) => {
             return <TimelineEventGroup data={item} key={index}/>;
           })}
