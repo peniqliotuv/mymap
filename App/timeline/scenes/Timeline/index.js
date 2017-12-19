@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Dimensions } from 'react-native';
 import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineHeader from '../../components/TimelineHeader';
 import ParallaxHeader from '../../components/ParallaxHeader';
@@ -94,7 +95,6 @@ class TimelineList extends Component {
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     };
 
-
     const loginButton = (
       <LoginButton
         scope={MY_APP_SCOPES}
@@ -108,15 +108,16 @@ class TimelineList extends Component {
         <TimelineHeader />
         <ParallaxScrollView
           style={s.scrollView}
-          parallaxHeaderHeight={135}
+          parallaxHeaderHeight={120}
           renderBackground={() => (
             <View key='background' style={{backgroundColor: colors.purple, height: 150}}></View>
           )}
           renderForeground={() => (
             <ParallaxHeader user={user}/>
           )}
-
+          ref={ref => this.parallaxScrollView = ref}
         >
+          <ScrollToTop/>
           {data.map((item, index) => {
             return <TimelineEventGroup data={item} key={index}/>;
           })}
