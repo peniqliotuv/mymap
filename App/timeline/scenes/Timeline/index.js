@@ -11,56 +11,36 @@ import s from './styles';
 import colors from '~/App/styles/colors';
 
 
-const MY_APP_SCOPES = [
-  'cb.appData.read',
-  'cb.profile',
-  'cb.timeline'
-];
+// const MY_APP_SCOPES = [
+//   'cb.appData.read',
+//   'cb.profile',
+//   'cb.timeline'
+// ];
 
 class TimelineList extends Component {
 
-  state = {
-    isParallaxHeaderVisible: true,
-  };
-
   PARALLAX_HEADER_HEIGHT = 120;
 
-  onError = (error) => {
-    console.log('there was an error');
-    console.log(error);
-  };
+  // onError = (error) => {
+  //   console.log('there was an error');
+  //   console.log(error);
+  // };
 
   // callback for login success
-  onLogin = async () => {
+  // onLogin = async () => {
     // if (CancerBaseSDK.isLoggedIn()) {
       // console.log(CancerBaseSDK.user.details);
     // }
-  };
+  // };
 
   handleScrollToTop = () => {
     // Scroll to y = 120 because that is how tall our header is
     this.parallaxScrollView.scrollTo({
-      y: 120,
+      y: this.PARALLAX_HEADER_HEIGHT,
       animated: true,
     });
   };
 
-  handleScroll = (e) => {
-    const { y } = e.nativeEvent.contentOffset;
-    /*
-    Check if we are within a y-offset of 10 of the parallax header height
-    We have to do this because handleScroll is called at set interval, meaning that
-    it might not ever equal PARALLAX_HEADER_HEIGHT.
-    */
-    if (y >= this.PARALLAX_HEADER_HEIGHT - 10 && y <= this.PARALLAX_HEADER_HEIGHT + 10
-      && this.state.isParallaxHeaderVisible) {
-      console.log('FALSE');
-      this.setState({ isParallaxHeaderVisible: false });
-    } else if (y <= this.PARALLAX_HEADER_HEIGHT && !this.state.isParallaxHeaderVisible) {
-      console.log('TRUE');
-      this.setState({ isParallaxHeaderVisible: true });
-    }
-  };
 
   componentDidCatch(err, info) {
     console.log('did catch');
@@ -120,7 +100,6 @@ class TimelineList extends Component {
       },
     ];
 
-
     const user = {
       name: 'Jane Doe',
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
@@ -137,13 +116,6 @@ class TimelineList extends Component {
     return (
       <View style={{ flex: 1 }}>
         <TimelineHeader />
-        {
-          !this.state.isParallaxHeaderVisible &&
-          <ScrollToTop
-            handlePress={this.handleScrollToTop}
-            isFixed={true}
-          />
-        }
         <ParallaxScrollView
           style={s.scrollView}
           parallaxHeaderHeight={this.PARALLAX_HEADER_HEIGHT}
@@ -155,16 +127,14 @@ class TimelineList extends Component {
             </View>
           )}
           renderForeground={() => <ParallaxHeader user={user} />}
-          onScroll={this.handleScroll}
+          stickyHeaderHeight={50}
+          renderStickyHeader={() => <ScrollToTop
+            handlePress={this.handleScrollToTop}
+          />}
+          backgroundColor='transparent'
+          fadeOutForeground={false}
           ref={(ref) => this.parallaxScrollView = ref}
         >
-          {
-            this.state.isParallaxHeaderVisible &&
-            <ScrollToTop
-              handlePress={this.handleScrollToTop}
-              isFixed={false}
-            />
-          }
           {data.map((item, index) => {
             return <TimelineEventGroup data={item} key={index} />;
           })}
