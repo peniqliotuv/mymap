@@ -10,6 +10,13 @@ import TimelineEvent from '../../timeline/components/TimelineEvent';
 chai.use(chaiEnzyme());
 
 describe('<TimelineEventGroup />', () => {
+  context('when passed in a data object with no events', () => {
+    it('no timeline events render', () => {
+      const timelineEventGroup = shallow(<TimelineEventGroup data={{}}/>);
+      expect(timelineEventGroup.find(TimelineEvent).length).to.equal(0);
+    });
+  });
+
   context('when passed in a data object with a list of events', () => {
     const data = {
       date: 'Monday November 13th, 2017',
