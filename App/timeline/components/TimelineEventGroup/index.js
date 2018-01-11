@@ -7,7 +7,7 @@ import s from './styles';
 
 const TimelineEventGroup = ({ data }) => {
 
-  const { events = [], date } = data;
+  const { events = [], date = '' } = data;
 
 
   return (
