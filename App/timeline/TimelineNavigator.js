@@ -1,12 +1,12 @@
 import { StackNavigator } from 'react-navigation';
 
-import TimelineList from './scenes/TimelineList';
+import Timeline from './scenes/Timeline';
 
 const TimelineNavigator = StackNavigator({
-  TimelineList: { screen: TimelineList },
+  Timeline: { screen: Timeline },
 }, {
-  initialRouteName: 'TimelineList',
-  headerMode: 'screen',
+  initialRouteName: 'Timeline',
+  headerMode: 'none',
 });
 
 export default TimelineNavigator;

@@ -7,6 +7,7 @@
 * [Prerequisites](#prerequisites)
   * [react-native-cli](#rn-cli)
   * [expo-cli](#expo-cli)
+  * [react-native-debugger](#react-native-debugger)
 * [Available Scripts](#available-scripts)
   * [yarn test](#yarn-test)
   * [yarn run ios](#yarn-run-ios)
@@ -44,6 +45,22 @@ npm install -g exp
 ```
 
 Now, you will be able to type 'exp start' to start the packaging server.
+
+### `react-native-debugger`
+
+In order to debug the application, it is best that you install the react-native-debugger tool.
+It works very similar to chrome dev tools and gives you a React-Devtools-esque debugging experience.
+Install the application by running:
+```
+brew update && brew cask install react-native-debugger
+```
+This will download the application to your computer.
+
+You can then run the debugger by typing:
+```
+yarn run debug
+```
+and then tapping on the 'Debug JS Remotely' option in your emulator.
 
 ## Available Scripts
 

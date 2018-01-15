@@ -13,6 +13,9 @@
     "slug": "react-native-boilerplate",
     "version": "0.1.0",
     "isDetached": true,
+    "packagerOpts": {
+      "config": "rn-cli.config.js"
+    },
     "detach": {
       "scheme": "exp5ab226684828480082a9429a5f53e51c",
       "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v1.20.5-sdk21.0.0-11e2eb3f-807e-48d4-8685-b0694f874637.tar.gz",

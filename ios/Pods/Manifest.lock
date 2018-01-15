@@ -159,18 +159,18 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   DoubleConversion:
-    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+    :podspec: ../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec
   ExpoKit:
     :git: http://github.com/expo/expo.git
     :tag: ios/1.20.5
   Folly:
-    :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+    :podspec: ../node_modules/react-native/third-party-podspecs/Folly.podspec
   GLog:
-    :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
+    :podspec: ../node_modules/react-native/third-party-podspecs/GLog.podspec
   React:
-    :path: "../node_modules/react-native"
+    :path: ../node_modules/react-native
   Yoga:
-    :path: "../node_modules/react-native/ReactCommon/yoga"
+    :path: ../node_modules/react-native/ReactCommon/yoga
 
 CHECKOUT OPTIONS:
   ExpoKit:
@@ -209,6 +209,6 @@ SPEC CHECKSUMS:
   React: 748a63a3a08cef2864657ad752a5ca7393e07fc2
   Yoga: b3337798e426de90f48662cf0fe2ee1a844075e1
 
-PODFILE CHECKSUM: 25cf32d6136ce840af8bd306bdd54f25b535d8b4
+PODFILE CHECKSUM: d65a623a65a00f47503faf1c739c46e90c19ee79
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

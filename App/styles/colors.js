@@ -5,5 +5,12 @@ export default {
   blue: '#5f99cf',
   upvoteOrange: '#ff8b60',
   downvoteBlue: '#9494ff',
-  purple: '#6D5AF6',
+  sideEffectGreen: '#5EFFAB',
+  infusionYellow: '#FDF885',
+  medMindBlue: '#6BC5FF',
+  purple: '#6665FF',
+  grey: 'rgba(0, 0, 0, 0.4)',
+  backgroundGrey: '#E5E5E5',
+  white: '#FFFFFF',
+  purple: '#6665ff',
 };

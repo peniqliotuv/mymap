@@ -39,6 +39,23 @@ target 'react-native-boilerplate' do
     :podspec => "../node_modules/react-native/third-party-podspecs/GLog.podspec",
     :inhibit_warnings => true
 
+  pre_install do |installer|
+    installer.pod_targets.each do |target|
+
+      if target.name == 'AppAuth'
+        spec = target.file_accessors[0].spec
+
+        # overwrite source_files in pod spec to only include header files
+        spec.ios.source_files = []
+        spec.source_files = ["Source/*.h", "Source/iOS/**/*.h"]
+
+        # turns out, overwriting source_files doesn't really do much, since
+        # should_build? is cached in the attribute @should_build. overwrite
+        # that too:
+        # target.instance_variable_set(:@should_build, false)
+      end
+    end
+  end
 
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';
@@ -46,24 +63,24 @@ target 'react-native-boilerplate' do
 
     installer.pod_targets.each do |target|
 
-    if target.pod_name == 'ExpoKit'
+      if target.pod_name == 'ExpoKit'
+        target.native_target.build_configurations.each do |config|
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'EX_DETACHED=1'
+          # needed for GoogleMaps 2.x
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= []
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Base/Frameworks'
+          config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Maps/Frameworks'
+        end
+      end
+
+      # Build React Native with RCT_DEV enabled
+      next unless target.pod_name == 'React'
       target.native_target.build_configurations.each do |config|
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'EX_DETACHED=1'
-        # needed for GoogleMaps 2.x
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= []
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Base/Frameworks'
-        config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_ROOT}/GoogleMaps/Maps/Frameworks'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'RCT_DEV=1'
       end
-    end
 
-
-    # Build React Native with RCT_DEV enabled
-    next unless target.pod_name == 'React'
-    target.native_target.build_configurations.each do |config|
-      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'RCT_DEV=1'
-    end
 
     end
   end

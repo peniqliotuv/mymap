@@ -7,6 +7,7 @@ import LoginNavigator from './login/LoginNavigator';
 const AppNavigator = StackNavigator({
   Login: { screen: LoginNavigator },
   Post: { screen: PostNavigator },
+  Timeline: {screen: TimelineNavigator },
   Timeline: { screen: TimelineNavigator },
 }, {
   initialRouteName: 'Login',
