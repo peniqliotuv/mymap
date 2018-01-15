@@ -10,28 +10,9 @@ import ParallaxHeader from '../../components/ParallaxHeader';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
-
-// const MY_APP_SCOPES = [
-//   'cb.appData.read',
-//   'cb.profile',
-//   'cb.timeline'
-// ];
-
 class TimelineList extends Component {
 
   PARALLAX_HEADER_HEIGHT = 120;
-
-  // onError = (error) => {
-  //   console.log('there was an error');
-  //   console.log(error);
-  // };
-
-  // callback for login success
-  // onLogin = async () => {
-    // if (CancerBaseSDK.isLoggedIn()) {
-      // console.log(CancerBaseSDK.user.details);
-    // }
-  // };
 
   handleScrollToTop = () => {
     // Scroll to y = 120 because that is how tall our header is
@@ -40,7 +21,6 @@ class TimelineList extends Component {
       animated: true,
     });
   };
-
 
   componentDidCatch(err, info) {
     console.log('did catch');
@@ -104,14 +84,6 @@ class TimelineList extends Component {
       name: 'Jane Doe',
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     };
-
-    // const loginButton = (
-    //   <LoginButton
-    //     scope={MY_APP_SCOPES}
-    //     onLogin={this.onLogin}
-    //     onError={this.onError}
-    //   />
-    // );
 
     return (
       <View style={{ flex: 1 }}>
