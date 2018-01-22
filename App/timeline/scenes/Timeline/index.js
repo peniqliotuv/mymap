@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, Alert } from 'react-native';
+import Drawer from 'react-native-drawer';
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
