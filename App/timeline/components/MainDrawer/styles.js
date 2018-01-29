@@ -10,9 +10,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-  	height: 40,
+    height: 40,
     marginTop: 25,
-  	color: colors.white,
+    color: colors.white,
     fontSize: 25,
   },
   image: {
@@ -22,12 +22,12 @@ export default StyleSheet.create({
     width: 35,
   },
   drawerItem: {
-  	flexDirection: 'row',
-  	paddingBottom: 30,
+    flexDirection: 'row',
+    paddingBottom: 30,
   },
   filterButton: {
-		borderWidth: 6,
-		width: 50,
+    borderWidth: 6,
+    width: 50,
 		height: 50,
 		backgroundColor: colors.purple,
 		borderRadius: 50,
