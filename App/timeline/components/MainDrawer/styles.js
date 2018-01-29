@@ -28,16 +28,16 @@ export default StyleSheet.create({
   filterButton: {
     borderWidth: 6,
     width: 50,
-		height: 50,
-		backgroundColor: colors.purple,
-		borderRadius: 50,
-		marginLeft: 15,
+    height: 50,
+    backgroundColor: colors.purple,
+    borderRadius: 50,
+    marginLeft: 15,
   },
   itemText: {
-  	fontSize: 20,
-  	fontWeight: 'bold',
-  	marginTop: 15,
-  	color: colors.white,
-  	paddingLeft: 15,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 15,
+    color: colors.white,
+    paddingLeft: 15,
   }
 });
