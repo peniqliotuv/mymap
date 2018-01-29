@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Alert, Button } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Alert, Modal, TouchableWithoutFeedback, Button } from 'react-native';
 import Drawer from 'react-native-drawer';
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
+import TimelineEventModal from '../../components/TimelineEventModal';
 import TimelineHeader from '../../components/TimelineHeader';
 import ParallaxHeader from '../../components/ParallaxHeader';
 import MainDrawer from '../../components/MainDrawer';
@@ -13,6 +14,11 @@ import s from './styles';
 import colors from '~/App/styles/colors';
 
 class TimelineList extends Component {
+
+  state = {
+    modalVisible: false,
+    modalData: null
+  };
 
   PARALLAX_HEADER_HEIGHT = 120;
 
@@ -22,6 +28,14 @@ class TimelineList extends Component {
       y: this.PARALLAX_HEADER_HEIGHT,
       animated: true,
     });
+  };
+
+  hideModal = () => {
+    this.setState({ modalVisible: false });
+  };
+
+  handleTimelineEventPress = (data) => {
+    this.setState({ modalVisible: true, modalData: data });
   };
 
   componentDidCatch(err, info) {
@@ -110,7 +124,6 @@ class TimelineList extends Component {
       },
     ];
 
-
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}
@@ -119,7 +132,7 @@ class TimelineList extends Component {
         type='displace'
         tapToClose
       >
-        <View style={{ flex: 1 }}>
+        <View style={s.outerView}>
           <TimelineHeader onPress={this.openControlPanel} />
           <ParallaxScrollView
             style={s.scrollView}
@@ -140,10 +153,14 @@ class TimelineList extends Component {
             fadeOutForeground={false}
             ref={(ref) => this.parallaxScrollView = ref}
           >
-            {data.map((item, index) => {
-              return <TimelineEventGroup data={item} key={index} />;
-            })}
+            {
+              data.map((item, index) => {
+                return <TimelineEventGroup data={item} key={index} handleTimelineEventPress={this.handleTimelineEventPress}/>
+              })
+            }
           </ParallaxScrollView>
+          
+          {this.state.modalVisible && <TimelineEventModal data={this.state.modalData} hideModal={this.hideModal}/>}
         </View>
       </Drawer>
     );

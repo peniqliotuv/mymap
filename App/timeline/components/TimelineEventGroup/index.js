@@ -5,7 +5,7 @@ import TimelineEvent from '../TimelineEvent';
 import s from './styles';
 
 
-const TimelineEventGroup = ({ data }) => {
+const TimelineEventGroup = ({ data, handleTimelineEventPress }) => {
 
   const { events = [], date = '' } = data;
 
@@ -23,6 +23,7 @@ const TimelineEventGroup = ({ data }) => {
               appName={item.appName}
               timestamp={item.timestamp}
               body={item.body}
+              handleTimelineEventPress={handleTimelineEventPress}
             />
           );
         })
@@ -42,6 +43,7 @@ TimelineEventGroup.propTypes = {
       body: PropTypes.string.isRequired,
     })),
   }),
+  handleTimelineEventPress: PropTypes.func.isRequired,
 };
 
 export default TimelineEventGroup;

@@ -10,9 +10,13 @@ import TimelineEvent from '../../timeline/components/TimelineEvent';
 chai.use(chaiEnzyme());
 
 describe('<TimelineEventGroup />', () => {
+  const handleTimelineEventPressMock = () => {
+
+  };
+
   context('when passed in a data object with no events', () => {
     it('no timeline events render', () => {
-      const timelineEventGroup = shallow(<TimelineEventGroup data={{}}/>);
+      const timelineEventGroup = shallow(<TimelineEventGroup data={{}} handleTimelineEventPress={handleTimelineEventPressMock}/>);
       expect(timelineEventGroup.find(TimelineEvent).length).to.equal(0);
     });
   });
@@ -46,13 +50,13 @@ describe('<TimelineEventGroup />', () => {
 
     it('the date correctly renders', () => {
       const date = data.date.toUpperCase();
-      const timelineEventGroup = shallow(<TimelineEventGroup data={data} />);
+      const timelineEventGroup = shallow(<TimelineEventGroup data={data} handleTimelineEventPress={handleTimelineEventPressMock}/>);
       expect(timelineEventGroup.find(Text).first().children()).to.contain(date);
     });
 
     it('correctly renders a list of <TimelineEvent />s', () => {
 
-      const timelineEventGroup = shallow(<TimelineEventGroup data={data} />);
+      const timelineEventGroup = shallow(<TimelineEventGroup data={data} handleTimelineEventPress={handleTimelineEventPressMock}/>);
       const posts = timelineEventGroup.find(TimelineEvent);
 
       expect(posts.length).to.equal(4);

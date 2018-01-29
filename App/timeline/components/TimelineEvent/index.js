@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
-const TimelineEvent = ({ appName, timestamp, body }) => {
+const TimelineEvent = ({ appName, timestamp, body, handleTimelineEventPress }) => {
 
   // Border Color is determined based off of the app
   let highlightColor;
@@ -26,7 +26,7 @@ const TimelineEvent = ({ appName, timestamp, body }) => {
   const iconStyle = StyleSheet.flatten([s.appIcon, { backgroundColor: highlightColor }]);
 
   return (
-    <View style={s.container}>
+    <TouchableOpacity style={s.container} onPress={() => handleTimelineEventPress({appName, timestamp, body})}>
       <View style={s.dateContainer}>
         <Text style={s.date}>{timestamp}</Text>
       </View>
@@ -38,7 +38,7 @@ const TimelineEvent = ({ appName, timestamp, body }) => {
         <View style={s.lineBreak} />
         <Text numberOfLines={5}>{body}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -46,6 +46,7 @@ TimelineEvent.propTypes = {
   appName: PropTypes.string.isRequired,
   timestamp: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  handleTimelineEventPress: PropTypes.func.isRequired,
 };
 
 export default TimelineEvent;
