@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Alert } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Alert, Button } from 'react-native';
 import Drawer from 'react-native-drawer';
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
@@ -8,6 +8,7 @@ import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineHeader from '../../components/TimelineHeader';
 import ParallaxHeader from '../../components/ParallaxHeader';
+import MainDrawer from '../../components/MainDrawer';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
@@ -26,6 +27,15 @@ class TimelineList extends Component {
   componentDidCatch(err, info) {
     console.log('did catch');
   }
+
+  closeControlPanel = () => {
+    this.drawer.close()
+  };
+
+  openControlPanel = () => {
+    console.log('I was pressed');
+    this.drawer.open()
+  };
 
   render() {
     const data = [
@@ -86,33 +96,57 @@ class TimelineList extends Component {
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     };
 
+    const apps = [
+      {
+        name: 'side effect',
+        color: '#5EFFAB',
+      },
+      {
+        name: 'infusion',
+        color: '#FDF885',
+      },
+      {
+        name: 'medmind',
+        color: '#6BC5FF',
+      },
+    ];
+
+
     return (
-      <View style={{ flex: 1 }}>
-        <TimelineHeader />
-        <ParallaxScrollView
-          style={s.scrollView}
-          parallaxHeaderHeight={this.PARALLAX_HEADER_HEIGHT}
-          renderBackground={() => (
-            <View
-              key='background'
-              style={{backgroundColor: colors.purple, height: 150}}
-            >
-            </View>
-          )}
-          renderForeground={() => <ParallaxHeader user={user} />}
-          stickyHeaderHeight={50}
-          renderStickyHeader={() => <ScrollToTop
-            handlePress={this.handleScrollToTop}
-          />}
-          backgroundColor='transparent'
-          fadeOutForeground={false}
-          ref={(ref) => this.parallaxScrollView = ref}
-        >
-          {data.map((item, index) => {
-            return <TimelineEventGroup data={item} key={index} />;
-          })}
-        </ParallaxScrollView>
-      </View>
+      <Drawer
+        ref={(ref) => this.drawer = ref}
+        content={<MainDrawer apps={apps} onPress={this.closeControlPanel} />}
+        openDrawerOffset={0.3}
+        type='displace'
+        tapToClose={true}
+      >
+        <View style={{ flex: 1 }}>
+          <TimelineHeader onPress={this.openControlPanel} />
+          <ParallaxScrollView
+            style={s.scrollView}
+            parallaxHeaderHeight={this.PARALLAX_HEADER_HEIGHT}
+            renderBackground={() => (
+              <View
+                key='background'
+                style={{backgroundColor: colors.purple, height: 150}}
+              >
+              </View>
+            )}
+            renderForeground={() => <ParallaxHeader user={user} />}
+            stickyHeaderHeight={50}
+            renderStickyHeader={() => <ScrollToTop
+              handlePress={this.handleScrollToTop}
+            />}
+            backgroundColor='transparent'
+            fadeOutForeground={false}
+            ref={(ref) => this.parallaxScrollView = ref}
+          >
+            {data.map((item, index) => {
+              return <TimelineEventGroup data={item} key={index} />;
+            })}
+          </ParallaxScrollView>
+        </View>
+      </Drawer>
     );
   }
 }
