@@ -3,15 +3,15 @@ import colors from '~/App/styles/colors';
 
 export default StyleSheet.create({
   container: {
-  	flex: 1,
-  	backgroundColor: colors.purple,
+    flex: 1,
+    backgroundColor: colors.purple,
   },
   titleContainer: {
     flexDirection: 'row',
   },
   title: {
   	height: 40,
-  	marginTop: 25,
+    marginTop: 25,
   	color: colors.white,
     fontSize: 25,
   },

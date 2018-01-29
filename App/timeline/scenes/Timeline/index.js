@@ -33,7 +33,6 @@ class TimelineList extends Component {
   };
 
   openControlPanel = () => {
-    console.log('I was pressed');
     this.drawer.open()
   };
 
@@ -118,7 +117,7 @@ class TimelineList extends Component {
         content={<MainDrawer apps={apps} onPress={this.closeControlPanel} />}
         openDrawerOffset={0.3}
         type='displace'
-        tapToClose={true}
+        tapToClose
       >
         <View style={{ flex: 1 }}>
           <TimelineHeader onPress={this.openControlPanel} />

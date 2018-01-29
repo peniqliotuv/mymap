@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import s from './styles';
 
-const TimelineHeader = ( {onPress} ) => {
+const TimelineHeader = ({onPress}) => {
   return (
     <View style={s.header}>
     	<TouchableHighlight onPress={onPress}>

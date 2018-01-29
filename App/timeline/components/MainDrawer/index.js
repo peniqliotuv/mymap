@@ -35,6 +35,10 @@ const MainDrawer = ({ apps, onPress }) => {
 
 MainDrawer.propTypes = {
   onPress: PropTypes.func.isRequired,
+  apps: PropTypes.arrayOf(PropTypes.shape({
+  	name: React.PropTypes.string.isRequired,
+  	color: React.PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default MainDrawer;

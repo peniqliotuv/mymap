@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import mockery from 'mockery';
 import MainDrawer from '../../timeline/components/MainDrawer';
 
