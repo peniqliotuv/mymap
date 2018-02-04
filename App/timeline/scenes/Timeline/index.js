@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, Alert, Modal, TouchableWithoutFeedback, Button } from 'react-native';
 import Drawer from 'react-native-drawer';
+/*
+I'm just leaving these comments in here so it's easy to remove and add in
+the cancerbase SDK in case we have issues with testing hitting routes
+*/
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
@@ -17,7 +21,7 @@ class TimelineList extends Component {
 
   state = {
     modalVisible: false,
-    modalData: null
+    modalData: null,
   };
 
   PARALLAX_HEADER_HEIGHT = 120;
@@ -124,6 +128,25 @@ class TimelineList extends Component {
       },
     ];
 
+    /*
+      Same here: I'm leaving this in here so we can just add it in the render() function if we want to test
+      the cancerbase SDK login functionality.
+    */
+    // const loginButton = (
+    //   <LoginButton
+    //     scopes={[
+    //       'cb.appData.read',
+    //       'cb.profile',
+    //       'cb.timeline'
+    //     ]}
+    //     onLogin={() => {
+    //       CancerBaseSDK.user.getProfile()
+    //         .then(profile => { console.log(profile) });
+    //     }}
+    //     onError={err => console.log(err)}
+    //   />
+    // );
+
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}
@@ -146,9 +169,7 @@ class TimelineList extends Component {
             )}
             renderForeground={() => <ParallaxHeader user={user} />}
             stickyHeaderHeight={50}
-            renderStickyHeader={() => <ScrollToTop
-              handlePress={this.handleScrollToTop}
-            />}
+            renderStickyHeader={() => <ScrollToTop handlePress={this.handleScrollToTop} />}
             backgroundColor='transparent'
             fadeOutForeground={false}
             ref={(ref) => this.parallaxScrollView = ref}
@@ -159,7 +180,7 @@ class TimelineList extends Component {
               })
             }
           </ParallaxScrollView>
-          
+
           {this.state.modalVisible && <TimelineEventModal data={this.state.modalData} hideModal={this.hideModal}/>}
         </View>
       </Drawer>

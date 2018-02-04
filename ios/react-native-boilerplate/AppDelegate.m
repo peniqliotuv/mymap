@@ -3,7 +3,7 @@
 #import "AppDelegate.h"
 #import "ExpoKit.h"
 #import "EXViewController.h"
-
+#import "../../../platform/sdk/react-native/cancerbase-sdk/CancerBaseSDK.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +20,10 @@
     [[ExpoKit sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     _rootViewController = [ExpoKit sharedInstance].rootViewController;
     _window.rootViewController = _rootViewController;
-    
+
     [_rootViewController loadReactApplication];
     [_window makeKeyAndVisible];
-    
+
     return YES;
 }
 
@@ -31,6 +31,12 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
 {
+    if ([CancerBaseSDK application:application
+                           openURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation]) {
+        return YES;
+    }
     return [[ExpoKit sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
