@@ -1,16 +1,15 @@
 import { StackNavigator } from 'react-navigation';
 
-import PostNavigator from './post/PostNavigator';
 import TimelineNavigator from './timeline/TimelineNavigator';
 import LoginNavigator from './login/LoginNavigator';
+import SplashNavigator from './splash/SplashNavigator';
 
 const AppNavigator = StackNavigator({
+  Splash: { screen: SplashNavigator },
   Login: { screen: LoginNavigator },
-  Post: { screen: PostNavigator },
-  Timeline: {screen: TimelineNavigator },
   Timeline: { screen: TimelineNavigator },
 }, {
-  initialRouteName: 'Login',
+  initialRouteName: 'Splash',
   headerMode: 'none',
 });
 
