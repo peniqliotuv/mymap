@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, Alert, Modal, TouchableWithoutFeedback, Button } from 'react-native';
+import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
 /*
 I'm just leaving these comments in here so it's easy to remove and add in
@@ -14,6 +15,7 @@ import TimelineEventModal from '../../components/TimelineEventModal';
 import TimelineHeader from '../../components/TimelineHeader';
 import ParallaxHeader from '../../components/ParallaxHeader';
 import MainDrawer from '../../components/MainDrawer';
+import { toggleEvent } from '../../actions';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
@@ -48,11 +50,40 @@ class TimelineList extends Component {
 
   closeControlPanel = () => {
     this.drawer.close()
-  };
+  }
 
   openControlPanel = () => {
     this.drawer.open()
-  };
+  }
+
+  filterApps = (obj, data) => {
+    const newData = [];
+    if (obj.activeApps.length > 0) {
+      data.map((item, index) => {
+        const arr = item.events.filter(event => {
+          return obj.activeApps.includes(event.appName);
+        });
+        if (arr.length > 0) {
+          newData.push({
+            date: item.date,
+            events: arr,
+          });
+        }
+      });
+      return newData;
+    }
+    return data;
+  }
+
+  modifyColor = (obj, apps) => {
+    const newApps = apps.slice();
+    newApps.forEach(item => {
+      if (obj.activeApps.includes(item.name)) {
+        item.backgroundColor = item.color;
+      }
+    });
+    return newApps;
+  }
 
   render() {
     const data = [
@@ -117,16 +148,23 @@ class TimelineList extends Component {
       {
         name: 'side effect',
         color: '#5EFFAB',
+        backgroundColor: '#6665ff',
       },
       {
         name: 'infusion',
         color: '#FDF885',
+        backgroundColor: '#6665ff',
       },
       {
         name: 'medmind',
         color: '#6BC5FF',
+        backgroundColor: '#6665ff',
       },
     ];
+
+    const { activeApps } = this.props;
+    const filteredEvents = this.filterApps(activeApps, data);
+    const filteredApps = this.modifyColor(activeApps, apps);
 
     /*
       Same here: I'm leaving this in here so we can just add it in the render() function if we want to test
@@ -146,11 +184,10 @@ class TimelineList extends Component {
     //     onError={err => console.log(err)}
     //   />
     // );
-
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}
-        content={<MainDrawer apps={apps} onPress={this.closeControlPanel} />}
+        content={<MainDrawer apps={filteredApps} onPress={this.closeControlPanel} toggleEvent={this.props.toggleEvent}/>}
         openDrawerOffset={0.3}
         type='displace'
         tapToClose
@@ -175,7 +212,7 @@ class TimelineList extends Component {
             ref={(ref) => this.parallaxScrollView = ref}
           >
             {
-              data.map((item, index) => {
+              filteredEvents.map((item, index) => {
                 return <TimelineEventGroup data={item} key={index} handleTimelineEventPress={this.handleTimelineEventPress}/>
               })
             }
@@ -188,5 +225,17 @@ class TimelineList extends Component {
   }
 }
 
-export default TimelineList;
+function mapStateToProps(state, ownProps) {
+  const { activeApps } = state.timeline;
+  return {
+    activeApps: { activeApps },
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleEvent: (appName) => dispatch(toggleEvent(appName)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimelineList);

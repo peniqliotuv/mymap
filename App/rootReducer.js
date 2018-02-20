@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-import post from './post/reducer';
+import timeline from './timeline/reducer'
 
-export default combineReducers({ post });
+export default combineReducers({ timeline });
