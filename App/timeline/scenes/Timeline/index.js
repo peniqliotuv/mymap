@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Alert, Modal, TouchableWithoutFeedback, Button } from 'react-native';
+import {
+    View,
+    Text,
+    ScrollView,
+    Dimensions,
+    Modal,
+    Button,
+    Animated,
+    Image,
+    TouchableOpacity } from 'react-native';
+import { Font } from 'expo';
 import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
 /*
@@ -19,19 +29,31 @@ import { toggleEvent } from '../../actions';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
+const HEADER_MAX_HEIGHT = 200;
+const HEADER_MIN_HEIGHT = 60;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+const HEADER_STICKYEXTRA_HEIGHT = 60;
+
 class TimelineList extends Component {
 
   state = {
     modalVisible: false,
     modalData: null,
+    scrollY: new Animated.Value(0),
+    fontLoaded: false,
   };
 
-  PARALLAX_HEADER_HEIGHT = 120;
+  async componentDidMount() {
+    await Font.loadAsync({
+      'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
+      'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
+    });
+    this.setState({ fontLoaded: true });
+  }
 
   handleScrollToTop = () => {
-    // Scroll to y = 120 because that is how tall our header is
-    this.parallaxScrollView.scrollTo({
-      y: this.PARALLAX_HEADER_HEIGHT,
+    this.scrollView.scrollTo({
+      y: HEADER_SCROLL_DISTANCE,
       animated: true,
     });
   };
@@ -84,6 +106,7 @@ class TimelineList extends Component {
     });
     return newApps;
   }
+
 
   render() {
     const data = [
@@ -162,6 +185,39 @@ class TimelineList extends Component {
       },
     ];
 
+    const headerHeight = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+        extrapolate: 'clamp',
+    });
+
+    const imageOpacity = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+        outputRange: [1, 1, 0],
+        extrapolate: 'clamp',
+    });
+    const imageTranslate = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [0, -50],
+        extrapolate: 'clamp',
+    });
+
+    const titleScale = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [1, 0.5],
+        extrapolate: 'clamp',
+    });
+    const titleTranslate = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [HEADER_MAX_HEIGHT-80, -8],
+        extrapolate: 'clamp',
+    });
+    const scrollToTopTranslate = this.state.scrollY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+        extrapolate: 'clamp',
+    })
+
     const { activeApps } = this.props;
     const filteredEvents = this.filterApps(activeApps, data);
     const filteredApps = this.modifyColor(activeApps, apps);
@@ -189,42 +245,78 @@ class TimelineList extends Component {
     // );
 
     return (
-      <Drawer
-        ref={(ref) => this.drawer = ref}
-        content={<MainDrawer apps={filteredApps} onPress={this.closeControlPanel} toggleEvent={this.props.toggleEvent}/>}
-        openDrawerOffset={0.3}
-        type='displace'
-        tapToClose
-      >
-        <View style={s.outerView}>
-          <TimelineHeader onPress={this.openControlPanel} />
-          <ParallaxScrollView
-            style={s.scrollView}
-            parallaxHeaderHeight={this.PARALLAX_HEADER_HEIGHT}
-            renderBackground={() => (
-              <View
-                key='background'
-                style={{backgroundColor: colors.purple, height: 150}}
-              >
-              </View>
-            )}
-            renderForeground={() => <ParallaxHeader user={user} />}
-            stickyHeaderHeight={50}
-            renderStickyHeader={() => <ScrollToTop handlePress={this.handleScrollToTop} />}
-            backgroundColor='transparent'
-            fadeOutForeground={false}
-            ref={(ref) => this.parallaxScrollView = ref}
-          >
-            {
-              filteredEvents.map((item, index) => {
-                return <TimelineEventGroup data={item} key={index} handleTimelineEventPress={this.handleTimelineEventPress}/>
-              })
-            }
-          </ParallaxScrollView>
-
-          {this.state.modalVisible && <TimelineEventModal data={this.state.modalData} hideModal={this.hideModal}/>}
-        </View>
-      </Drawer>
+        <Drawer
+            ref={(ref) => this.drawer = ref}
+            content={ <MainDrawer
+                        apps={filteredApps}
+                        onPress={this.closeControlPanel}
+                        toggleEvent={this.props.toggleEvent}
+                        />
+                    }
+            openDrawerOffset={0.3}
+            type='displace'
+            tapToClose
+            >
+            <View style={s.outerView}>
+                <Animated.View style={[s.scrollToTop,
+                    {transform: [{translateY: scrollToTopTranslate}], }
+                ]}>
+                    <ScrollToTop
+                        handlePress={this.handleScrollToTop}
+                    />
+                </Animated.View>
+                <ScrollView style={s.scrollView}
+                    scrollEventThrottle={16}
+                    onScroll={Animated.event([{nativeEvent: {contentOffset: {y: this.state.scrollY} }}] )}
+                    ref={(ref) => this.scrollView = ref}
+                    >
+                    <View marginTop={HEADER_MAX_HEIGHT+HEADER_STICKYEXTRA_HEIGHT}>
+                        {
+                          data.map((item, index) => {
+                            return <TimelineEventGroup
+                                        data={item}
+                                        key={index}
+                                        handleTimelineEventPress={this.handleTimelineEventPress}
+                                    />
+                          })
+                        }
+                    </View>
+                </ScrollView>
+                <Animated.View style={[s.header, {height: headerHeight}]}>
+                    <Animated.Image
+                        style={[
+                          s.backgroundImage,
+                          {
+                              opacity: imageOpacity,
+                              transform: [{ translateY: imageTranslate }],
+                              height: HEADER_MAX_HEIGHT
+                          },
+                        ]}
+                        source={{ uri: user.imageUrl }}
+                    />
+                    <View style={s.bar}>
+                        <TouchableOpacity onPress={this.openControlPanel}>
+  	                         <Image source={require('~/App/assets/menu-bars.png')} />
+                        </TouchableOpacity>
+                        {
+                            this.state.fontLoaded && (
+                                <Animated.View style={[
+                                    s.titleWrapper,
+                                    {transform: [{ scale: titleScale }, { translateY: titleTranslate },],},
+                                ]}>
+                                    <Text style={[s.title, {fontFamily: 'SF-Pro-Text-LightItalic'} ]}>my</Text>
+                                    <Text style={[s.title, {fontFamily: 'SF-Pro-Text-SemiboldItalic'}]}>map</Text>
+                                    </Animated.View>
+                            )
+                        }
+                        <TouchableOpacity onPress={this.openControlPanel}>
+  	                         <Image source={require('~/App/assets/settings-circles.png')} />
+                        </TouchableOpacity>
+                    </View>
+                </Animated.View>
+                {this.state.modalVisible && <TimelineEventModal data={this.state.modalData} hideModal={this.hideModal}/>}
+            </View>
+        </Drawer>
     );
   }
 }

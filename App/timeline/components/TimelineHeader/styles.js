@@ -3,7 +3,7 @@ import colors from '~/App/styles/colors';
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: colors.purple,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 60,

@@ -41,6 +41,11 @@
     "test": "cross-env NODE_PATH=. mocha --opts App/test/mocha.opts \"./!(node_modules)/**/{*-test,*.spec}.js\"",
     "test-watch": "npm test -- --watch"
   },
+  "rnpm": {
+    "assets": [
+	  "App/assets/fonts/"
+    ]
+  },
   "jest": {
     "preset": "jest-expo"
   },

@@ -5,20 +5,16 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    height: 135,
   },
   top: {
     flex: 1,
     backgroundColor: colors.purple,
   },
   middle: {
-    position: 'absolute',
+    flex: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    position: 'relative'
   },
   body: {
     flexDirection: 'column',
@@ -37,14 +33,13 @@ export default StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: 10,
+    marginBottom: 30,
   },
   image: {
     position: 'absolute',
-    bottom: 30,
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    zIndex: 2,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });

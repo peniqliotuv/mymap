@@ -14,6 +14,7 @@ export default StyleSheet.create({
   date: {
     fontSize: 18,
     fontWeight: "500",
+    opacity: 0.7,
   },
   lineBreak: {
     width: "80%",

@@ -2,7 +2,7 @@ export default {
   white: '#ffffff',
   lightGray: '#c6c6c6',
   lightBlue: '#eff7ff',
-  blue: '#5f99cf',
+  blue: '#0000FE',
   upvoteOrange: '#ff8b60',
   downvoteBlue: '#9494ff',
   sideEffectGreen: '#5EFFAB',

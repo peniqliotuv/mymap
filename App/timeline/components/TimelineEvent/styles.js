@@ -15,6 +15,7 @@ export default StyleSheet.create({
   date: {
     textAlign: 'center',
     fontWeight: '100',
+    opacity: 0.7,
   },
   appHeader: {
     flex: 1,
