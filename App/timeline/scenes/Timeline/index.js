@@ -179,11 +179,15 @@ class TimelineList extends Component {
     //     ]}
     //     onLogin={() => {
     //       CancerBaseSDK.user.getProfile()
-    //         .then(profile => { console.log(profile) });
+    //         .then(profile => {
+    //           console.log(profile);
+    //          })
+    //         .catch(e => console.error(e));
     //     }}
     //     onError={err => console.log(err)}
     //   />
     // );
+
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}

@@ -62,6 +62,12 @@ yarn run debug
 ```
 and then tapping on the 'Debug JS Remotely' option in your emulator.
 
+## Running with the Cancerbase SDK:
+
+Note that you will have to have the Cancerbase SDK compiled before building this app. Our current development environment assumes that you have `/mymap-mobile` adjacent to `platform` in the folder structure. In order to build the Cancerbase SDK, navigate into `platform` and find the `.xcodeproj` for the Cancerbase SDK. Open it up and build! If there are errors, most likely you don't have the pods installed (run pod install).
+
+When developing the app, you may want to login with Cancerbase and do things such as create a user, login, and access a profile. Upon creating a profile, you will be taken to the "Grant Access" page.  Sometimes, if you press "Grant Access", nothing will happen. If this is the case, navigate into the `platform/scripts` directory and run `hydra-launch-terminal.sh` and then run `dev-init`, which will insert the list of OAuth accounts into the database (this is what the whole cb11111 abcdef stuff is for). Restart the app and you should be good to go!
+
 ## Available Scripts
 
 If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and NPM at the time of this writing.
@@ -77,6 +83,12 @@ Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
 Like `yarn start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed. Under the hood, it calls `react-native run-ios`, which is necessary because we have native modules in our application. If `yarn run ios
 
 ## Troubleshooting
+
+### Networking
+
+If you press `Cmd+D` on your simulator and enable "Debug JS Remotely", you should be able to debug mymap-mobile using Chrome Devtools! This will print all calls to `console.log()` into the browser tab. In addition, you'll see that at the top of `App/index.js` there is code to print all Network Requests in the console, which will be very useful when we are working with the Cancerbase SDK, performing HTTP requests to `platform`.  
+
+*IMPORTANT: * You must enable `CORS` in order to debug network requests. `CORS` stands for Cross-Origin-Request-Sharing, which is important because our network requests will be coming from a different origin (the iOS simulator), and we will be debugging from our browser.
 
 ### iOS Simulator won't open
 
