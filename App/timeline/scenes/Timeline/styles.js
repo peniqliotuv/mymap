@@ -35,7 +35,6 @@ export default StyleSheet.create({
         backgroundColor: 'transparent',
         color: 'white',
         fontSize: 36,
-        fontStyle: 'italic',
         textShadowColor: 'rgba(0, 0, 0, 0.25)',
         textShadowRadius: 4,
         textShadowOffset: { width: 0, height: 4 },
