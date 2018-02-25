@@ -18,12 +18,9 @@ the cancerbase SDK in case we have issues with testing hitting routes
 */
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
-//import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineEventModal from '../../components/TimelineEventModal';
-//import TimelineHeader from '../../components/TimelineHeader';
-//import ParallaxHeader from '../../components/ParallaxHeader';
 import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent } from '../../actions';
 import s from './styles';

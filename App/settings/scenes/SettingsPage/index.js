@@ -11,8 +11,11 @@ class SettingsPage extends Component {
     }
 
     componentWillMount() {
-      this.leftArrow = (<Image style={styles.icon} source={require('~/App/assets/arrowLeft.png')} />);
+      // Preload to attempt speeding up image loading
+      this.leftArrow = (<Image style={styles.icon} source={require('~/App/assets/arrowLeft-small.png')} />);
       this.rightArrow = (<Image style={[styles.icon, styles.alignRight]} source={require('~/App/assets/arrowRight-small.png')} />);
+      this.profile = (<Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/profile-small.png')}/>);
+      this.notifications = (<Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/notifications-small.png')}/>);
     }
 
     goback = () => {
@@ -51,7 +54,7 @@ class SettingsPage extends Component {
                         onPress={this.gotoEditProfile}
                         style={styles.menuItem}
                     >
-                        <Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/profile.png')}/>
+                        { this.profile }
                         <Text style={styles.buttonText}>edit profile</Text>
                         { this.rightArrow }
                     </TouchableOpacity>
@@ -60,7 +63,7 @@ class SettingsPage extends Component {
                         onPress={this.gotoEditNotifications}
                         style={styles.menuItem}
                     >
-                        <Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/notifications.png')}/>
+                        { this.notifications }
                         <Text style={styles.buttonText}>edit notifications</Text>
                         { this.rightArrow }
                     </TouchableOpacity>
