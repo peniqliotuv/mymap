@@ -34,13 +34,12 @@ class SettingsPage extends Component {
         // TODO: sign out
     }
 
-    // Empty view on top to stretch out the 'justifyContent'.
     render() {
         return (
             <View style={styles.outer}>
                 <View style={styles.top}>
                     <TouchableOpacity
-                        title="settings"
+                        title="Settings"
                         onPress={this.goback}
                         style={styles.alignLeft}
                     >
@@ -78,7 +77,6 @@ class SettingsPage extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-
         );
     }
 }
