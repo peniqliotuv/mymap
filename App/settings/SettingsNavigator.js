@@ -9,3 +9,4 @@ const SettingsNavigator = StackNavigator({
 });
 
 export default SettingsNavigator;
+

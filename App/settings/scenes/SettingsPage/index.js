@@ -82,3 +82,4 @@ class SettingsPage extends Component {
 }
 
 export default SettingsPage;
+
