@@ -5,11 +5,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#93ffd5',
-        padding: 50,
     },
     buttonContainer: {
         alignSelf: 'stretch',
+        padding: 50,
     },
     boxButton: {
         borderWidth: 2,
@@ -19,6 +18,7 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     buttonText: {
+        backgroundColor: 'transparent',
         color: '#FFFFFF',
         fontSize: 27,
     },
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 50,
         fontWeight: 'bold',
+        backgroundColor: 'transparent',
         textShadowColor: 'rgba(0.2, 0.2, 0.2, 0.4)',
         textShadowOffset: {width: 0, height: 3},
         textShadowRadius: 5,
