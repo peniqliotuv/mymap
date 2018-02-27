@@ -12,14 +12,14 @@ class SettingsPage extends Component {
 
     componentWillMount() {
       // Preload to attempt speeding up image loading
-      this.leftArrow = (<Image style={styles.icon} source={require('~/App/assets/arrowLeft-small.png')} />);
-      this.rightArrow = (<Image style={[styles.icon, styles.alignRight]} source={require('~/App/assets/arrowRight-small.png')} />);
-      this.profile = (<Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/profile-small.png')}/>);
-      this.notifications = (<Image style={[styles.icon, styles.menuIcon]} source={require('~/App/assets/notifications-small.png')}/>);
+      this.leftArrow = (<Image style={styles.icon} source={require('../../../assets/arrowLeft-small.png')} />);
+      this.rightArrow = (<Image style={[styles.icon, styles.alignRight]} source={require('../../../assets/arrowRight-small.png')} />);
+      this.profile = (<Image style={[styles.icon, styles.menuIcon]} source={require('../../../assets/profile-small.png')}/>);
+      this.notifications = (<Image style={[styles.icon, styles.menuIcon]} source={require('../../../assets/notifications-small.png')}/>);
     }
 
     goback = () => {
-        this.props.navigation.dispatch(NavigationActions.back())
+        this.props.navigation.dispatch(NavigationActions.back());
     }
 
     gotoEditProfile = () => {
@@ -39,7 +39,7 @@ class SettingsPage extends Component {
             <View style={styles.outer}>
                 <View style={styles.top}>
                     <TouchableOpacity
-                        title="Settings"
+                        title='Settings'
                         onPress={this.goback}
                         style={styles.alignLeft}
                     >
