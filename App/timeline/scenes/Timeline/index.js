@@ -8,7 +8,9 @@ import {
     Button,
     Animated,
     Image,
-    TouchableOpacity } from 'react-native';
+    TouchableOpacity,
+    Alert 
+} from 'react-native';
 import { Font } from 'expo';
 import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
@@ -16,7 +18,7 @@ import Drawer from 'react-native-drawer';
 I'm just leaving these comments in here so it's easy to remove and add in
 the cancerbase SDK in case we have issues with testing hitting routes
 */
-// import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
+import CancerBaseSDK from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
@@ -38,14 +40,95 @@ class TimelineList extends Component {
     modalData: null,
     scrollY: new Animated.Value(0),
     fontLoaded: false,
+    events: [],
   };
 
   async componentDidMount() {
+
+    const apps = [
+      'medmind',
+      'infusion',
+      'side effect',
+    ]
+    for (let i = 0; i < 1; ++i) {
+    
+      CancerBaseSDK.timeline.create({
+        date: new Date(2018, 2, 1, 2, 2),
+        category: apps[i],
+        data: 'dummy GET route data',
+        tags: ['abcde', '12345'],
+      })
+      .then(event => {
+        console.log(event);
+        this.setState({ eventId: event.eventId });
+      })
+      .catch(err => console.log(err));
+    }
+
+    CancerBaseSDK.timeline.get()
+      .then((events) => {
+        this.setState({ events: this.transformCancerBaseSDKEvents(events) });
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert('Profile not found');
+      });
     await Font.loadAsync({
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
     });
     this.setState({ fontLoaded: true });
+  }
+
+  // transforms the event data received from CancerBaseSDK.timeline.get()
+  transformCancerBaseSDKEvents = (events) => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November', 'December'];
+
+    // sort the events by ISO date (can be done lexicographically)
+    const sortedEvents = events.sort((a, b) => {
+      return (a.date > b.date);
+    });
+
+    let tempDate;
+    const result = [];
+    for (let i = 0; i < sortedEvents.length; i++) {
+      const event = sortedEvents[i];
+      const date = new Date(event.date);
+
+      // make a new object representing one day
+      if (result.length === 0 || this.daysBetweenDates(tempDate, date) > 0) {
+        tempDate = date;
+        const dayString = days[date.getDay()];
+        const monthString = months[date.getMonth()];
+        const dateString = `${dayString} ${monthString} ${date.getDate()}, ${date.getFullYear()}`;
+        result.push({
+          date: dateString,
+          events: [],
+        });
+      }
+
+      // append the event
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+      const hourString = (hour === 0 || hour === 12 ? '12' : parseInt(hour % 12, 10));
+      const minuteString = (minute < 10 ? `0${parseInt(minute, 10)}` : `${parseInt(minute, 10)}`);
+      const timeString = `${hourString}:${minuteString} ${(hour >= 12 ? 'AM' : 'PM')}`;
+      result[result.length - 1].events.push({
+        appName: event.category,
+        timestamp: timeString,
+        body: event.data,
+      });
+    }
+    
+    return result;
+  }
+
+  // helper to calculate how many days separate two Dates
+  daysBetweenDates = (dateA, dateB) => {
+    const millisPerDay = 1000 * 60 * 60 * 24;
+    const millisDifference = dateB.getTime() - dateA.getTime();
+    return Math.round(millisDifference / millisPerDay);
   }
 
   handleScrollToTop = () => {
@@ -110,59 +193,6 @@ class TimelineList extends Component {
 
 
   render() {
-    const data = [
-      {
-        date: 'Sunday November 12th, 2017',
-        events: [
-          {
-            appName: 'medmind',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'infusion',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-        ],
-      },
-      {
-        date: 'Monday November 13th, 2017',
-        events: [
-          {
-            appName: 'side effect',
-            timestamp: '5:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'infusion',
-            timestamp: '6:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '7:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'medmind',
-            timestamp: '9:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-        ],
-      },
-    ];
-
     const user = {
       name: 'Jane Doe',
       imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
@@ -220,7 +250,7 @@ class TimelineList extends Component {
     })
 
     const { activeApps } = this.props;
-    const filteredEvents = this.filterApps(activeApps, data);
+    const filteredEvents = this.filterApps(activeApps, this.state.events);
     const filteredApps = this.modifyColor(activeApps, apps);
 
     /*

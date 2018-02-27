@@ -11,17 +11,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignSelf: 'stretch',
     },
-    boxButton: {
-        borderWidth: 2,
-        borderColor: '#FFFFFF',
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        padding: 5,
-    },
-    buttonText: {
-        color: '#FFFFFF',
-        fontSize: 27,
-    },
     logoText: {
         color: '#FFFFFF',
         fontSize: 50,
