@@ -172,17 +172,17 @@ class TimelineList extends Component {
       {
         name: 'side effect',
         color: '#5EFFAB',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
       {
         name: 'infusion',
         color: '#FDF885',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
       {
         name: 'medmind',
         color: '#6BC5FF',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
     ];
 
@@ -273,7 +273,7 @@ class TimelineList extends Component {
                     >
                     <View marginTop={HEADER_MAX_HEIGHT+HEADER_STICKYEXTRA_HEIGHT}>
                         {
-                          data.map((item, index) => {
+                          filteredEvents.map((item, index) => {
                             return <TimelineEventGroup
                                         data={item}
                                         key={index}
