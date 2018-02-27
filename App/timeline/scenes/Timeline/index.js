@@ -18,12 +18,9 @@ the cancerbase SDK in case we have issues with testing hitting routes
 */
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineEventModal from '../../components/TimelineEventModal';
-import TimelineHeader from '../../components/TimelineHeader';
-import ParallaxHeader from '../../components/ParallaxHeader';
 import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent } from '../../actions';
 import s from './styles';
@@ -76,6 +73,10 @@ class TimelineList extends Component {
 
   openControlPanel = () => {
     this.drawer.open()
+  }
+
+  gotoSettings = () => {
+      this.props.navigation.navigate('SettingsNavigator');
   }
 
   filterApps = (obj, data) => {
@@ -309,7 +310,7 @@ class TimelineList extends Component {
                                     </Animated.View>
                             )
                         }
-                        <TouchableOpacity onPress={this.openControlPanel}>
+                        <TouchableOpacity onPress={this.gotoSettings}>
   	                         <Image source={require('~/App/assets/settings-circles.png')} />
                         </TouchableOpacity>
                     </View>
