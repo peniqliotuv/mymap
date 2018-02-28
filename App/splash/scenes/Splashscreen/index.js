@@ -88,7 +88,6 @@ class Splashscreen extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-
         );
     }
 }

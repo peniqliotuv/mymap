@@ -4,7 +4,7 @@ import colors from '~/App/styles/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.purple,
+    backgroundColor: colors.blue,
   },
   titleContainer: {
     flexDirection: 'row',

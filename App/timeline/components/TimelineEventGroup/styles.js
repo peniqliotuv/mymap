@@ -15,10 +15,12 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     opacity: 0.7,
+    letterSpacing: 1,
   },
   lineBreak: {
     width: "80%",
     height: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    marginBottom: "2%",
   },
 });

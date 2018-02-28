@@ -18,12 +18,9 @@ the cancerbase SDK in case we have issues with testing hitting routes
 */
 // import CancerBaseSDK, { LoginButton } from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineEventModal from '../../components/TimelineEventModal';
-import TimelineHeader from '../../components/TimelineHeader';
-import ParallaxHeader from '../../components/ParallaxHeader';
 import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent } from '../../actions';
 import s from './styles';
@@ -76,6 +73,10 @@ class TimelineList extends Component {
 
   openControlPanel = () => {
     this.drawer.open()
+  }
+
+  gotoSettings = () => {
+      this.props.navigation.navigate('SettingsNavigator');
   }
 
   filterApps = (obj, data) => {
@@ -171,17 +172,17 @@ class TimelineList extends Component {
       {
         name: 'side effect',
         color: '#5EFFAB',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
       {
         name: 'infusion',
         color: '#FDF885',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
       {
         name: 'medmind',
         color: '#6BC5FF',
-        backgroundColor: '#6665ff',
+        backgroundColor: '#0000FE',
       },
     ];
 
@@ -272,7 +273,7 @@ class TimelineList extends Component {
                     >
                     <View marginTop={HEADER_MAX_HEIGHT+HEADER_STICKYEXTRA_HEIGHT}>
                         {
-                          data.map((item, index) => {
+                          filteredEvents.map((item, index) => {
                             return <TimelineEventGroup
                                         data={item}
                                         key={index}
@@ -283,20 +284,23 @@ class TimelineList extends Component {
                     </View>
                 </ScrollView>
                 <Animated.View style={[s.header, {height: headerHeight}]}>
-                    <Animated.Image
-                        style={[
-                          s.backgroundImage,
-                          {
-                              opacity: imageOpacity,
-                              transform: [{ translateY: imageTranslate }],
-                              height: HEADER_MAX_HEIGHT
-                          },
-                        ]}
-                        source={{ uri: user.imageUrl }}
-                    />
+                    <View>
+                        <Animated.Image
+                            style={[
+                              s.backgroundImage,
+                              {
+                                  opacity: imageOpacity,
+                                  transform: [{ translateY: imageTranslate }],
+                                  height: HEADER_MAX_HEIGHT
+                              },
+                            ]}
+                            source={{ uri: user.imageUrl }}
+                        />
+                        <View style={s.buffer}></View>
+                    </View>
                     <View style={s.bar}>
                         <TouchableOpacity onPress={this.openControlPanel}>
-  	                         <Image source={require('~/App/assets/menu-bars.png')} />
+  	                         <Image style={s.menuIcon} source={require('~/App/assets/menu-bars.png')} />
                         </TouchableOpacity>
                         {
                             this.state.fontLoaded && (
@@ -309,7 +313,7 @@ class TimelineList extends Component {
                                     </Animated.View>
                             )
                         }
-                        <TouchableOpacity onPress={this.openControlPanel}>
+                        <TouchableOpacity onPress={this.gotoSettings}>
   	                         <Image source={require('~/App/assets/settings-circles.png')} />
                         </TouchableOpacity>
                     </View>

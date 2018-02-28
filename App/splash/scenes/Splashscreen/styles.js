@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '~/App/styles/colors';
 
 const styles = StyleSheet.create({
     outer: {
@@ -30,6 +31,11 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0.2, 0.2, 0.2, 0.4)',
         textShadowOffset: {width: 0, height: 3},
         textShadowRadius: 5,
+    },
+    logo: {
+        resizeMode: 'contain',
+        width: 270,
+        top: -27,
     }
 });
 
