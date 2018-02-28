@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: 0, height: 3},
         textShadowRadius: 5,
     },
+    logoImg: {
+        width: '80%',
+        resizeMode: 'contain',
+    },
     logo: {
         resizeMode: 'contain',
         width: 270,

@@ -26,6 +26,7 @@ class Splashscreen extends Component {
     async _loadAssetsAsync() {
         const imageAssets = cacheImages([
             require('~/App/assets/background.jpg'),
+            require('~/App/assets/logo-outlines.png'),
         ]);
 
         return Promise.all(imageAssets);
@@ -53,7 +54,9 @@ class Splashscreen extends Component {
                     />
                 </View>
                 <View></View>
-                <Text style={styles.logoText}>mymap</Text>
+                <Image
+                    style={styles.logoImg}
+                    source={require('~/App/assets/logo-outlines.png')} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         title='SIGN IN'
