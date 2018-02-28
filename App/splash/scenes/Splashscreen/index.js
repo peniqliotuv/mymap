@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Button, TouchableOpacity } from 'react-native';
-import { AppLoading, Asset } from 'expo';
+import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
 import PropTypes from 'prop-types';
 import styles from './styles';
@@ -27,6 +27,8 @@ class Splashscreen extends Component {
         const imageAssets = cacheImages([
             require('~/App/assets/background.jpg'),
         ]);
+
+        return Promise.all(imageAssets);
     }
 
     // Empty view on top to stretch out the 'justifyContent'.
