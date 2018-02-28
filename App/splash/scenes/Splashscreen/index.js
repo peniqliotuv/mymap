@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
@@ -20,28 +20,30 @@ class Splashscreen extends Component {
     // Empty view on top to stretch out the 'justifyContent'.
     render() {
         return (
-            <View style={styles.outer}>
-                <View></View>
-                <Text style={styles.logoText}>mymap</Text>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        title='SIGN IN'
-                        onPress={this.signIn}
-                        style={[styles.boxButton, {marginBottom: 19}]}
-                    >
-                        <Text style={styles.buttonText}>SIGN IN</Text>
-                    </TouchableOpacity>
+                <View style={styles.outer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
+                    <View></View>
+                    <Image style={styles.logo} source={require('~/App/assets/logo-outlines.png')} />
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            title='SIGN IN'
+                            onPress={this.signIn}
+                            style={[styles.boxButton, {marginBottom: 19}]}
+                        >
+                            <Text style={styles.buttonText}>sign in</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity
-                        title='SIGN UP'
-                        onPress={this.signUp}
-                        style={styles.boxButton}
-                    >
-                        <Text style={styles.buttonText}>SIGN UP</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            title='SIGN UP'
+                            onPress={this.signUp}
+                            style={styles.boxButton}
+                        >
+                            <Text style={styles.buttonText}>sign up</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-
         );
     }
 }
