@@ -21,5 +21,6 @@ export default StyleSheet.create({
     width: "80%",
     height: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    marginBottom: "2%",
   },
 });
