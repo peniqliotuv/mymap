@@ -27,6 +27,7 @@ import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent } from '../../actions';
 import s from './styles';
 import colors from '~/App/styles/colors';
+import { transformCancerBaseSDKEvents } from '../../../utils/cancerBaseSDKHelper';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 60;
@@ -44,16 +45,15 @@ class TimelineList extends Component {
   };
 
   async componentDidMount() {
-
     const apps = [
       'medmind',
       'infusion',
       'side effect',
-    ]
+    ];
+
     for (let i = 0; i < 1; ++i) {
-    
       CancerBaseSDK.timeline.create({
-        date: new Date(2018, 2, 1, 2, 2),
+        date: new Date(2018, 11, 1, 2, 2),
         category: apps[i],
         data: 'dummy GET route data',
         tags: ['abcde', '12345'],
@@ -67,7 +67,8 @@ class TimelineList extends Component {
 
     CancerBaseSDK.timeline.get()
       .then((events) => {
-        this.setState({ events: this.transformCancerBaseSDKEvents(events) });
+        console.log(events);
+        this.setState({ events: transformCancerBaseSDKEvents(events) });
       })
       .catch((err) => {
         console.log(err);
@@ -78,57 +79,6 @@ class TimelineList extends Component {
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
     });
     this.setState({ fontLoaded: true });
-  }
-
-  // transforms the event data received from CancerBaseSDK.timeline.get()
-  transformCancerBaseSDKEvents = (events) => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November', 'December'];
-
-    // sort the events by ISO date (can be done lexicographically)
-    const sortedEvents = events.sort((a, b) => {
-      return (a.date > b.date);
-    });
-
-    let tempDate;
-    const result = [];
-    for (let i = 0; i < sortedEvents.length; i++) {
-      const event = sortedEvents[i];
-      const date = new Date(event.date);
-
-      // make a new object representing one day
-      if (result.length === 0 || this.daysBetweenDates(tempDate, date) > 0) {
-        tempDate = date;
-        const dayString = days[date.getDay()];
-        const monthString = months[date.getMonth()];
-        const dateString = `${dayString} ${monthString} ${date.getDate()}, ${date.getFullYear()}`;
-        result.push({
-          date: dateString,
-          events: [],
-        });
-      }
-
-      // append the event
-      const hour = date.getHours();
-      const minute = date.getMinutes();
-      const hourString = (hour === 0 || hour === 12 ? '12' : parseInt(hour % 12, 10));
-      const minuteString = (minute < 10 ? `0${parseInt(minute, 10)}` : `${parseInt(minute, 10)}`);
-      const timeString = `${hourString}:${minuteString} ${(hour >= 12 ? 'AM' : 'PM')}`;
-      result[result.length - 1].events.push({
-        appName: event.category,
-        timestamp: timeString,
-        body: event.data,
-      });
-    }
-    
-    return result;
-  }
-
-  // helper to calculate how many days separate two Dates
-  daysBetweenDates = (dateA, dateB) => {
-    const millisPerDay = 1000 * 60 * 60 * 24;
-    const millisDifference = dateB.getTime() - dateA.getTime();
-    return Math.round(millisDifference / millisPerDay);
   }
 
   handleScrollToTop = () => {
