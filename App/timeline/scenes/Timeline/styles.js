@@ -41,7 +41,7 @@ export default StyleSheet.create({
     },
     backgroundImage: {
         position: 'absolute',
-        top: 0,
+        top: 20,
         left: 0,
         right: 0,
         width: null,
@@ -55,13 +55,16 @@ export default StyleSheet.create({
         zIndex: 100,
         backgroundColor: 'transparent',
     },
-    headerText: {
-        fontSize: 36,
-        fontWeight: '600',
-        color: colors.white,
-        textAlign: 'center',
-        textShadowColor: 'rgba(0, 0, 0, 0.25)',
-        textShadowRadius: 4,
-        textShadowOffset: { width: 0, height: 4 },
+    buffer: {
+        height: 20,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: colors.blue,
+    },
+    menuIcon: {
+        left: -5,
     },
 });

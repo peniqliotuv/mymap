@@ -15,6 +15,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     opacity: 0.7,
+    letterSpacing: 1,
   },
   lineBreak: {
     width: "80%",

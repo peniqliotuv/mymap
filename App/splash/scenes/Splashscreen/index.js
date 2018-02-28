@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
@@ -22,14 +22,14 @@ class Splashscreen extends Component {
         return (
             <View style={styles.outer}>
                 <View></View>
-                <Text style={styles.logoText}>mymap</Text>
+                <Image style={styles.logo} source={require('~/App/assets/logo-outlines.png')} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         title='SIGN IN'
                         onPress={this.signIn}
                         style={[styles.boxButton, {marginBottom: 19}]}
                     >
-                        <Text style={styles.buttonText}>SIGN IN</Text>
+                        <Text style={styles.buttonText}>sign in</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -37,11 +37,10 @@ class Splashscreen extends Component {
                         onPress={this.signUp}
                         style={styles.boxButton}
                     >
-                        <Text style={styles.buttonText}>SIGN UP</Text>
+                        <Text style={styles.buttonText}>sign in</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
         );
     }
 }

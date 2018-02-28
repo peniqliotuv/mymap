@@ -284,20 +284,23 @@ class TimelineList extends Component {
                     </View>
                 </ScrollView>
                 <Animated.View style={[s.header, {height: headerHeight}]}>
-                    <Animated.Image
-                        style={[
-                          s.backgroundImage,
-                          {
-                              opacity: imageOpacity,
-                              transform: [{ translateY: imageTranslate }],
-                              height: HEADER_MAX_HEIGHT
-                          },
-                        ]}
-                        source={{ uri: user.imageUrl }}
-                    />
+                    <View>
+                        <Animated.Image
+                            style={[
+                              s.backgroundImage,
+                              {
+                                  opacity: imageOpacity,
+                                  transform: [{ translateY: imageTranslate }],
+                                  height: HEADER_MAX_HEIGHT
+                              },
+                            ]}
+                            source={{ uri: user.imageUrl }}
+                        />
+                        <View style={s.buffer}></View>
+                    </View>
                     <View style={s.bar}>
                         <TouchableOpacity onPress={this.openControlPanel}>
-  	                         <Image source={require('~/App/assets/menu-bars.png')} />
+  	                         <Image style={s.menuIcon} source={require('~/App/assets/menu-bars.png')} />
                         </TouchableOpacity>
                         {
                             this.state.fontLoaded && (
