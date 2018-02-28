@@ -45,29 +45,8 @@ class TimelineList extends Component {
   };
 
   async componentDidMount() {
-    // const apps = [
-    //   'medmind',
-    //   'infusion',
-    //   'side effect',
-    // ];
-
-    // for (let i = 0; i < 1; ++i) {
-    //   CancerBaseSDK.timeline.create({
-    //     date: new Date(2018, 11, 1, 2, 2),
-    //     category: apps[i],
-    //     data: 'dummy GET route data',
-    //     tags: ['abcde', '12345'],
-    //   })
-    //   .then(event => {
-    //     console.log(event);
-    //     this.setState({ eventId: event.eventId });
-    //   })
-    //   .catch(err => console.log(err));
-    // }
-
     CancerBaseSDK.timeline.get()
       .then((events) => {
-        console.log(events);
         this.setState({ events: transformCancerBaseSDKEvents(events) });
       })
       .catch((err) => {
