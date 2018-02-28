@@ -7,6 +7,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    imgWrap: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+    },
+    bgImg: {
+        flex: 1,
+        resizeMode: 'stretch',
+    },
     buttonContainer: {
         alignSelf: 'stretch',
         padding: 50,

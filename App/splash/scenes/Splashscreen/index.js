@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Button, TouchableOpacity } from 'react-native';
 import { AppLoading, Asset } from 'expo';
+import cacheImages from '../../../utils/assetPrefetch';
 import PropTypes from 'prop-types';
 import styles from './styles';
-
-function cacheImages(images) {
-    return images.map(image => {
-        if (typeof image === 'string') {
-            return Image.prefetch(image);
-        } else {
-            return Asset.fromModule(image).downloadAsync();
-        }
-    });
-}
 
 class Splashscreen extends Component {
 
@@ -53,18 +44,9 @@ class Splashscreen extends Component {
         return (
             <View style={styles.outer}>
                 <View
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                    }}>
+                    style={styles.imgWrap}>
                     <Image
-                        style={{
-                            flex: 1,
-                            resizeMode: 'stretch',
-                        }}
+                        style={styles.bgImg}
                         source={require('~/App/assets/background.jpg')}
                     />
                 </View>
