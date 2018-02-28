@@ -1,24 +1,40 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    outer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#93ffd5',
-        padding: 50,
-    },
-    buttonContainer: {
-        alignSelf: 'stretch',
-    },
-    logoText: {
-        color: '#FFFFFF',
-        fontSize: 50,
-        fontWeight: 'bold',
-        textShadowColor: 'rgba(0.2, 0.2, 0.2, 0.4)',
-        textShadowOffset: {width: 0, height: 3},
-        textShadowRadius: 5,
-    }
+  outer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  imgWrap: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  bgImg: {
+    flex: 1,
+    resizeMode: 'stretch',
+  },
+  buttonContainer: {
+    alignSelf: 'stretch',
+    padding: 50,
+  },
+  logoText: {
+    color: '#FFFFFF',
+    fontSize: 50,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+    textShadowColor: 'rgba(0.2, 0.2, 0.2, 0.4)',
+    textShadowOffset: {width: 0, height: 3},
+    textShadowRadius: 5,
+  },
+  logo: {
+    resizeMode: 'contain',
+    width: 270,
+    top: -27,
+  },
 });
 
 export default styles;
