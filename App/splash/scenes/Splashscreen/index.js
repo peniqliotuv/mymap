@@ -37,7 +37,7 @@ class Splashscreen extends Component {
                         onPress={this.signUp}
                         style={styles.boxButton}
                     >
-                        <Text style={styles.buttonText}>sign in</Text>
+                        <Text style={styles.buttonText}>sign up</Text>
                     </TouchableOpacity>
                 </View>
             </View>
