@@ -49,10 +49,7 @@ class TimelineList extends Component {
       .then((events) => {
         this.setState({ events: transformCancerBaseSDKEvents(events) });
       })
-      .catch((err) => {
-        console.log(err);
-        Alert.alert('Profile not found');
-      });
+      .catch((err) => {});
     await Font.loadAsync({
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),

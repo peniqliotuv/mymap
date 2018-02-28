@@ -52,3 +52,4 @@ export const transformCancerBaseSDKEvents = (events) => {
   }
   return result;
 };
+

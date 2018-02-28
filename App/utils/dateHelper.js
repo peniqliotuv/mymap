@@ -16,3 +16,4 @@ export const dateToTimeString = (date) => {
   const minuteString = (minute < 10 ? `0${parseInt(minute, 10)}` : `${parseInt(minute, 10)}`);
   return `${hourString}:${minuteString} ${(hour < 12 ? 'AM' : 'PM')}`;
 };
+
