@@ -7,6 +7,7 @@ import { dateToDayMonthDateYearString, dateToTimeString } from './dateHelper';
  *  - it's date cannot be converted into a Date object
  */
 export const checkCancerBaseSDKEvent = (event) => {
+  // we should eventually query the allowed apps from back end
   const allowedApps = ['medmind', 'side effect', 'infusion'];
 
   if (allowedApps.indexOf(event.category) < 0) return false;

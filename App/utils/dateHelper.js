@@ -1,8 +1,8 @@
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November', 'December'];
+
 // convert Date object to 'Day Month Date, Year'
 export const dateToDayMonthDateYearString = (date) => {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November', 'December'];
-
   const dayString = days[date.getDay()];
   const monthString = months[date.getMonth()];
   return `${dayString} ${monthString} ${date.getDate()}, ${date.getFullYear()}`;
