@@ -14,12 +14,5 @@ export const dateToTimeString = (date) => {
   const minute = date.getMinutes();
   const hourString = (hour === 0 || hour === 12 ? '12' : parseInt(hour % 12, 10));
   const minuteString = (minute < 10 ? `0${parseInt(minute, 10)}` : `${parseInt(minute, 10)}`);
-  return `${hourString}:${minuteString} ${(hour >= 12 ? 'AM' : 'PM')}`;
+  return `${hourString}:${minuteString} ${(hour < 12 ? 'AM' : 'PM')}`;
 };
-
-// calculate how many days separate two Dates
-export const daysBetweenDates = (dateA, dateB) => {
-  const millisPerDay = 1000 * 60 * 60 * 24;
-  const millisDifference = dateB.getTime() - dateA.getTime();
-  return Math.round(millisDifference / millisPerDay);
-}

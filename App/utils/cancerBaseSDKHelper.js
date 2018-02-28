@@ -1,4 +1,4 @@
-import { dateToDayMonthDateYearString, dateToTimeString, daysBetweenDates } from './dateHelper';
+import { dateToDayMonthDateYearString, dateToTimeString } from './dateHelper';
 
 /**
  * Returns true if a CancerBaseSDK event is valid, false if malformed
@@ -33,7 +33,7 @@ export const transformCancerBaseSDKEvents = (events) => {
       const date = new Date(event.date);
 
       // make a new object representing one day
-      if (result.length === 0 || daysBetweenDates(tempDate, date) > 0) {
+      if (result.length === 0 || tempDate.toDateString() !== date.toDateString()) {
         tempDate = date;
         result.push({
           date: dateToDayMonthDateYearString(date),
