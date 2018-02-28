@@ -53,17 +53,17 @@ describe('transformCancerBaseSDKEvents', () => {
       {
         category: 'infusion',
         data: 'data-1',
-        date: '2018-02-01T10:02:00.000Z',
+        date: new Date(2018, 1, 1, 2, 2).toISOString(),
       },
       {
         category: 'medmind',
         data: 'data-2',
-        date: '2018-02-07T10:02:00.000Z',
+        date: new Date(2018, 1, 7, 2, 2).toISOString(),
       },
       {
         category: 'side effect',
         data: 'data-3',
-        date: '2018-02-01T10:03:00.000Z',
+        date: new Date(2018, 1, 1, 2, 3).toISOString(),
       },
     ];
     it('returns a formatted result', () => {
@@ -103,17 +103,17 @@ describe('transformCancerBaseSDKEvents', () => {
       {
         category: 'infusion',
         data: 'data-1',
-        date: '2018-02-01T10:02:00.000Z',
+        date: new Date(2018, 1, 1, 2, 2).toISOString(),
       },
       {
         category: 'medmind',
         data: 'data-2',
-        date: '2018-02-07T10:02:00.000Z',
+        date: new Date(2018, 1, 7, 2, 2).toISOString(),
       },
       {
         category: 'bad category',
         data: 'data-3',
-        date: '2018-02-01T10:03:00.000Z',
+        date: new Date(2018, 1, 1, 2, 3).toISOString(),
       },
     ];
     it('skips adding malformed events to the result', () => {
