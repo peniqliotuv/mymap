@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import s from './styles';
 
-const TimelineHeader = ({onPress}) => {
+const TimelineHeader = ({ onPress }) => {
   return (
     <View style={s.header}>
-    	<TouchableHighlight onPress={onPress}>
-      	<Image style={s.image} source={require('~/App/assets/menu-placeholder.png')} />
+      <TouchableHighlight onPress={onPress}>
+        <Image style={s.image} source={require('~/App/assets/menu-placeholder.png')} />
       </TouchableHighlight>
-    	<Text style={s.headerText}> mymap </Text>
-      <Image style={s.image} source={require('~/App/assets/gear-resized.png')}/>
+      <Text style={s.headerText}> mymap </Text>
+      <Image style={s.image} source={require('~/App/assets/gear-resized.png')} />
     </View>
   );
 };

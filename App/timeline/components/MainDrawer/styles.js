@@ -39,5 +39,5 @@ export default StyleSheet.create({
     marginTop: 15,
     color: colors.white,
     paddingLeft: 15,
-  }
+  },
 });

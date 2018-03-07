@@ -22,7 +22,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   timestamp: {
     textAlign: 'center',

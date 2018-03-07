@@ -6,31 +6,31 @@ import s from './styles';
 import colors from '~/App/styles/colors';
 
 const MainDrawer = ({ apps, onPress, toggleEvent }) => {
-	return (
-		<View style={s.container}>
-			<View style={s.titleContainer}>
-				<TouchableOpacity onPress={() => onPress()}>
-					<Image style={s.image} source={require('../../../assets/x-button.png')} />
-				</TouchableOpacity>
-				<Text style={s.title}>
+  return (
+    <View style={s.container}>
+      <View style={s.titleContainer}>
+        <TouchableOpacity onPress={() => onPress()}>
+          <Image style={s.image} source={require('../../../assets/x-button.png')} />
+        </TouchableOpacity>
+        <Text style={s.title}>
 					filter by...
-				</Text>
-			</View>
-			{apps.map((appData, index) => {
+        </Text>
+      </View>
+      {apps.map((appData, index) => {
 				return (
-					<View style={s.drawerItem} key={index}>
-						<TouchableOpacity 
-							onPress={() => toggleEvent(appData.name)}
-							style={[s.filterButton, { borderColor: appData.color, backgroundColor: appData.backgroundColor }]}>
-						</TouchableOpacity>
-						<Text style={s.itemText}>
-							{appData.name}
-						</Text>	
-					</View>
-				)
+  <View style={s.drawerItem} key={index}>
+    <TouchableOpacity
+      onPress={() => toggleEvent(appData.name)}
+      style={[s.filterButton, { borderColor: appData.color, backgroundColor: appData.backgroundColor }]}
+    />
+    <Text style={s.itemText}>
+      {appData.name}
+    </Text>
+  </View>
+				);
 			})}
-		</View>
-	);
+    </View>
+  );
 };
 
 MainDrawer.propTypes = {
