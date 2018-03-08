@@ -6,7 +6,6 @@ import s from './styles';
 
 
 const TimelineEventGroup = ({ data, handleTimelineEventPress }) => {
-
   const { events = [], date = '' } = data;
 
 
@@ -29,7 +28,7 @@ const TimelineEventGroup = ({ data, handleTimelineEventPress }) => {
         })
       }
 
-      <View style={s.lineBreak}/>
+      <View style={s.lineBreak} />
     </View>
   );
 };

@@ -1,9 +1,9 @@
 import { LoginButton } from 'cancerbase-sdk';
 import React, { Component } from 'react';
-import { View, Text, Image, Button, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
-import PropTypes from 'prop-types';
 import styles from './styles';
 
 class Splashscreen extends Component {
@@ -11,13 +11,9 @@ class Splashscreen extends Component {
     navigation: PropTypes.object.isRequired,
   }
 
-    state = {
-        isReady: false,
-    };
-
-    static propTypes = {
-        navigation: PropTypes.object.isRequired,
-    }
+  state = {
+    isReady: false,
+  };
 
   onCancerBaseLogin = () => {
     this.props.navigation.navigate('Timeline');
@@ -35,7 +31,6 @@ class Splashscreen extends Component {
 
     return Promise.all(imageAssets);
   }
-
   // Empty view on top to stretch out the 'justifyContent'.
   render() {
     if (!this.state.isReady) {
@@ -72,7 +67,6 @@ class Splashscreen extends Component {
           />
         </View>
       </View>
-
     );
   }
 }
