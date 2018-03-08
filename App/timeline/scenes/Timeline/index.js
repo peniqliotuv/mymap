@@ -20,10 +20,10 @@ import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
 import TimelineEventModal from '../../components/TimelineEventModal';
 import MainDrawer from '../../components/MainDrawer';
-import { toggleEvent } from '../../actions';
+import { toggleEvent, fetchTimelineEvents } from '../../actions';
 import s from './styles';
 import colors from '~/App/styles/colors';
-import { transformCancerBaseSDKEvents } from '../../../utils/cancerBaseSDKHelper';
+// import { transformCancerBaseSDKEvents } from '../../../utils/cancerBaseSDKHelper';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 60;
@@ -33,6 +33,9 @@ const HEADER_STICKYEXTRA_HEIGHT = 60;
 class TimelineList extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    toggleEvent: PropTypes.func.isRequired,
+    fetchTimelineEvents: PropTypes.func.isRequired,
+    events: PropTypes.array,
   }
 
   state = {
@@ -40,20 +43,23 @@ class TimelineList extends Component {
     modalData: null,
     scrollY: new Animated.Value(0),
     fontLoaded: false,
-    events: [],
   };
 
-  async componentDidMount() {
-    CancerBaseSDK.timeline.get()
-      .then((events) => {
-        this.setState({ events: transformCancerBaseSDKEvents(events) });
-      })
-      .catch((err) => {});
-    await Font.loadAsync({
+  componentDidMount() {
+    // CancerBaseSDK.timeline.get()
+    //   .then((events) => {
+    //     this.setState({ events: transformCancerBaseSDKEvents(events) });
+    //   })
+    //   .catch((err) => {});
+    this.props.fetchTimelineEvents();
+    Font.loadAsync({
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
+    }).then(() => {
+      this.setState({ fontLoaded: true });
+    }).catch((e) => {
+
     });
-    this.setState({ fontLoaded: true });
   }
 
   handleScrollToTop = () => {
@@ -71,10 +77,6 @@ class TimelineList extends Component {
     this.setState({ modalVisible: true, modalData: data });
   };
 
-  componentDidCatch(err, info) {
-    console.log('did catch');
-  }
-
   closeControlPanel = () => {
     this.drawer.close();
   }
@@ -87,7 +89,7 @@ class TimelineList extends Component {
     this.props.navigation.navigate('SettingsNavigator');
   }
 
-  filterApps = (obj, data) => {
+  filterApps = (obj, data = []) => {
     const newData = [];
     if (obj.activeApps.length > 0) {
       data.map((item) => {
@@ -116,6 +118,17 @@ class TimelineList extends Component {
     return newApps;
   }
 
+  renderEvents = (filteredEvents) => {
+    const eventComponents = filteredEvents.map((item, index) => (
+      <TimelineEventGroup
+        data={item}
+        key={index}
+        handleTimelineEventPress={this.handleTimelineEventPress}
+      />
+    ));
+    console.log(eventComponents)
+    return eventComponents;
+  }
 
   render() {
     const user = {
@@ -173,20 +186,73 @@ class TimelineList extends Component {
       outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
       extrapolate: 'clamp',
     });
+    const data = [
+      {
+        date: 'Sunday November 12th, 2017',
+        events: [
+          {
+            appName: 'medmind',
+            timestamp: '10:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'side effect',
+            timestamp: '10:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'infusion',
+            timestamp: '10:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'side effect',
+            timestamp: '10:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+        ],
+      },
+      {
+        date: 'Monday November 13th, 2017',
+        events: [
+          {
+            appName: 'side effect',
+            timestamp: '5:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'infusion',
+            timestamp: '6:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'side effect',
+            timestamp: '7:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+          {
+            appName: 'medmind',
+            timestamp: '9:51PM',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
+          },
+        ],
+      },
+    ];
 
     const { activeApps } = this.props;
-    const filteredEvents = this.filterApps(activeApps, this.state.events);
+    const filteredEvents = this.filterApps(activeApps, this.props.events);
     const filteredApps = this.modifyColor(activeApps, apps);
-
+    
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}
-        content={<MainDrawer
-          apps={filteredApps}
-          onPress={this.closeControlPanel}
-          toggleEvent={this.props.toggleEvent}
-                 />
-                }
+        content={
+          <MainDrawer
+            apps={filteredApps}
+            onPress={this.closeControlPanel}
+            toggleEvent={this.props.toggleEvent}
+          />
+        }
         openDrawerOffset={0.3}
         type="displace"
         tapToClose
@@ -206,15 +272,7 @@ class TimelineList extends Component {
             ref={(ref) => this.scrollView = ref}
           >
             <View marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}>
-              {
-                filteredEvents.map((item, index) => (
-                  <TimelineEventGroup
-                    data={item}
-                    key={index}
-                    handleTimelineEventPress={this.handleTimelineEventPress}
-                  />
-                ))
-              }
+              { this.renderEvents(filteredEvents) }
             </View>
           </ScrollView>
           <Animated.View style={[s.header, { height: headerHeight }]}>
@@ -254,13 +312,13 @@ class TimelineList extends Component {
             </View>
           </Animated.View>
           {
-              this.state.modalVisible && (
-                <TimelineEventModal
-                  data={this.state.modalData}
-                  hideModal={this.hideModal}
-                />
-              )
-            }
+            this.state.modalVisible && (
+              <TimelineEventModal
+                data={this.state.modalData}
+                hideModal={this.hideModal}
+              />
+            )
+          }
         </View>
       </Drawer>
     );
@@ -268,15 +326,17 @@ class TimelineList extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { activeApps } = state.timeline;
+  const { activeApps, events } = state.timeline;
   return {
     activeApps: { activeApps },
+    events,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     toggleEvent: (appName) => dispatch(toggleEvent(appName)),
+    fetchTimelineEvents: () => dispatch(fetchTimelineEvents()),
   };
 }
 

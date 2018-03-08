@@ -1,4 +1,8 @@
-import TOGGLE_EVENT from './actions';
+import { 
+  TOGGLE_EVENT,
+  FETCH_TIMELINE_EVENTS_SUCCESS,
+  FETCH_TIMELINE_EVENTS_ERROR,
+} from './actions';
 
 const defaultState = {
   activeApps: [],
@@ -6,7 +10,7 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'TOGGLE_EVENT':
+    case TOGGLE_EVENT:
       const { appName } = action;
       const activeApps = state.activeApps;
       if (activeApps.includes(appName)) {
@@ -20,6 +24,14 @@ export default (state = defaultState, action) => {
         ...state,
         activeApps,
       };
+    case FETCH_TIMELINE_EVENTS_SUCCESS:
+      const { events } = action;
+      return {
+        ...state,
+        events,
+      };
+    case FETCH_TIMELINE_EVENTS_ERROR:
+      return state;
     default:
       return state;
   }
