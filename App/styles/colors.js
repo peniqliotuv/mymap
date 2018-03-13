@@ -10,5 +10,6 @@ export default {
   medMindBlue: '#6BC5FF',
   purple: '#6665FF',
   grey: 'rgba(0, 0, 0, 0.4)',
+  textGrey: 'rgba(0, 0, 0, 0.2)',
   backgroundGrey: '#E5E5E5',
 };

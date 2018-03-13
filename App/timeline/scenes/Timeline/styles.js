@@ -73,4 +73,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  ellipseIcon: {
+    backgroundColor: colors.backgroundGrey,
+  },
+  noEventsText: {
+    fontSize: 36,
+    color: colors.textGrey,
+    textAlign: 'center',
+  },
 });

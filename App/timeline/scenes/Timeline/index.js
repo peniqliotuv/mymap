@@ -145,8 +145,13 @@ class TimelineList extends Component {
     if (eventComponents.length === 0) {
       return (
         <View style={s.noEventsContainer}>
-          <Image source={require('~/App/assets/Ellipse.png')} />
-          <Text> no events yet... </Text>
+          <Image 
+            width='200'
+            height='200'
+            source={require('~/App/assets/Ellipse.png')} 
+            style={s.ellipseIcon}
+          />
+          <Text style={s.noEventsText}> no events yet... </Text>
         </View>
       )
     }
