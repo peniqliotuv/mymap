@@ -4,6 +4,7 @@ import colors from '~/App/styles/colors';
 export default StyleSheet.create({
   scrollView: {
     flex: 7,
+    minHeight: 300,
   },
   outerView: {
     flex: 1,
@@ -66,5 +67,10 @@ export default StyleSheet.create({
   },
   menuIcon: {
     left: -5,
+  },
+  noEventsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

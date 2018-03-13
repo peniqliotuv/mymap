@@ -6,15 +6,11 @@ import {
   Animated,
   Image,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import { Font } from 'expo';
 import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
-/*
-I'm just leaving these comments in here so it's easy to remove and add in
-the cancerbase SDK in case we have issues with testing hitting routes
-*/
-import CancerBaseSDK from 'cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
@@ -38,11 +34,16 @@ class TimelineList extends Component {
     events: PropTypes.array,
   }
 
+  static defaultProps = {
+    events: [],
+  }
+
   state = {
     modalVisible: false,
     modalData: null,
     scrollY: new Animated.Value(0),
     fontLoaded: false,
+    refreshing: false,
   };
 
   componentDidMount() {
@@ -61,6 +62,12 @@ class TimelineList extends Component {
 
     });
   }
+
+  handleRefresh = () => {
+    console.log('Refreshing!');
+    this.setState({ refreshing: true });
+    setTimeout(() => this.setState({ refreshing: false }), 1000);
+  };
 
   handleScrollToTop = () => {
     this.scrollView.scrollTo({
@@ -118,7 +125,15 @@ class TimelineList extends Component {
     return newApps;
   }
 
+  /* Will either render the list of timelineEventGroups or a component displaying "No timeline events" */
   renderEvents = (filteredEvents) => {
+    if (this.state.refreshing) {
+      return (
+        <View>
+          <Text> REFRESHING </Text>
+        </View>
+      )
+    }
     const eventComponents = filteredEvents.map((item, index) => (
       <TimelineEventGroup
         data={item}
@@ -126,7 +141,15 @@ class TimelineList extends Component {
         handleTimelineEventPress={this.handleTimelineEventPress}
       />
     ));
-    console.log(eventComponents)
+    /* If there are no events to display */
+    if (eventComponents.length === 0) {
+      return (
+        <View style={s.noEventsContainer}>
+          <Image source={require('~/App/assets/Ellipse.png')} />
+          <Text> no events yet... </Text>
+        </View>
+      )
+    }
     return eventComponents;
   }
 
@@ -186,63 +209,10 @@ class TimelineList extends Component {
       outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
       extrapolate: 'clamp',
     });
-    const data = [
-      {
-        date: 'Sunday November 12th, 2017',
-        events: [
-          {
-            appName: 'medmind',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'infusion',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '10:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-        ],
-      },
-      {
-        date: 'Monday November 13th, 2017',
-        events: [
-          {
-            appName: 'side effect',
-            timestamp: '5:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'infusion',
-            timestamp: '6:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'side effect',
-            timestamp: '7:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-          {
-            appName: 'medmind',
-            timestamp: '9:51PM',
-            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate lacus nec consequat rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque pellentesque tortor ut bibendum sagittis. Vivamus volutpat massa et molestie gravida. Integer sapien diam, vulputate eget elit eu, interdum sagittis nisi. Maecenas interdum, metus ut consequat fringilla, tortor libero mattis risus, in varius mi felis quis felis. Nunc congue quis odio sit amet consectetur. Fusce ac leo vulputate, bibendum ex ut, maximus elit. Mauris sodales rhoncus nulla, vel sollicitudin metus condimentum posuere. Fusce ullamcorper blandit augue ac malesuada. Phasellus placerat turpis sagittis lacus ultricies efficitur. Nulla ac dolor venenatis, luctus justo vitae, sodales est. Pellentesque facilisis mauris id felis molestie ultrices.'
-          },
-        ],
-      },
-    ];
 
     const { activeApps } = this.props;
     const filteredEvents = this.filterApps(activeApps, this.props.events);
     const filteredApps = this.modifyColor(activeApps, apps);
-    
     return (
       <Drawer
         ref={(ref) => this.drawer = ref}
@@ -263,12 +233,18 @@ class TimelineList extends Component {
             { transform: [{ translateY: scrollToTopTranslate }] },
           ]}
           >
-            <ScrollToTop handlePress={this.handleScrollToTop} />
+            { this.props.events.length > 0 && <ScrollToTop handlePress={this.handleScrollToTop} /> }
           </Animated.View>
           <ScrollView
             style={s.scrollView}
             scrollEventThrottle={16}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }])}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.handleRefresh}
+              />
+            }
             ref={(ref) => this.scrollView = ref}
           >
             <View marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}>
@@ -286,7 +262,7 @@ class TimelineList extends Component {
                       height: HEADER_MAX_HEIGHT,
                   },
                 ]}
-                source={{ uri: user.imageUrl }}
+                source={{ uri: user.imageUrl }} 
               />
               <View style={s.buffer} />
             </View>
