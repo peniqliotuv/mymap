@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import s from './styles';
 
-const ScrollToTop = ({ handlePress }) => {
+const ScrollToTop = ({ text, handlePress }) => {
   return (
     <View style={s.container}>
       <TouchableOpacity style={s.button} onPress={handlePress}>
         <Text style={s.buttonText}>
-          more recent
+          { text }
         </Text>
       </TouchableOpacity>
     </View>
@@ -17,6 +17,7 @@ const ScrollToTop = ({ handlePress }) => {
 
 ScrollToTop.propTypes = {
   handlePress: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default ScrollToTop;

@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   RefreshControl,
+  ActivityIndicator,
 } from 'react-native';
 import { Font } from 'expo';
 import { connect } from 'react-redux';
@@ -47,11 +48,6 @@ class TimelineList extends Component {
   };
 
   componentDidMount() {
-    // CancerBaseSDK.timeline.get()
-    //   .then((events) => {
-    //     this.setState({ events: transformCancerBaseSDKEvents(events) });
-    //   })
-    //   .catch((err) => {});
     this.props.fetchTimelineEvents();
     Font.loadAsync({
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
@@ -127,13 +123,6 @@ class TimelineList extends Component {
 
   /* Will either render the list of timelineEventGroups or a component displaying "No timeline events" */
   renderEvents = (filteredEvents) => {
-    if (this.state.refreshing) {
-      return (
-        <View>
-          <Text> REFRESHING </Text>
-        </View>
-      )
-    }
     const eventComponents = filteredEvents.map((item, index) => (
       <TimelineEventGroup
         data={item}
@@ -145,10 +134,10 @@ class TimelineList extends Component {
     if (eventComponents.length === 0) {
       return (
         <View style={s.noEventsContainer}>
-          <Image 
-            width='200'
-            height='200'
-            source={require('~/App/assets/Ellipse.png')} 
+          <Image
+            width='150'
+            height='150'
+            source={require('~/App/assets/no-events.png')}
             style={s.ellipseIcon}
           />
           <Text style={s.noEventsText}> no events yet... </Text>
@@ -215,7 +204,7 @@ class TimelineList extends Component {
       extrapolate: 'clamp',
     });
 
-    const { activeApps } = this.props;
+    const { activeApps, events } = this.props;
     const filteredEvents = this.filterApps(activeApps, this.props.events);
     const filteredApps = this.modifyColor(activeApps, apps);
     return (
@@ -238,7 +227,13 @@ class TimelineList extends Component {
             { transform: [{ translateY: scrollToTopTranslate }] },
           ]}
           >
-            { this.props.events.length > 0 && <ScrollToTop handlePress={this.handleScrollToTop} /> }
+            {
+              !this.state.refreshing &&
+              <ScrollToTop
+                text={events.length > 0 ? "more recent" : "pull to refresh"}
+                handlePress={this.handleScrollToTop}
+              />
+            }
           </Animated.View>
           <ScrollView
             style={s.scrollView}
@@ -248,11 +243,19 @@ class TimelineList extends Component {
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.handleRefresh}
+                title="asdf"
               />
             }
             ref={(ref) => this.scrollView = ref}
           >
-            <View marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}>
+            <View
+              marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}
+            >
+              <ActivityIndicator
+                animating={this.state.refreshing}
+                size="large"
+                style={{ marginBottom: 40 }}
+              />
               { this.renderEvents(filteredEvents) }
             </View>
           </ScrollView>
@@ -267,7 +270,7 @@ class TimelineList extends Component {
                       height: HEADER_MAX_HEIGHT,
                   },
                 ]}
-                source={{ uri: user.imageUrl }} 
+                source={{ uri: user.imageUrl }}
               />
               <View style={s.buffer} />
             </View>
