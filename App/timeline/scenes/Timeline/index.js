@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { Font } from 'expo';
 import { connect } from 'react-redux';
@@ -20,7 +21,6 @@ import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent, fetchTimelineEvents } from '../../actions';
 import s from './styles';
 import colors from '~/App/styles/colors';
-// import { transformCancerBaseSDKEvents } from '../../../utils/cancerBaseSDKHelper';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 60;
@@ -33,6 +33,7 @@ class TimelineList extends Component {
     toggleEvent: PropTypes.func.isRequired,
     fetchTimelineEvents: PropTypes.func.isRequired,
     events: PropTypes.array,
+    error: PropTypes.string,
   }
 
   static defaultProps = {
@@ -55,14 +56,24 @@ class TimelineList extends Component {
     }).then(() => {
       this.setState({ fontLoaded: true });
     }).catch((e) => {
-
+      /* For right now, let's not do anything here */
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.refreshing) {
+      this.setState({ refreshing: false });
+      if (nextProps.error) {
+        Alert.alert('Uh-oh, something went wrong!');
+      }
+    }
+  }
+
   handleRefresh = () => {
-    console.log('Refreshing!');
-    this.setState({ refreshing: true });
-    setTimeout(() => this.setState({ refreshing: false }), 1000);
+    /* We will set refreshing to true here, because the result of the API call will come back
+    to us in componentWillReceiveProps, where we set refreshing back to false again.
+    */
+    this.setState({ refreshing: true }, () => this.props.fetchTimelineEvents());
   };
 
   handleScrollToTop = () => {
@@ -80,17 +91,11 @@ class TimelineList extends Component {
     this.setState({ modalVisible: true, modalData: data });
   };
 
-  closeControlPanel = () => {
-    this.drawer.close();
-  }
+  closeControlPanel = () => this.drawer.close();
 
-  openControlPanel = () => {
-    this.drawer.open();
-  }
+  openControlPanel = () => this.drawer.open();
 
-  gotoSettings = () => {
-    this.props.navigation.navigate('SettingsNavigator');
-  }
+  gotoSettings = () => this.props.navigation.navigate('SettingsNavigator');
 
   filterApps = (obj, data = []) => {
     const newData = [];
@@ -230,7 +235,7 @@ class TimelineList extends Component {
             {
               !this.state.refreshing &&
               <ScrollToTop
-                text={events.length > 0 ? "more recent" : "pull to refresh"}
+                text={events.length > 0 ? 'more recent' : 'pull to refresh'}
                 handlePress={this.handleScrollToTop}
               />
             }

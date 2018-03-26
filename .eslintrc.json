@@ -43,6 +43,7 @@
     "import/extensions": ["error", "never", { "scss": "always" }],
     "import/no-absolute-path": "off",
     "import/no-extraneous-dependencies": "off",
-    "import/no-named-as-default": "off"
+    "import/no-named-as-default": "off",
+    "global-require": "off"
   }
 }

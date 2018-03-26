@@ -13,12 +13,10 @@ export const fetchTimelineEventsError = makeActionCreater(FETCH_TIMELINE_EVENTS_
 
 export const fetchTimelineEvents = () => {
   return async (dispatch) => {
-    console.log('in fetchTimelineEvents');
     try {
       const events = await CancerBaseSDK.timeline.get();
       dispatch(fetchTimelineEventsSuccess(transformCancerBaseSDKEvents(events)));
     } catch (e) {
-      console.log(e);
       dispatch(fetchTimelineEventsError(e));
     }
   }

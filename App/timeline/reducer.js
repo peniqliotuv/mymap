@@ -1,4 +1,4 @@
-import { 
+import {
   TOGGLE_EVENT,
   FETCH_TIMELINE_EVENTS_SUCCESS,
   FETCH_TIMELINE_EVENTS_ERROR,
@@ -31,7 +31,11 @@ export default (state = defaultState, action) => {
         events,
       };
     case FETCH_TIMELINE_EVENTS_ERROR:
-      return state;
+      const { error } = action;
+      return {
+        ...state,
+        error,
+      };
     default:
       return state;
   }
