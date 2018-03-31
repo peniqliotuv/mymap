@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A5BFE0B39B64261AE7F7A36 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13D7005B1074AD4AAF8CFF1 /* SF-Pro-Text-LightItalic.otf */; };
+		67B33C657C1F46F9AB8A53F2 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB3626036914974B84A5E06 /* libRNImagePicker.a */; };
 		A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
@@ -157,11 +158,20 @@
 			remoteGlobalIDString = ED5C779517CFEAE97B97D68D08569E1D;
 			remoteInfo = Yoga;
 		};
+		BEA683F920702F2400AF8684 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 308749D9B96C48CB9478738B /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1E05B4BE44864DCD926649BD /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-SemiboldItalic.otf"; path = "../assets/fonts/SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-react-native-boilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-boilerplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate.debug.xcconfig"; sourceTree = "<group>"; };
+		2DB3626036914974B84A5E06 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
+		308749D9B96C48CB9478738B /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-react-native-boilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-boilerplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate.release.xcconfig"; sourceTree = "<group>"; };
 		A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CancerBaseSDK.xcodeproj; path = "../../platform/sdk/react-native/cancerbase-sdk/CancerBaseSDK.xcodeproj"; sourceTree = "<group>"; };
 		A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -191,12 +201,20 @@
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-react-native-boilerplate.a in Frameworks */,
 				A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */,
+				67B33C657C1F46F9AB8A53F2 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134A6A92C504444C8F275B2A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,11 +281,14 @@
 			children = (
 				A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */,
 				A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */,
+				308749D9B96C48CB9478738B /* RNImagePicker.xcodeproj */,
 				B56386431DB9693800A0598C /* react-native-boilerplate */,
 				B56386421DB9693800A0598C /* Products */,
 				5B29BC350A332C58878A9F13 /* Pods */,
 				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
 				A16A556886F24254A52F1505 /* Resources */,
+				134A6A92C504444C8F275B2A /* Libraries */,
+				BEA683B82070189100AF8684 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +325,22 @@
 				B563865E1DB96A5E00A0598C /* main.m */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		BEA683B82070189100AF8684 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2DB3626036914974B84A5E06 /* libRNImagePicker.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		BEA683F620702F2400AF8684 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEA683FA20702F2400AF8684 /* libRNImagePicker.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +402,10 @@
 				{
 					ProductGroup = A9BE62E51FCFD17900C58AA9 /* Products */;
 					ProjectRef = A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */;
+				},
+				{
+					ProductGroup = BEA683F620702F2400AF8684 /* Products */;
+					ProjectRef = 308749D9B96C48CB9478738B /* RNImagePicker.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -506,6 +547,13 @@
 			fileType = archive.ar;
 			path = libYoga.a;
 			remoteRef = A9BE631F1FCFD17A00C58AA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BEA683FA20702F2400AF8684 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = BEA683F920702F2400AF8684 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -807,6 +855,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -893,6 +945,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
