@@ -20,8 +20,6 @@
 		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
 		B5DD809DC80E4EE0A48CADFF /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEC9D3115C144F169F27B336 /* SF-Pro-Text-SemiboldItalic.otf */; };
 		EBB8117C1BFA0514F79CAF74 /* libPods-react-native-boilerplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-react-native-boilerplate.a */; };
-		1E63A03F04774F18B51C217E /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE503A1141A45B69B890C93 /* libRNSVG.a */; };
-		E62E0D9078D2407B8710513F /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1473421C14454AC18FA0DFF2 /* libRNSVG-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,9 +181,6 @@
 		C4A88D15726AD99E8A257BC7 /* libPods-react-native-boilerplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react-native-boilerplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13D7005B1074AD4AAF8CFF1 /* SF-Pro-Text-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-LightItalic.otf"; path = "../App/assets/fonts/SF-Pro-Text-LightItalic.otf"; sourceTree = "<group>"; };
 		D2A5C0CE160B46F980C9D21C /* SF-Pro-Text-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-LightItalic.otf"; path = "../assets/fonts/SF-Pro-Text-LightItalic.otf"; sourceTree = "<group>"; };
-		EDE59D991FB44BDC8E586B75 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		6EE503A1141A45B69B890C93 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1473421C14454AC18FA0DFF2 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +190,6 @@
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-react-native-boilerplate.a in Frameworks */,
 				A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */,
-				1E63A03F04774F18B51C217E /* libRNSVG.a in Frameworks */,
-				E62E0D9078D2407B8710513F /* libRNSVG-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +309,6 @@
 		C4B98175F4754AC0B3F7141F /* Libraries */ = {
 			isa = "PBXGroup";
 			children = (
-				EDE59D991FB44BDC8E586B75 /* RNSVG.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -827,8 +819,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -918,8 +908,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
