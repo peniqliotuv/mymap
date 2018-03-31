@@ -1,6 +1,6 @@
 import { LoginButton } from 'cancerbase-sdk';
 import React, { Component } from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import { View, Text, Image, Alert, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
@@ -56,19 +56,21 @@ class Splashscreen extends Component {
             style={styles.logoImg}
             source={require('~/App/assets/logo-outlines.png')} />
         <View style={styles.buttonContainer}>
-          <LoginButton
-            scopes={[
-              'cb.appData.read',
-              'cb.profile',
-              'cb.timeline',
-            ]}
-            onLogin={this.onCancerBaseLogin}
-            onError={this.onCancerBaseError}
-          />
+        <Button title='login' onPress={this.onCancerBaseLogin}>'Login'</Button>
         </View>
       </View>
     );
   }
 }
+
+//<LoginButton
+//   scopes={[
+//     'cb.appData.read',
+//     'cb.profile',
+//     'cb.timeline',
+//   ]}
+//   onLogin={this.onCancerBaseLogin}
+//   onError={this.onCancerBaseError}
+// />
 
 export default Splashscreen;

@@ -1,12 +1,13 @@
 import { StackNavigator } from 'react-navigation';
 import SettingsPage from './scenes/SettingsPage';
+import EditProfilePage from './scenes/EditProfilePage';
 
 const SettingsNavigator = StackNavigator({
-    SettingsPage: { screen: SettingsPage },
+    Settings: { screen: SettingsPage },
+    EditProfile: { screen: EditProfilePage },
 }, {
-    initialRouteName: 'SettingsPage',
+    initialRouteName: 'Settings',
     headerMode: 'none',
 });
 
 export default SettingsNavigator;
-

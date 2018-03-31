@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { NavigationActions } from 'react-navigation';
+import TextInputItem from '../../components/TextInputItem';
 
-class SettingsPage extends Component {
+class EditProfilePage extends Component {
 
     static propTypes = {
         navigation: PropTypes.object.isRequired,
@@ -22,20 +23,16 @@ class SettingsPage extends Component {
         this.props.navigation.dispatch(NavigationActions.back());
     }
 
-    gotoEditProfile = () => {
-        // TODO: navigate to Edit Profile
-        this.props.navigation.navigate('EditProfile');
-    }
-
-    gotoEditNotifications = () => {
-        // TODO: navigate to Edit Navigation
-    }
-
-    signOut = () => {
-        // TODO: sign out
+    save = () => {
+        // TODO: save the profile.
     }
 
     render() {
+        const user = {
+          name: 'Jane Doe',
+          imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
+          welcomeMessage: 'hello',
+        };
         return (
             <View style={styles.outer}>
                 <View style={styles.top}>
@@ -47,39 +44,34 @@ class SettingsPage extends Component {
                         { this.leftArrow }
                     </TouchableOpacity>
                     <Text style={[styles.buttonText, ]}>settings</Text>
+                    <TouchableOpacity
+                        title='Save'
+                        onPress={this.save}
+                        style={styles.alignRight}
+                    >
+                        <Text style={styles.buttonText}>save</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.mid}>
-                    <TouchableOpacity
-                        title='Edit profile'
-                        onPress={this.gotoEditProfile}
-                        style={styles.menuItem}
-                    >
-                        { this.profile }
-                        <Text style={styles.buttonText}>edit profile</Text>
-                        { this.rightArrow }
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        title='Edit notification'
-                        onPress={this.gotoEditNotifications}
-                        style={styles.menuItem}
-                    >
-                        { this.notifications }
-                        <Text style={styles.buttonText}>edit notifications</Text>
-                        { this.rightArrow }
-                    </TouchableOpacity>
+                    <Image
+                        source={{ uri: user.imageUrl }}
+                        style={styles.userImage}
+                    />
+                    <View>
+                        <Text style={styles.buttonText}>display name</Text>
+                        <TextInputItem text={user.name}/>
+                    </View>
+                    <View>
+                        <Text style={styles.buttonText}>welcome message</Text>
+                        <TextInputItem text={user.welcomeMessage}/>
+                    </View>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity
-                        title='Log out'
-                        onPress={this.signOut}
-                        style={styles.boxButton}
-                    >
-                        <Text style={styles.buttonText}>sign out</Text>
-                    </TouchableOpacity>
+
                 </View>
             </View>
         );
     }
 }
 
-export default SettingsPage;
+export default EditProfilePage;
