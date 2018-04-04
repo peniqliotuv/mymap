@@ -56,21 +56,19 @@ class Splashscreen extends Component {
             style={styles.logoImg}
             source={require('~/App/assets/logo-outlines.png')} />
         <View style={styles.buttonContainer}>
-        <Button title='login' onPress={this.onCancerBaseLogin}>'Login'</Button>
+        <LoginButton
+          scopes={[
+            'cb.appData.read',
+            'cb.profile',
+            'cb.timeline',
+          ]}
+          onLogin={this.onCancerBaseLogin}
+          onError={this.onCancerBaseError}
+        />
         </View>
       </View>
     );
   }
 }
-
-//<LoginButton
-//   scopes={[
-//     'cb.appData.read',
-//     'cb.profile',
-//     'cb.timeline',
-//   ]}
-//   onLogin={this.onCancerBaseLogin}
-//   onError={this.onCancerBaseError}
-// />
 
 export default Splashscreen;

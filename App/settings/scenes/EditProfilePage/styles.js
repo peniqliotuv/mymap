@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 import colors from '~/App/styles/colors';
+import { Dimensions } from 'react-native';
+
+const dimensions = Dimensions.get('window');
+const windowWidth = dimensions.width;
 
 const styles = StyleSheet.create({
     outer: {
@@ -17,12 +21,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     mid: {
         flex: 10,
         alignSelf: 'stretch',
         alignItems: 'flex-start',
-        padding: 20,
         backgroundColor: 'transparent',
     },
     bottom: {
@@ -34,6 +39,9 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: 'transparent',
 
+    },
+    saveButton: {
+        marginRight: 20,
     },
     buttonContainer: {
         alignSelf: 'stretch',
@@ -60,9 +68,6 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     },
-    menuIcon: {
-        marginRight: 10,
-    },
     alignRight: {
         position: 'absolute',
         right: 0,
@@ -74,14 +79,25 @@ const styles = StyleSheet.create({
     userImage: {
         resizeMode: 'cover',
         height: 200,
+        width: windowWidth,
         //width: null,
         alignItems: 'center',
         alignSelf: 'stretch',
+        marginBottom: 20,
     },
-    textEdit: {
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        backgroundColor: 'white',
+    imageContainer: {
+         height: 200,
+         width: 300,
+         alignItems: 'center',
+         alignSelf: 'stretch',
+         marginBottom: 20,
+    },
+    cameraButton: {
+        position: 'absolute',
+        left: 10,
+        top: 10,
+        width: 70,
+        height: 70,
     },
 });
 
