@@ -3,6 +3,7 @@ import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { NavigationActions } from 'react-navigation';
+import CancerBaseSDK from 'cancerbase-sdk';
 
 class SettingsPage extends Component {
 
@@ -31,7 +32,8 @@ class SettingsPage extends Component {
     }
 
     signOut = () => {
-        // TODO: sign out
+        CancerBaseSDK.user.clearData();
+        this.props.navigation.navigate('Splash');
     }
 
     render() {
