@@ -27,7 +27,8 @@ class SettingsPage extends Component {
     }
 
     gotoEditNotifications = () => {
-        // TODO: navigate to Edit Navigation
+        // add another screen to stack navigator, meaning you need another scene for the page
+        this.props.navigation.navigate('NotificationsPage');
     }
 
     signOut = () => {
