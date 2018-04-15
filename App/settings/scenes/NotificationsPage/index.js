@@ -23,14 +23,13 @@ class NotificationsPage extends Component {
   componentDidMount() { 
     // Read from AsyncStorage
     AsyncStorage.getItem('all new events').then((value) => {
-      console.log("value: " + value);
-      if (value == 'true') {
+      if (value === 'true') {
         this.props.setPreference('all new events');
       }
     }).done();
     AsyncStorage.getItem('account updates').then((value) => {
       console.log("value: " + value);
-      if (value == 'true') {
+      if (value === 'true') {
         this.props.setPreference('account updates');
       }
     }).done();
