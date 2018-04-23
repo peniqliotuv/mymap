@@ -11,9 +11,9 @@ import store from './createStore';
 // To see all the requests in the chrome Dev tools in the network tab.
 if (process.env.NODE_ENV === 'development') {
   XMLHttpRequest = GLOBAL.originalXMLHttpRequest ?
-      GLOBAL.originalXMLHttpRequest :
-      GLOBAL.XMLHttpRequest;
-    // fetch logger
+    GLOBAL.originalXMLHttpRequest :
+    GLOBAL.XMLHttpRequest;
+  // fetch logger
   global._fetch = fetch;
   global.fetch = function (uri, options, ...args) {
     return global._fetch(uri, options, ...args).then((response) => {
