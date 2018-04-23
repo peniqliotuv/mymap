@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "21.0.0",
+    "icon": "./App/assets/icon.png",
     "ios": {
       "bundleIdentifier": "com.cancerbase.mymap",
       "publishBundlePath": "ios/react-native-boilerplate/Supporting/shell-app.bundle",

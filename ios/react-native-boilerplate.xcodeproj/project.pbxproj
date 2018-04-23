@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		3A5BFE0B39B64261AE7F7A36 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13D7005B1074AD4AAF8CFF1 /* SF-Pro-Text-LightItalic.otf */; };
 		A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */; };
+		A9F2DCD5208D98D6003F632D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F2DCD4208D98D6003F632D /* Assets.xcassets */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
-		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
 		B56386601DB96A5E00A0598C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B563865D1DB96A5E00A0598C /* LaunchScreen.storyboard */; };
 		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
 		B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
@@ -165,11 +165,11 @@
 		A47FE4D7F70906B7DC8CE39B /* Pods-react-native-boilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-boilerplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-boilerplate/Pods-react-native-boilerplate.release.xcconfig"; sourceTree = "<group>"; };
 		A9BE62C61FCFC3E300C58AA9 /* CancerBaseSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CancerBaseSDK.xcodeproj; path = "../../platform/sdk/react-native/cancerbase-sdk/CancerBaseSDK.xcodeproj"; sourceTree = "<group>"; };
 		A9BE62E41FCFD17900C58AA9 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		A9F2DCD4208D98D6003F632D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* react-native-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "react-native-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B563865D1DB96A5E00A0598C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 			children = (
 				B56386471DB9693800A0598C /* AppDelegate.h */,
 				B56386481DB9693800A0598C /* AppDelegate.m */,
-				B56386501DB9693800A0598C /* Assets.xcassets */,
+				A9F2DCD4208D98D6003F632D /* Assets.xcassets */,
 				B563865B1DB96A5E00A0598C /* Supporting */,
 			);
 			path = "react-native-boilerplate";
@@ -341,7 +341,7 @@
 				TargetAttributes = {
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2DAZ3V2PJG;
+						DevelopmentTeam = C2CPC432X7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -519,10 +519,10 @@
 				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
 				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
 				B56386601DB96A5E00A0598C /* LaunchScreen.storyboard in Resources */,
+				A9F2DCD5208D98D6003F632D /* Assets.xcassets in Resources */,
 				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
-				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				3A5BFE0B39B64261AE7F7A36 /* SF-Pro-Text-LightItalic.otf in Resources */,
 				B5DD809DC80E4EE0A48CADFF /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 			);
@@ -730,7 +730,7 @@
 			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-react-native-boilerplate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2DAZ3V2PJG;
+				DEVELOPMENT_TEAM = C2CPC432X7;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/boost\"",
 					"$(inherited)",
@@ -817,7 +817,7 @@
 			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-react-native-boilerplate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2DAZ3V2PJG;
+				DEVELOPMENT_TEAM = C2CPC432X7;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/boost\"",
 					"$(inherited)",
