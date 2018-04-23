@@ -16,6 +16,12 @@ class Splashscreen extends Component {
     isReady: false,
   };
 
+  scopes = [
+    'cb.appData.read',
+    'cb.profile',
+    'cb.timeline',
+  ];
+
   onCancerBaseLogin = () => {
     this.props.navigation.navigate('Timeline');
   }
@@ -24,12 +30,11 @@ class Splashscreen extends Component {
     Alert.alert('Something went wrong!');
   }
 
-  async _loadAssetsAsync() {
+  _loadAssetsAsync = async () => {
     const imageAssets = cacheImages([
         require('~/App/assets/background.jpg'),
         require('~/App/assets/logo-outlines.png'),
     ]);
-
     return Promise.all(imageAssets);
   }
   // Empty view on top to stretch out the 'justifyContent'.
@@ -54,18 +59,15 @@ class Splashscreen extends Component {
         </View>
         <View />
         <Image
-            style={styles.logoImg}
-            source={require('~/App/assets/logo-outlines.png')} />
-        <View style={styles.buttonContainer}>
-        <LoginButton
-          scopes={[
-            'cb.appData.read',
-            'cb.profile',
-            'cb.timeline',
-          ]}
-          onLogin={this.onCancerBaseLogin}
-          onError={this.onCancerBaseError}
+          style={styles.logoImg}
+          source={require('~/App/assets/logo-outlines.png')}
         />
+        <View style={styles.buttonContainer}>
+          <LoginButton
+            scopes={this.scopes}
+            onLogin={this.onCancerBaseLogin}
+            onError={this.onCancerBaseError}
+          />
         </View>
       </View>
     );

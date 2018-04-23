@@ -33,6 +33,7 @@ const HEADER_STICKYEXTRA_HEIGHT = 60;
 class TimelineList extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    toggleEvent: PropTypes.func.isRequired,
   }
 
   state = {
@@ -42,6 +43,7 @@ class TimelineList extends Component {
     fontLoaded: false,
     events: [],
     name: '',
+    nameVisible: true,
   };
 
   componentWillMount() {
@@ -65,6 +67,7 @@ class TimelineList extends Component {
   }
 
   handleScrollToTop = () => {
+    this.setState({ nameVisible: false });
     this.scrollView.scrollTo({
       y: HEADER_SCROLL_DISTANCE,
       animated: true,
@@ -78,10 +81,6 @@ class TimelineList extends Component {
   handleTimelineEventPress = (data) => {
     this.setState({ modalVisible: true, modalData: data });
   };
-
-  componentDidCatch(err, info) {
-    console.log('did catch');
-  }
 
   closeControlPanel = () => {
     this.drawer.close();
@@ -211,6 +210,12 @@ class TimelineList extends Component {
             style={s.scrollView}
             scrollEventThrottle={16}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }])}
+            onMomentumScrollBegin={() => {
+              if (!this.state.nameVisible) {
+                this.setState({ nameVisible: true });
+              }
+            }}
+            onMomentumScrollEnd={() => console.log('moment scroll end')}
             ref={(ref) => this.scrollView = ref}
           >
             <View marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}>
@@ -244,10 +249,13 @@ class TimelineList extends Component {
               <TouchableOpacity onPress={this.openControlPanel}>
                 <Image style={s.menuIcon} source={require('~/App/assets/menu-bars.png')} />
               </TouchableOpacity>
-              <View style={s.welcome}>
-                <Text style={s.welcomeText}>Welcome {this.state.name}!</Text>
-              </View>
-
+              {
+                this.state.nameVisible && (
+                  <View style={s.welcome}>
+                    <Text style={s.welcomeText}>Welcome {this.state.name}!</Text>
+                  </View>
+                )
+              }
               {
                 this.state.fontLoaded && (
                   <Animated.View style={[
