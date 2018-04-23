@@ -28,7 +28,7 @@ class SettingsPage extends Component {
     }
 
     gotoEditNotifications = () => {
-        // TODO: navigate to Edit Navigation
+        this.props.navigation.navigate('NotificationsPage');
     }
 
     signOut = () => {
