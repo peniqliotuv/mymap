@@ -10,6 +10,7 @@ class NotificationsPage extends Component {
 
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    notifications: PropTypes.object,
     setPreference: PropTypes.func.isRequired,
   }
 
@@ -20,7 +21,7 @@ class NotificationsPage extends Component {
     this.greyTick = (<Image style={[styles.tick, styles.alignRight]} source={require('../../../assets/tick-grey.png')} />);
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     // Read from AsyncStorage
     AsyncStorage.getItem('all new events').then((value) => {
       if (value === 'true') {
@@ -28,12 +29,11 @@ class NotificationsPage extends Component {
       }
     }).done();
     AsyncStorage.getItem('account updates').then((value) => {
-      console.log("value: " + value);
       if (value === 'true') {
         this.props.setPreference('account updates');
       }
     }).done();
-  } 
+  }
 
   goback = () => {
     this.props.navigation.dispatch(NavigationActions.back());
@@ -41,7 +41,7 @@ class NotificationsPage extends Component {
 
   save = (obj, types) => {
     // Save to AsyncStorage
-    types.forEach(item => {
+    types.forEach((item) => {
       if (obj.notifications.includes(item.name)) {
         AsyncStorage.setItem(item.name, 'true');
       }
@@ -57,13 +57,13 @@ class NotificationsPage extends Component {
 
   selectedType = (obj, types) => {
     const selectedTypes = types.slice();
-    selectedTypes.forEach(item => {
+    selectedTypes.forEach((item) => {
       if (obj.notifications.includes(item.name)) {
         item.selected = true;
       }
     });
     return selectedTypes;
-  } 
+  }
 
   render() {
     const settings = [

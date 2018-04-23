@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		3A5BFE0B39B64261AE7F7A36 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13D7005B1074AD4AAF8CFF1 /* SF-Pro-Text-LightItalic.otf */; };
 		A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */; };
@@ -197,6 +196,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134A6A92C504444C8F275B2A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +274,8 @@
 				5B29BC350A332C58878A9F13 /* Pods */,
 				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
 				A16A556886F24254A52F1505 /* Resources */,
+				134A6A92C504444C8F275B2A /* Libraries */,
+				BEA683B82070189100AF8684 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +312,14 @@
 				B563865E1DB96A5E00A0598C /* main.m */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		BEA683B82070189100AF8684 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2DB3626036914974B84A5E06 /* libRNImagePicker.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -807,6 +823,9 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -893,6 +912,9 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

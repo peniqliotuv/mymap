@@ -114,5 +114,11 @@
 		<string>SF-Pro-Text-LightItalic.otf</string>
 		<string>SF-Pro-Text-SemiboldItalic.otf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used for adding profile image</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used for adding profile image</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used for adding profile image</string>
 </dict>
 </plist>

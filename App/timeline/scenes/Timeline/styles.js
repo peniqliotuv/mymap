@@ -5,6 +5,15 @@ export default StyleSheet.create({
   scrollView: {
     flex: 7,
   },
+  welcome: {
+    position: 'absolute',
+    marginLeft: 90,
+    backgroundColor: 'transparent',
+  },
+  welcomeText: {
+    color: 'white',
+    fontSize: 18,
+  },
   outerView: {
     flex: 1,
     backgroundColor: colors.backgroundGrey,

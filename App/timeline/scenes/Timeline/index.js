@@ -41,19 +41,27 @@ class TimelineList extends Component {
     scrollY: new Animated.Value(0),
     fontLoaded: false,
     events: [],
+    name: '',
   };
 
-  async componentDidMount() {
+  componentWillMount() {
+    this.setState({ name: CancerBaseSDK.user.firstName });
+  }
+
+  componentDidMount() {
     CancerBaseSDK.timeline.get()
       .then((events) => {
         this.setState({ events: transformCancerBaseSDKEvents(events) });
       })
       .catch((err) => {});
-    await Font.loadAsync({
+    Font.loadAsync({
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
-    });
-    this.setState({ fontLoaded: true });
+    }).then(() => this.setState({ fontLoaded: true }));
+    // this.setState({
+    //   fontLoaded: true,
+    //   name: CancerBaseSDK.user.name,
+    // });
   }
 
   handleScrollToTop = () => {
@@ -236,6 +244,10 @@ class TimelineList extends Component {
               <TouchableOpacity onPress={this.openControlPanel}>
                 <Image style={s.menuIcon} source={require('~/App/assets/menu-bars.png')} />
               </TouchableOpacity>
+              <View style={s.welcome}>
+                <Text style={s.welcomeText}>Welcome {this.state.name}!</Text>
+              </View>
+
               {
                 this.state.fontLoaded && (
                   <Animated.View style={[
