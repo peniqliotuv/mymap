@@ -12,6 +12,6 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   loginButton: {
-    fontSize: 14
+    fontSize: 14,
   },
 });

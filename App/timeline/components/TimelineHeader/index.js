@@ -7,10 +7,16 @@ const TimelineHeader = ({ onPress }) => {
   return (
     <View style={s.header}>
       <TouchableHighlight onPress={onPress}>
-        <Image style={s.image} source={require('~/App/assets/menu-placeholder.png')} />
+        <Image
+          style={s.image}
+          source={require('~/App/assets/menu-placeholder.png')}
+        />
       </TouchableHighlight>
       <Text style={s.headerText}> mymap </Text>
-      <Image style={s.image} source={require('~/App/assets/gear-resized.png')} />
+      <Image
+        style={s.image}
+        source={require('~/App/assets/gear-resized.png')}
+      />
     </View>
   );
 };

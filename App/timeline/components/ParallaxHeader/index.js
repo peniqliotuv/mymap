@@ -7,11 +7,8 @@ const ParallaxHeader = ({ user }) => {
   return (
     <View style={s.container}>
       <View style={s.middle}>
-        <Image
-          style={s.image}
-          source={{ uri: user.imageUrl }}
-        />
-        <Text style={s.name}>{ user.name }</Text>
+        <Image style={s.image} source={{ uri: user.imageUrl }} />
+        <Text style={s.name}>{user.name}</Text>
       </View>
 
       <View style={s.bottom} />

@@ -7,9 +7,7 @@ const ScrollToTop = ({ handlePress }) => {
   return (
     <View style={s.container}>
       <TouchableOpacity style={s.button} onPress={handlePress}>
-        <Text style={s.buttonText}>
-          more recent
-        </Text>
+        <Text style={s.buttonText}>more recent</Text>
       </TouchableOpacity>
     </View>
   );

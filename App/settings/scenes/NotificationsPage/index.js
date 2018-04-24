@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  Image,
+  AsyncStorage,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { connect } from 'react-redux';
@@ -7,37 +14,55 @@ import { setPreference } from '../../../timeline/actions';
 import { NavigationActions } from 'react-navigation';
 
 class NotificationsPage extends Component {
-
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     notifications: PropTypes.object,
     setPreference: PropTypes.func.isRequired,
-  }
+  };
 
   componentWillMount() {
     // Preload to attempt speeding up image loading
-    this.leftArrow = (<Image style={styles.icon} source={require('../../../assets/arrowLeft-small.png')} />);
-    this.blueTick = (<Image style={[styles.tick, styles.alignRight]} source={require('../../../assets/tick-blue.png')} />);
-    this.greyTick = (<Image style={[styles.tick, styles.alignRight]} source={require('../../../assets/tick-grey.png')} />);
+    this.leftArrow = (
+      <Image
+        style={styles.icon}
+        source={require('../../../assets/arrowLeft-small.png')}
+      />
+    );
+    this.blueTick = (
+      <Image
+        style={[styles.tick, styles.alignRight]}
+        source={require('../../../assets/tick-blue.png')}
+      />
+    );
+    this.greyTick = (
+      <Image
+        style={[styles.tick, styles.alignRight]}
+        source={require('../../../assets/tick-grey.png')}
+      />
+    );
   }
 
   componentDidMount() {
     // Read from AsyncStorage
-    AsyncStorage.getItem('all new events').then((value) => {
-      if (value === 'true') {
-        this.props.setPreference('all new events');
-      }
-    }).done();
-    AsyncStorage.getItem('account updates').then((value) => {
-      if (value === 'true') {
-        this.props.setPreference('account updates');
-      }
-    }).done();
+    AsyncStorage.getItem('all new events')
+      .then((value) => {
+        if (value === 'true') {
+          this.props.setPreference('all new events');
+        }
+      })
+      .done();
+    AsyncStorage.getItem('account updates')
+      .then((value) => {
+        if (value === 'true') {
+          this.props.setPreference('account updates');
+        }
+      })
+      .done();
   }
 
   goback = () => {
     this.props.navigation.dispatch(NavigationActions.back());
-  }
+  };
 
   save = (obj, types) => {
     // Save to AsyncStorage
@@ -49,11 +74,11 @@ class NotificationsPage extends Component {
         AsyncStorage.setItem(item.name, 'false');
       }
     });
-  }
+  };
 
   signOut = () => {
     // TODO: sign out
-  }
+  };
 
   selectedType = (obj, types) => {
     const selectedTypes = types.slice();
@@ -63,7 +88,7 @@ class NotificationsPage extends Component {
       }
     });
     return selectedTypes;
-  }
+  };
 
   render() {
     const settings = [
@@ -84,15 +109,15 @@ class NotificationsPage extends Component {
       <View style={styles.outer}>
         <View style={styles.top}>
           <TouchableOpacity
-            title='Notifications'
+            title="Notifications"
             onPress={this.goback}
             style={styles.alignLeft}
           >
-            { this.leftArrow }
+            {this.leftArrow}
           </TouchableOpacity>
           <Text style={[styles.buttonText]}>edit notifications</Text>
           <TouchableOpacity
-            title='save'
+            title="save"
             onPress={() => this.save(notifications, settings)}
             style={styles.alignRight}
           >
@@ -110,14 +135,14 @@ class NotificationsPage extends Component {
                 key={index}
               >
                 <Text style={styles.menuText}>{item.name}</Text>
-                { item.selected ? this.blueTick : this.greyTick}
+                {item.selected ? this.blueTick : this.greyTick}
               </TouchableOpacity>
-            )
+            );
           })}
         </View>
         <View style={styles.bottom}>
           <TouchableOpacity
-            title='Log out'
+            title="Log out"
             onPress={this.signOut}
             style={styles.boxButton}
           >
@@ -143,4 +168,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsPage);
-

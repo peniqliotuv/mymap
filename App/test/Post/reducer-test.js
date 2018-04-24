@@ -1,10 +1,7 @@
 import { expect } from 'chai';
 
 import reducer from '../../post/reducer';
-import {
-  readPostByIdSucceeded,
-  readPostsSucceeded
-} from '../../post/actions';
+import { readPostByIdSucceeded, readPostsSucceeded } from '../../post/actions';
 
 describe('Post Reducer', () => {
   context('when given an undefined action', () => {
@@ -30,7 +27,10 @@ describe('Post Reducer', () => {
 
       const newPost = { id: '2', title: 'new fake post' };
 
-      const actual = reducer(currentState, readPostByIdSucceeded({ post: newPost }));
+      const actual = reducer(
+        currentState,
+        readPostByIdSucceeded({ post: newPost })
+      );
       const expected = {
         byId: {
           ...currentState.byId,
@@ -52,7 +52,10 @@ describe('Post Reducer', () => {
         allIds: ['0'],
       };
 
-      const posts = [{ id: '1', title: 'fake post' }, { id: '2', title: 'fake post 2' }];
+      const posts = [
+        { id: '1', title: 'fake post' },
+        { id: '2', title: 'fake post 2' },
+      ];
 
       const actual = reducer(currentState, readPostsSucceeded({ posts }));
       const expected = {

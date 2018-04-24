@@ -1,7 +1,10 @@
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import { dateToDayMonthDateYearString, dateToTimeString } from '../../utils/dateHelper';
+import {
+  dateToDayMonthDateYearString,
+  dateToTimeString,
+} from '../../utils/dateHelper';
 
 chai.use(chaiEnzyme());
 

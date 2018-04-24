@@ -4,29 +4,25 @@ import PropTypes from 'prop-types';
 import TimelineEvent from '../TimelineEvent';
 import s from './styles';
 
-
 const TimelineEventGroup = ({ data, handleTimelineEventPress }) => {
   const { events = [], date = '' } = data;
-
 
   return (
     <View style={s.timelineEventGroup}>
       <View style={s.dateContainer}>
-        <Text style={s.date}>{ date.toUpperCase() }</Text>
+        <Text style={s.date}>{date.toUpperCase()}</Text>
       </View>
-      {
-        events.map((item, index) => {
-          return (
-            <TimelineEvent
-              key={index}
-              appName={item.appName}
-              timestamp={item.timestamp}
-              body={item.body}
-              handleTimelineEventPress={handleTimelineEventPress}
-            />
-          );
-        })
-      }
+      {events.map((item, index) => {
+        return (
+          <TimelineEvent
+            key={index}
+            appName={item.appName}
+            timestamp={item.timestamp}
+            body={item.body}
+            handleTimelineEventPress={handleTimelineEventPress}
+          />
+        );
+      })}
 
       <View style={s.lineBreak} />
     </View>

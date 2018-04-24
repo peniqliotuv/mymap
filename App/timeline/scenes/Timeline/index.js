@@ -34,7 +34,7 @@ class TimelineList extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     toggleEvent: PropTypes.func.isRequired,
-  }
+  };
 
   state = {
     modalVisible: false,
@@ -51,7 +51,8 @@ class TimelineList extends Component {
   }
 
   componentDidMount() {
-    CancerBaseSDK.timeline.get()
+    CancerBaseSDK.timeline
+      .get()
       .then((events) => {
         this.setState({ events: transformCancerBaseSDKEvents(events) });
       })
@@ -84,15 +85,15 @@ class TimelineList extends Component {
 
   closeControlPanel = () => {
     this.drawer.close();
-  }
+  };
 
   openControlPanel = () => {
     this.drawer.open();
-  }
+  };
 
   gotoSettings = () => {
     this.props.navigation.navigate('SettingsNavigator');
-  }
+  };
 
   filterApps = (obj, data) => {
     const newData = [];
@@ -111,7 +112,7 @@ class TimelineList extends Component {
       return newData;
     }
     return data;
-  }
+  };
 
   modifyColor = (obj, apps) => {
     const newApps = apps.slice();
@@ -121,13 +122,13 @@ class TimelineList extends Component {
       }
     });
     return newApps;
-  }
-
+  };
 
   render() {
     const user = {
       name: 'Jane Doe',
-      imageUrl: 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
+      imageUrl:
+        'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     };
 
     const apps = [
@@ -187,47 +188,49 @@ class TimelineList extends Component {
 
     return (
       <Drawer
-        ref={(ref) => this.drawer = ref}
-        content={<MainDrawer
-          apps={filteredApps}
-          onPress={this.closeControlPanel}
-          toggleEvent={this.props.toggleEvent}
-                 />
-                }
+        ref={(ref) => (this.drawer = ref)}
+        content={
+          <MainDrawer
+            apps={filteredApps}
+            onPress={this.closeControlPanel}
+            toggleEvent={this.props.toggleEvent}
+          />
+        }
         openDrawerOffset={0.3}
         type="displace"
         tapToClose
       >
         <View style={s.outerView}>
-          <Animated.View style={[
-            s.scrollToTop,
-            { transform: [{ translateY: scrollToTopTranslate }] },
-          ]}
+          <Animated.View
+            style={[
+              s.scrollToTop,
+              { transform: [{ translateY: scrollToTopTranslate }] },
+            ]}
           >
             <ScrollToTop handlePress={this.handleScrollToTop} />
           </Animated.View>
           <ScrollView
             style={s.scrollView}
             scrollEventThrottle={16}
-            onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }])}
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: this.state.scrollY } } },
+            ])}
             onMomentumScrollBegin={() => {
               if (!this.state.nameVisible) {
                 this.setState({ nameVisible: true });
               }
             }}
             onMomentumScrollEnd={() => console.log('moment scroll end')}
-            ref={(ref) => this.scrollView = ref}
+            ref={(ref) => (this.scrollView = ref)}
           >
             <View marginTop={HEADER_MAX_HEIGHT + HEADER_STICKYEXTRA_HEIGHT}>
-              {
-                filteredEvents.map((item, index) => (
-                  <TimelineEventGroup
-                    data={item}
-                    key={index}
-                    handleTimelineEventPress={this.handleTimelineEventPress}
-                  />
-                ))
-              }
+              {filteredEvents.map((item, index) => (
+                <TimelineEventGroup
+                  data={item}
+                  key={index}
+                  handleTimelineEventPress={this.handleTimelineEventPress}
+                />
+              ))}
             </View>
           </ScrollView>
           <Animated.View style={[s.header, { height: headerHeight }]}>
@@ -236,9 +239,9 @@ class TimelineList extends Component {
                 style={[
                   s.backgroundImage,
                   {
-                      opacity: imageOpacity,
-                      transform: [{ translateY: imageTranslate }],
-                      height: HEADER_MAX_HEIGHT,
+                    opacity: imageOpacity,
+                    transform: [{ translateY: imageTranslate }],
+                    height: HEADER_MAX_HEIGHT,
                   },
                 ]}
                 source={{ uri: user.imageUrl }}
@@ -247,40 +250,54 @@ class TimelineList extends Component {
             </View>
             <View style={s.bar}>
               <TouchableOpacity onPress={this.openControlPanel}>
-                <Image style={s.menuIcon} source={require('~/App/assets/menu-bars.png')} />
+                <Image
+                  style={s.menuIcon}
+                  source={require('~/App/assets/menu-bars.png')}
+                />
               </TouchableOpacity>
-              {
-                this.state.nameVisible && (
-                  <View style={s.welcome}>
-                    <Text style={s.welcomeText}>Welcome {this.state.name}!</Text>
-                  </View>
-                )
-              }
-              {
-                this.state.fontLoaded && (
-                  <Animated.View style={[
-                      s.titleWrapper,
-                      { transform: [{ scale: titleScale }, { translateY: titleTranslate }] },
+              {this.state.nameVisible && (
+                <View style={s.welcome}>
+                  <Text style={s.welcomeText}>Welcome {this.state.name}!</Text>
+                </View>
+              )}
+              {this.state.fontLoaded && (
+                <Animated.View
+                  style={[
+                    s.titleWrapper,
+                    {
+                      transform: [
+                        { scale: titleScale },
+                        { translateY: titleTranslate },
+                      ],
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[s.title, { fontFamily: 'SF-Pro-Text-LightItalic' }]}
+                  >
+                    my
+                  </Text>
+                  <Text
+                    style={[
+                      s.title,
+                      { fontFamily: 'SF-Pro-Text-SemiboldItalic' },
                     ]}
                   >
-                    <Text style={[s.title, { fontFamily: 'SF-Pro-Text-LightItalic' }]}>my</Text>
-                    <Text style={[s.title, { fontFamily: 'SF-Pro-Text-SemiboldItalic' }]}>map</Text>
-                  </Animated.View>
-                )
-              }
+                    map
+                  </Text>
+                </Animated.View>
+              )}
               <TouchableOpacity onPress={this.gotoSettings}>
                 <Image source={require('~/App/assets/settings-circles.png')} />
               </TouchableOpacity>
             </View>
           </Animated.View>
-          {
-              this.state.modalVisible && (
-                <TimelineEventModal
-                  data={this.state.modalData}
-                  hideModal={this.hideModal}
-                />
-              )
-            }
+          {this.state.modalVisible && (
+            <TimelineEventModal
+              data={this.state.modalData}
+              hideModal={this.hideModal}
+            />
+          )}
         </View>
       </Drawer>
     );

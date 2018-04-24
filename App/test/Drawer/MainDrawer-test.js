@@ -13,7 +13,7 @@ chai.use(chaiEnzyme());
 describe('<MainDrawer />', () => {
   context('when passed in an empty apps array', () => {
     it('no filters render', () => {
-      const drawer = shallow(<MainDrawer apps={[]}/>);
+      const drawer = shallow(<MainDrawer apps={[]} />);
       expect(drawer.children().length).to.equal(1);
     });
     context('when passed in a populated apps array', () => {
@@ -33,11 +33,9 @@ describe('<MainDrawer />', () => {
       ];
 
       it('one filter is rendered for each element in the array', () => {
-        const drawer = shallow(<MainDrawer apps={apps}/>);
+        const drawer = shallow(<MainDrawer apps={apps} />);
         expect(drawer.children().length).to.equal(4);
       });
     });
   });
-
-
 });

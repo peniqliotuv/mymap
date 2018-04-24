@@ -6,7 +6,7 @@ async function request(url, userOptions, dispatch) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Content-Security-Policy': 'default-src \'self\'',
+      'Content-Security-Policy': "default-src 'self'",
       'X-Frame-Options': 'SAMEORIGIN',
       'X-XSS-Protection': 1,
     },

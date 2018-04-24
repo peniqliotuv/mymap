@@ -14,7 +14,7 @@ export default StyleSheet.create({
     flex: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative'
+    position: 'relative',
   },
   body: {
     flexDirection: 'column',

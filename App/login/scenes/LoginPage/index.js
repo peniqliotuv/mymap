@@ -5,21 +5,20 @@ import s from './styles';
 import colors from '~/App/styles/colors';
 
 const LoginPage = (props) => {
-
   handleSubmit = () => {
     props.navigation.navigate('Timeline');
-  }
+  };
 
   return (
     <View style={s.loginContainer}>
       <Text style={s.loginTitle}>MyMap</Text>
       <Text>Login with CancerBase</Text>
       <Button
-        title='Login'
+        title="Login"
         style={s.loginButton}
         color={colors.purple}
-        onPress={handleSubmit}>
-      </Button>
+        onPress={handleSubmit}
+      />
     </View>
   );
 };

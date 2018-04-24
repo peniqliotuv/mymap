@@ -6,37 +6,32 @@ import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
 import styles from './styles';
 
-
 class Splashscreen extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-  }
+  };
 
   state = {
     isReady: false,
   };
 
-  scopes = [
-    'cb.appData.read',
-    'cb.profile',
-    'cb.timeline',
-  ];
+  scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
 
   onCancerBaseLogin = () => {
     this.props.navigation.navigate('Timeline');
-  }
+  };
 
   onCancerBaseError = (err) => {
     Alert.alert('Something went wrong!');
-  }
+  };
 
   _loadAssetsAsync = async () => {
     const imageAssets = cacheImages([
-        require('~/App/assets/background.jpg'),
-        require('~/App/assets/logo-outlines.png'),
+      require('~/App/assets/background.jpg'),
+      require('~/App/assets/logo-outlines.png'),
     ]);
     return Promise.all(imageAssets);
-  }
+  };
   // Empty view on top to stretch out the 'justifyContent'.
   render() {
     if (!this.state.isReady) {
