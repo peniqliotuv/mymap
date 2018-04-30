@@ -8,8 +8,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'SAVE_USER_PROFILE_EVENT':
-      const userDisplayName = state.userDisplayName;
-      const welcomeMessage = state.welcomeMessage;
+      const { userDisplayName, welcomeMessage } = state;
       return {
         userDisplayName,
         welcomeMessage,

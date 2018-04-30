@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button,
   TouchableOpacity,
   Image,
   AsyncStorage,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './styles';
 import { connect } from 'react-redux';
-import { setPreference } from '../../../timeline/actions';
 import { NavigationActions } from 'react-navigation';
+import styles from './styles';
+import { setPreference } from '../../../timeline/actions';
 
 class NotificationsPage extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    notifications: PropTypes.object,
+    notifications: PropTypes.array.isRequired,
     setPreference: PropTypes.func.isRequired,
   };
 
@@ -43,6 +42,7 @@ class NotificationsPage extends Component {
   }
 
   componentDidMount() {
+    console.log('COMPONENT DID MOUNT');
     // Read from AsyncStorage
     AsyncStorage.getItem('all new events')
       .then((value) => {
@@ -64,26 +64,18 @@ class NotificationsPage extends Component {
     this.props.navigation.dispatch(NavigationActions.back());
   };
 
-  save = (obj, types) => {
+  save = async (notifications, types) => {
     // Save to AsyncStorage
-    types.forEach((item) => {
-      if (obj.notifications.includes(item.name)) {
-        AsyncStorage.setItem(item.name, 'true');
-      }
-      else {
-        AsyncStorage.setItem(item.name, 'false');
-      }
-    });
+    await Promise.all(types.map((item) => {
+      const value = notifications.includes(item.name) ? 'true' : 'false';
+      return AsyncStorage.setItem(item.name, value);
+    }));
   };
 
-  signOut = () => {
-    // TODO: sign out
-  };
-
-  selectedType = (obj, types) => {
+  selectedType = (notifications, types) => {
     const selectedTypes = types.slice();
     selectedTypes.forEach((item) => {
-      if (obj.notifications.includes(item.name)) {
+      if (notifications.includes(item.name)) {
         item.selected = true;
       }
     });
@@ -104,7 +96,8 @@ class NotificationsPage extends Component {
 
     const { notifications } = this.props;
     const types = this.selectedType(notifications, settings);
-
+    console.log('THIS.PROPS:');
+    console.log(this.props);
     return (
       <View style={styles.outer}>
         <View style={styles.top}>
@@ -140,15 +133,6 @@ class NotificationsPage extends Component {
             );
           })}
         </View>
-        <View style={styles.bottom}>
-          <TouchableOpacity
-            title="Log out"
-            onPress={this.signOut}
-            style={styles.boxButton}
-          >
-            <Text style={styles.buttonText}>sign out</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
@@ -156,9 +140,7 @@ class NotificationsPage extends Component {
 
 function mapStateToProps(state) {
   const { notifications } = state.timeline;
-  return {
-    notifications: { notifications },
-  };
+  return { notifications };
 }
 
 function mapDispatchToProps(dispatch) {

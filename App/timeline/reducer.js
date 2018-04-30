@@ -24,7 +24,7 @@ export default (state = defaultState, action) => {
       };
     case 'SET_PREFERENCE':
       const { settingType } = action;
-      const notifications = state.notifications;
+      const notifications = [...state.notifications];
       if (notifications.includes(settingType)) {
         const index = notifications.indexOf(settingType);
         notifications.splice(index, 1);
