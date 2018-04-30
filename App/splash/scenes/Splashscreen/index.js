@@ -1,14 +1,17 @@
 import { LoginButton } from 'cancerbase-sdk';
 import React, { Component } from 'react';
-import { View, Text, Image, Alert, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Image, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
 import styles from './styles';
+import { fetchNotificationSubscriptions } from '../../../settings/actions';
 
 class Splashscreen extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    fetchNotificationSubscriptions: PropTypes.func.isRequired,
   };
 
   state = {
@@ -18,6 +21,7 @@ class Splashscreen extends Component {
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
 
   onCancerBaseLogin = () => {
+    this.props.fetchNotificationSubscriptions();
     this.props.navigation.navigate('Timeline');
   };
 
@@ -69,4 +73,17 @@ class Splashscreen extends Component {
   }
 }
 
-export default Splashscreen;
+function mapStateToProps(state) {
+  return {
+    notifications: state.settings.notifications,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchNotificationSubscriptions: () =>
+      dispatch(fetchNotificationSubscriptions()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splashscreen);

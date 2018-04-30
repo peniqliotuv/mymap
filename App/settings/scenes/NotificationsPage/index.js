@@ -8,15 +8,21 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import isEqual from 'lodash.isequal';
 import { NavigationActions } from 'react-navigation';
 import styles from './styles';
-import { setPreference } from '../../../timeline/actions';
+import { fetchNotificationSubscriptions } from '../../actions';
+import { defaultNotifications } from '../../../utils/constants';
 
 class NotificationsPage extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     notifications: PropTypes.array.isRequired,
-    setPreference: PropTypes.func.isRequired,
+    fetchNotificationSubscriptions: PropTypes.func.isRequired,
+  };
+
+  state = {
+    selectedNotifs: this.props.notifications,
   };
 
   componentWillMount() {
@@ -42,62 +48,54 @@ class NotificationsPage extends Component {
   }
 
   componentDidMount() {
-    console.log('COMPONENT DID MOUNT');
-    // Read from AsyncStorage
-    AsyncStorage.getItem('all new events')
-      .then((value) => {
-        if (value === 'true') {
-          this.props.setPreference('all new events');
-        }
-      })
-      .done();
-    AsyncStorage.getItem('account updates')
-      .then((value) => {
-        if (value === 'true') {
-          this.props.setPreference('account updates');
-        }
-      })
-      .done();
+    this.props.fetchNotificationSubscriptions();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.state.selectedNotifs, nextProps.notifications)) {
+      this.setState({ selectedNotifs: nextProps.notifications });
+    }
+  }
+
+  getPreferences = () => {
+    const { selectedNotifs } = this.state;
+    const preferences = defaultNotifications.map((notif) => {
+      const selected = selectedNotifs.includes(notif);
+      return {
+        name: notif,
+        selected,
+      };
+    });
+    return preferences;
+  };
 
   goback = () => {
     this.props.navigation.dispatch(NavigationActions.back());
   };
 
-  save = async (notifications, types) => {
+  save = () => {
     // Save to AsyncStorage
-    await Promise.all(types.map((item) => {
-      const value = notifications.includes(item.name) ? 'true' : 'false';
-      return AsyncStorage.setItem(item.name, value);
+    const { selectedNotifs } = this.state;
+    return Promise.all(defaultNotifications.map((item) => {
+      const value = selectedNotifs.includes(item);
+      return AsyncStorage.setItem(item, value.toString());
     }));
   };
 
-  selectedType = (notifications, types) => {
-    const selectedTypes = types.slice();
-    selectedTypes.forEach((item) => {
-      if (notifications.includes(item.name)) {
-        item.selected = true;
-      }
-    });
-    return selectedTypes;
+  togglePreference = (item) => {
+    let selectedNotifs;
+    if (this.state.selectedNotifs.includes(item)) {
+      selectedNotifs = this.state.selectedNotifs.filter((notif) => notif !== item);
+    }
+    else {
+      selectedNotifs = [...this.state.selectedNotifs];
+      selectedNotifs.push(item);
+    }
+    this.setState({ selectedNotifs });
   };
 
   render() {
-    const settings = [
-      {
-        name: 'all new events',
-        selected: false,
-      },
-      {
-        name: 'account updates',
-        selected: false,
-      },
-    ];
-
-    const { notifications } = this.props;
-    const types = this.selectedType(notifications, settings);
-    console.log('THIS.PROPS:');
-    console.log(this.props);
+    const preferences = this.getPreferences();
     return (
       <View style={styles.outer}>
         <View style={styles.top}>
@@ -111,7 +109,7 @@ class NotificationsPage extends Component {
           <Text style={[styles.buttonText]}>edit notifications</Text>
           <TouchableOpacity
             title="save"
-            onPress={() => this.save(notifications, settings)}
+            onPress={() => this.save().then(() => console.log('Done Saving!'))}
             style={styles.alignRight}
           >
             <Text style={[styles.buttonText]}>save</Text>
@@ -119,11 +117,11 @@ class NotificationsPage extends Component {
         </View>
         <View style={styles.mid}>
           <Text style={[styles.buttonText]}>notify me about...</Text>
-          {types.map((item, index) => {
+          {preferences.map((item, index) => {
             return (
               <TouchableOpacity
                 title={item.name}
-                onPress={() => this.props.setPreference(item.name)}
+                onPress={() => this.togglePreference(item.name)}
                 style={styles.menuItem}
                 key={index}
               >
@@ -139,13 +137,14 @@ class NotificationsPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { notifications } = state.timeline;
+  const { notifications } = state.settings;
   return { notifications };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setPreference: (settingType) => dispatch(setPreference(settingType)),
+    fetchNotificationSubscriptions: () =>
+      dispatch(fetchNotificationSubscriptions()),
   };
 }
 
