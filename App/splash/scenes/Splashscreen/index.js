@@ -22,20 +22,13 @@ class Splashscreen extends Component {
   async componentWillMount() {
     try {
       const date = await AsyncStorage.getItem('loggedInDate');
-      console.log('DATE:');
-      console.log(date);
       if (date !== null) {
-        console.log('NAVIGATING TO TIMELINE');
         this.props.navigation.navigate('Timeline');
       }
     }
     catch (e) {
       console.error('Error retrieving from AsyncStorage');
     }
-  }
-
-  componentDidMount() {
-    console.log('componentWillMount()');
   }
 
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];

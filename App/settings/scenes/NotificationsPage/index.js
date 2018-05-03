@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  AlertIOS,
   AsyncStorage,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -109,7 +110,9 @@ class NotificationsPage extends Component {
           <Text style={[styles.buttonText]}>edit notifications</Text>
           <TouchableOpacity
             title="save"
-            onPress={() => this.save().then(() => console.log('Done Saving!'))}
+            onPress={() =>
+              this.save().then(() => AlertIOS.alert('Preferences Saved'))
+            }
             style={styles.alignRight}
           >
             <Text style={[styles.buttonText]}>save</Text>
