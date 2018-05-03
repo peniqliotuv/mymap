@@ -1,13 +1,17 @@
+import React from 'react';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 
 import TimelineNavigator from './timeline/TimelineNavigator';
-import LoginNavigator from './login/LoginNavigator';
 import SplashNavigator from './splash/SplashNavigator';
 
 const AppNavigator = StackNavigator(
   {
     Splash: { screen: SplashNavigator },
-    Login: { screen: LoginNavigator },
+    // Timeline: {
+    //   screen: ({ navigation }) => (
+    //     <TimelineNavigator screenProps={{ rootNav: navigation }} />
+    //   ),
+    // },
     Timeline: { screen: TimelineNavigator },
   },
   {

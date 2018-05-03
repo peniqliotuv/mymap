@@ -59,11 +59,11 @@ class SettingsPage extends Component {
   signOut = () => {
     AsyncStorage.removeItem('loggedInDate').then(() => {
       CancerBaseSDK.user.clearData();
-      // this.props.navigation.navigate('Splash');
-      console.log(this.props.navigation.state);
+      /* Clear the navigation stack */
       this.props.navigation.dispatch(NavigationActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Splashscreen' })],
+        key: null,
+        actions: [NavigationActions.navigate({ routeName: 'Splash' })],
       }));
     });
   };
