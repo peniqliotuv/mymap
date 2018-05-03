@@ -7,9 +7,9 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './styles';
 import { NavigationActions } from 'react-navigation';
 import CancerBaseSDK from 'cancerbase-sdk';
+import styles from './styles';
 
 class SettingsPage extends Component {
   static propTypes = {
@@ -59,7 +59,12 @@ class SettingsPage extends Component {
   signOut = () => {
     AsyncStorage.removeItem('loggedInDate').then(() => {
       CancerBaseSDK.user.clearData();
-      this.props.navigation.navigate('Splash');
+      // this.props.navigation.navigate('Splash');
+      console.log(this.props.navigation.state);
+      this.props.navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Splashscreen' })],
+      }));
     });
   };
 

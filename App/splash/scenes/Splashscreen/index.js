@@ -26,12 +26,16 @@ class Splashscreen extends Component {
       console.log(date);
       if (date !== null) {
         console.log('NAVIGATING TO TIMELINE');
-        // this.props.navigation.navigate('Timeline');
+        this.props.navigation.navigate('Timeline');
       }
     }
     catch (e) {
       console.error('Error retrieving from AsyncStorage');
     }
+  }
+
+  componentDidMount() {
+    console.log('componentWillMount()');
   }
 
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
