@@ -1,7 +1,7 @@
 import { LoginButton } from 'cancerbase-sdk';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Image, Alert } from 'react-native';
+import { View, Image, Alert, AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
 import { AppLoading } from 'expo';
 import cacheImages from '../../../utils/assetPrefetch';
@@ -16,13 +16,31 @@ class Splashscreen extends Component {
 
   state = {
     isReady: false,
+    isLoggedIn: false,
   };
+
+  async componentWillMount() {
+    try {
+      const date = await AsyncStorage.getItem('loggedInDate');
+      console.log('DATE:');
+      console.log(date);
+      if (date !== null) {
+        console.log('NAVIGATING TO TIMELINE');
+        // this.props.navigation.navigate('Timeline');
+      }
+    }
+    catch (e) {
+      console.error('Error retrieving from AsyncStorage');
+    }
+  }
 
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
 
   onCancerBaseLogin = () => {
-    this.props.fetchNotificationSubscriptions();
-    this.props.navigation.navigate('Timeline');
+    AsyncStorage.setItem('loggedInDate', new Date().toString()).then(() => {
+      this.props.fetchNotificationSubscriptions();
+      this.props.navigation.navigate('Timeline');
+    });
   };
 
   onCancerBaseError = (err) => {

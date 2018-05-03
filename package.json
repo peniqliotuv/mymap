@@ -28,7 +28,7 @@
     "jsdom": "^11.6.2",
     "mocha": "^4.0.1",
     "react-native-cli": "^2.0.1",
-    "react-native-debugger-open": "^0.3.15",
+    "react-native-debugger-open": "^0.3.17",
     "react-native-mock": "^0.3.1",
     "react-native-mock-render": "^0.0.11",
     "react-test-renderer": "16.0.0-alpha.12",
@@ -37,29 +37,29 @@
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "debug": "rndebugger-open --expo",
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "ios": "react-native run-ios && yarn run watch",
     "android": "react-native run-android",
-    "test": "cross-env NODE_PATH=. mocha --opts App/test/mocha.opts \"./!(node_modules)/**/{*-test,*.spec}.js\"",
+    "test":
+      "cross-env NODE_PATH=. mocha --opts App/test/mocha.opts \"./!(node_modules)/**/{*-test,*.spec}.js\"",
     "test-watch": "npm test -- --watch",
     "watch": "cp -r App/assets lib && babel App --out-dir lib"
   },
   "rnpm": {
-    "assets": [
-      "App/assets/fonts/"
-    ]
+    "assets": ["App/assets/fonts/"]
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "expo": "^21.0.0",
-    "lodash.isequal": "^4.5.0",
+    "lodash": "^4.17.10",
     "mockery": "^2.1.0",
     "prop-types": "^15.6.0",
     "react": "16.0.0-alpha.12",
     "react-dom": "^16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.0.tar.gz",
+    "react-native":
+      "https://github.com/expo/react-native/archive/sdk-21.0.0.tar.gz",
     "react-native-drawer": "^2.5.0",
     "react-native-image-picker": "^0.26.7",
     "react-native-parallax-scroll-view": "^0.20.1",

@@ -7,6 +7,7 @@ const defaultState = {
   userDisplayName: '',
   welcomeMessage: '',
   notifications: [],
+  loggedIn: false,
 };
 
 export default (state = defaultState, action) => {
