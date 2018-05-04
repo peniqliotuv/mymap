@@ -3,7 +3,6 @@ import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { ImagePicker } from 'expo';
-import CancerBaseSDK from 'cancerbase-sdk';
 import { connect } from 'react-redux';
 import TextInputItem from '../../components/TextInputItem';
 import { updateProfilePicture } from '../../../timeline/actions';
@@ -19,7 +18,7 @@ class EditProfilePage extends Component {
     image:
       'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     userDisplayName: 'name',
-    welcomeMessage: 'welcome',
+    // welcomeMessage: 'welcome',
   };
 
   componentWillMount() {
@@ -47,35 +46,7 @@ class EditProfilePage extends Component {
   };
 
   onChangeDisplayName = (text) => {
-    this.state.userDisplayName = text;
-  };
-
-  onChangeWelcomeMessage = (text) => {
-    this.state.welcomeMessage = text;
-  };
-
-  uploadImage = async (base64Img) => {
-    const apiUrl = 'https://api.cloudinary.com/v1_1/dvocyuziz/image/upload';
-    const data = {
-      file: base64Img,
-      upload_preset: 'lheqvtkv',
-    };
-    try {
-      const res = await fetch(apiUrl, {
-        body: JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json',
-        },
-        method: 'POST',
-      });
-      const url = JSON.parse(res._bodyText).secure_url;
-      CancerBaseSDK.user.profilePicture = url;
-      console.log(CancerBaseSDK.user.profilePicture);
-      return url;
-    }
-    catch (e) {
-      console.log(e);
-    }
+    this.setState({ userDisplayName: text });
   };
 
   showImagePicker = async () => {
@@ -85,39 +56,10 @@ class EditProfilePage extends Component {
       this.setState({ image: result.uri });
       const base64Img = `data:image/jpg;base64,${result.base64}`;
       this.props.updateProfilePicture(base64Img);
-      try {
-        // const url = await this.uploadImage(base64Img);
-        // CancerBaseSDK.user
-        //   .updateUser({ profile_picture: url })
-        //   .then((r) => console.log(r));
-      }
-      catch (e) {
-        console.log(e);
-      }
-
-      // fetch(apiUrl, {
-      //   body: JSON.stringify(data),
-      //   headers: {
-      //     'content-type': 'application/json',
-      //   },
-      //   method: 'POST',
-      // })
-      //   .then((r) => {
-      //     console.log(r._bodyText);
-      //     const data = r._bodyText;
-      //     console.log(JSON.parse(data).secure_url);
-      //   })
-      //   .catch((err) => console.log(err));
     }
   };
 
   render() {
-    const user = {
-      name: 'Jane Doe',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
-      welcomeMessage: 'hello',
-    };
     const { image } = this.state;
 
     return (
@@ -154,11 +96,6 @@ class EditProfilePage extends Component {
             label="display name"
             text={this.state.userDisplayName}
             onChangeText={this.onChangeDisplayName}
-          />
-          <TextInputItem
-            label="welcome message"
-            text={this.state.welcomeMessage}
-            onChangeText={this.onChangeWelcomeMessage}
           />
         </View>
         <View style={styles.bottom} />
