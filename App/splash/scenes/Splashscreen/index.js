@@ -33,7 +33,8 @@ class Splashscreen extends Component {
 
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
 
-  onCancerBaseLogin = () => {
+  onCancerBaseLogin = (user) => {
+    console.log(user);
     AsyncStorage.setItem('loggedInDate', new Date().toString()).then(() => {
       this.props.fetchNotificationSubscriptions();
       this.props.navigation.navigate('Timeline');

@@ -3,12 +3,16 @@ import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { ImagePicker } from 'expo';
+import CancerBaseSDK from 'cancerbase-sdk';
+import { connect } from 'react-redux';
 import TextInputItem from '../../components/TextInputItem';
+import { updateProfilePicture } from '../../../timeline/actions';
 import styles from './styles';
 
 class EditProfilePage extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    updateProfilePicture: PropTypes.func.isRequired,
   };
 
   state = {
@@ -50,11 +54,60 @@ class EditProfilePage extends Component {
     this.state.welcomeMessage = text;
   };
 
+  uploadImage = async (base64Img) => {
+    const apiUrl = 'https://api.cloudinary.com/v1_1/dvocyuziz/image/upload';
+    const data = {
+      file: base64Img,
+      upload_preset: 'lheqvtkv',
+    };
+    try {
+      const res = await fetch(apiUrl, {
+        body: JSON.stringify(data),
+        headers: {
+          'content-type': 'application/json',
+        },
+        method: 'POST',
+      });
+      const url = JSON.parse(res._bodyText).secure_url;
+      CancerBaseSDK.user.profilePicture = url;
+      console.log(CancerBaseSDK.user.profilePicture);
+      return url;
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
+
   showImagePicker = async () => {
-    const options = {};
+    const options = { base64: true };
     const result = await Expo.ImagePicker.launchImageLibraryAsync(options);
     if (!result.cancelled) {
       this.setState({ image: result.uri });
+      const base64Img = `data:image/jpg;base64,${result.base64}`;
+      this.props.updateProfilePicture(base64Img);
+      try {
+        // const url = await this.uploadImage(base64Img);
+        // CancerBaseSDK.user
+        //   .updateUser({ profile_picture: url })
+        //   .then((r) => console.log(r));
+      }
+      catch (e) {
+        console.log(e);
+      }
+
+      // fetch(apiUrl, {
+      //   body: JSON.stringify(data),
+      //   headers: {
+      //     'content-type': 'application/json',
+      //   },
+      //   method: 'POST',
+      // })
+      //   .then((r) => {
+      //     console.log(r._bodyText);
+      //     const data = r._bodyText;
+      //     console.log(JSON.parse(data).secure_url);
+      //   })
+      //   .catch((err) => console.log(err));
     }
   };
 
@@ -114,4 +167,11 @@ class EditProfilePage extends Component {
   }
 }
 
-export default EditProfilePage;
+function mapDispatchToProps(dispatch) {
+  return {
+    updateProfilePicture: (base64Img) =>
+      dispatch(updateProfilePicture(base64Img)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(EditProfilePage);

@@ -34,6 +34,7 @@ class TimelineList extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     toggleEvent: PropTypes.func.isRequired,
+    imageUrl: PropTypes.string.isRequired,
   };
 
   state = {
@@ -42,13 +43,10 @@ class TimelineList extends Component {
     scrollY: new Animated.Value(0),
     fontLoaded: false,
     events: [],
-    name: '',
+    name: CancerBaseSDK.user.firstName,
+    imageUrl: this.props.imageUrl,
     nameVisible: true,
   };
-
-  componentWillMount() {
-    this.setState({ name: CancerBaseSDK.user.firstName });
-  }
 
   componentDidMount() {
     CancerBaseSDK.timeline
@@ -61,10 +59,10 @@ class TimelineList extends Component {
       'SF-Pro-Text-LightItalic': require('../../../assets/fonts/SF-Pro-Text-LightItalic.otf'),
       'SF-Pro-Text-SemiboldItalic': require('../../../assets/fonts/SF-Pro-Text-SemiboldItalic.otf'),
     }).then(() => this.setState({ fontLoaded: true }));
-    // this.setState({
-    //   fontLoaded: true,
-    //   name: CancerBaseSDK.user.name,
-    // });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ imageUrl: nextProps.imageUrl });
   }
 
   handleScrollToTop = () => {
@@ -125,12 +123,6 @@ class TimelineList extends Component {
   };
 
   render() {
-    const user = {
-      name: 'Jane Doe',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
-    };
-
     const apps = [
       {
         name: 'side effect',
@@ -244,7 +236,7 @@ class TimelineList extends Component {
                     height: HEADER_MAX_HEIGHT,
                   },
                 ]}
-                source={{ uri: user.imageUrl }}
+                source={{ uri: this.state.imageUrl }}
               />
               <View style={s.buffer} />
             </View>
@@ -305,9 +297,10 @@ class TimelineList extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { activeApps } = state.timeline;
+  const { activeApps, imageUrl } = state.timeline;
   return {
     activeApps: { activeApps },
+    imageUrl,
   };
 }
 

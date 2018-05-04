@@ -1,7 +1,9 @@
-import { TOGGLE_EVENT } from './actions';
+import { TOGGLE_EVENT, UPDATE_PROFILE_PICTURE_SUCCESS } from './actions';
 
 const defaultState = {
   activeApps: [],
+  imageUrl:
+    'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
 };
 
 export default (state = defaultState, action) => {
@@ -19,6 +21,14 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         activeApps,
+      };
+    case UPDATE_PROFILE_PICTURE_SUCCESS:
+      const {
+        imageUrl = 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
+      } = action;
+      return {
+        ...state,
+        imageUrl,
       };
     default:
       return state;
