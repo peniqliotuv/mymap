@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		3A5BFE0B39B64261AE7F7A36 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13D7005B1074AD4AAF8CFF1 /* SF-Pro-Text-LightItalic.otf */; };
 		A9BE62CD1FCFC41000C58AA9 /* libCancerBaseSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BE62CC1FCFC3E300C58AA9 /* libCancerBaseSDK.a */; };
@@ -317,7 +318,6 @@
 		BEA683B82070189100AF8684 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				2DB3626036914974B84A5E06 /* libRNImagePicker.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = C2CPC432X7;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -746,6 +746,9 @@
 			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-react-native-boilerplate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CancerBase Inc. (C2CPC432X7)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = C2CPC432X7;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/boost\"",
@@ -823,11 +826,11 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "360a2b2f-5c1c-4c2b-ab8b-faedf2156338";
+				PROVISIONING_PROFILE_SPECIFIER = "cancerbase-2";
 			};
 			name = Debug;
 		};
@@ -836,6 +839,9 @@
 			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-react-native-boilerplate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CancerBase Inc. (C2CPC432X7)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = C2CPC432X7;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/boost\"",
@@ -912,11 +918,11 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/react-native-boilerplate/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cancerbase.mymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "360a2b2f-5c1c-4c2b-ab8b-faedf2156338";
+				PROVISIONING_PROFILE_SPECIFIER = "cancerbase-2";
 			};
 			name = Release;
 		};

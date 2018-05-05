@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
-import CancerBaseSDK from 'cancerbase-sdk';
+import CancerBaseSDK from '../../../../../platform/sdk/react-native/cancerbase-sdk';
 import styles from './styles';
 
 class SettingsPage extends Component {

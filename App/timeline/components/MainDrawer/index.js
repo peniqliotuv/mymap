@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import s from './styles';
-import colors from '~/App/styles/colors';
+import colors from '../../../styles/colors';
 
 const MainDrawer = ({ apps, onPress, toggleEvent }) => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import s from './styles';
-import colors from '~/App/styles/colors';
+import colors from '../../../styles/colors';
 
 const TimelineEvent = ({
   appName,

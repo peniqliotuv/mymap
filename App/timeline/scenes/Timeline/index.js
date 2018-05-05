@@ -14,7 +14,7 @@ import Drawer from 'react-native-drawer';
 I'm just leaving these comments in here so it's easy to remove and add in
 the cancerbase SDK in case we have issues with testing hitting routes
 */
-import CancerBaseSDK from 'cancerbase-sdk';
+import CancerBaseSDK from '../../../../../platform/sdk/react-native/cancerbase-sdk';
 import PropTypes from 'prop-types';
 import ScrollToTop from '../../components/ScrollToTop';
 import TimelineEventGroup from '../../components/TimelineEventGroup';
@@ -22,7 +22,7 @@ import TimelineEventModal from '../../components/TimelineEventModal';
 import MainDrawer from '../../components/MainDrawer';
 import { toggleEvent } from '../../actions';
 import s from './styles';
-import colors from '~/App/styles/colors';
+import colors from '../../../styles/colors';
 import { transformCancerBaseSDKEvents } from '../../../utils/cancerBaseSDKHelper';
 
 const HEADER_MAX_HEIGHT = 200;
@@ -244,7 +244,7 @@ class TimelineList extends Component {
               <TouchableOpacity onPress={this.openControlPanel}>
                 <Image
                   style={s.menuIcon}
-                  source={require('~/App/assets/menu-bars.png')}
+                  source={require('../../../assets/menu-bars.png')}
                 />
               </TouchableOpacity>
               {this.state.nameVisible && (
@@ -280,7 +280,9 @@ class TimelineList extends Component {
                 </Animated.View>
               )}
               <TouchableOpacity onPress={this.gotoSettings}>
-                <Image source={require('~/App/assets/settings-circles.png')} />
+                <Image
+                  source={require('../../../assets/settings-circles.png')}
+                />
               </TouchableOpacity>
             </View>
           </Animated.View>

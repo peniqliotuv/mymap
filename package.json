@@ -6,6 +6,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -38,11 +39,13 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
+    "bundle:ios": "yarn run build && react-native bundle --entry-file lib/index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "ios": "react-native run-ios && yarn run watch",
     "android": "react-native run-android",
     "test": "cross-env NODE_PATH=. mocha --opts App/test/mocha.opts \"./!(node_modules)/**/{*-test,*.spec}.js\"",
     "test-watch": "npm test -- --watch",
-    "watch": "cp -r App/assets lib && babel App --out-dir lib"
+    "build": "cp -r App/assets lib && babel App --out-dir lib",
+    "watch": "cp -r App/assets lib && babel App --out-dir lib --watch"
   },
   "rnpm": {
     "assets": [

@@ -1,16 +1,16 @@
 import makeActionCreator from '../utils/actionFactory';
-import CancerBaseSDK from 'cancerbase-sdk';
+import CancerBaseSDK from '../../../platform/sdk/react-native/cancerbase-sdk';
 
 export const TOGGLE_EVENT = 'TOGGLE_EVENT';
 export const toggleEvent = makeActionCreator(TOGGLE_EVENT, 'appName');
 
-export const UPDATE_PROFILE_PICTURE_SUCCESS = 'UPDATE_PROFILE_PICTURE_SUCCESS';
-export const updateProfilePictureSuccess = makeActionCreator(
-  UPDATE_PROFILE_PICTURE_SUCCESS,
+export const UPLOAD_PROFILE_PICTURE_SUCCESS = 'UPLOAD_PROFILE_PICTURE_SUCCESS';
+export const uploadProfilePictureSuccess = makeActionCreator(
+  UPLOAD_PROFILE_PICTURE_SUCCESS,
   'imageUrl'
 );
 
-export const updateProfilePicture = (base64Img) => {
+export const uploadProfilePicture = (base64Img) => {
   return async (dispatch) => {
     console.log('in redux');
     const apiUrl = 'https://api.cloudinary.com/v1_1/dvocyuziz/image/upload';
@@ -36,6 +36,6 @@ export const updateProfilePicture = (base64Img) => {
       console.log(e);
     }
 
-    dispatch(updateProfilePictureSuccess(url));
+    dispatch(uploadProfilePictureSuccess(url));
   };
 };

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import s from './styles';
-import colors from '~/App/styles/colors';
+import colors from '../../../styles/colors';
 
 const TimelineEventModal = ({ data, hideModal }) => {
   // Border Color is determined based off of the app

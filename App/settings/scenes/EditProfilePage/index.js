@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { ImagePicker } from 'expo';
 import { connect } from 'react-redux';
 import TextInputItem from '../../components/TextInputItem';
-import { updateProfilePicture } from '../../../timeline/actions';
+import { uploadProfilePicture } from '../../../timeline/actions';
 import styles from './styles';
 
 class EditProfilePage extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    updateProfilePicture: PropTypes.func.isRequired,
+    uploadProfilePicture: PropTypes.func.isRequired,
   };
 
   state = {
@@ -37,16 +37,16 @@ class EditProfilePage extends Component {
     );
   }
 
-  goback = () => {
-    this.props.navigation.dispatch(NavigationActions.back());
+  onChangeDisplayName = (text) => {
+    this.setState({ userDisplayName: text });
   };
 
   save = () => {
     // TODO: save the profile.
   };
 
-  onChangeDisplayName = (text) => {
-    this.setState({ userDisplayName: text });
+  goback = () => {
+    this.props.navigation.dispatch(NavigationActions.back());
   };
 
   showImagePicker = async () => {
@@ -55,13 +55,12 @@ class EditProfilePage extends Component {
     if (!result.cancelled) {
       this.setState({ image: result.uri });
       const base64Img = `data:image/jpg;base64,${result.base64}`;
-      this.props.updateProfilePicture(base64Img);
+      this.props.uploadProfilePicture(base64Img);
     }
   };
 
   render() {
     const { image } = this.state;
-
     return (
       <View style={styles.outer}>
         <View style={styles.top}>
@@ -106,8 +105,8 @@ class EditProfilePage extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateProfilePicture: (base64Img) =>
-      dispatch(updateProfilePicture(base64Img)),
+    uploadProfilePicture: (base64Img) =>
+      dispatch(uploadProfilePicture(base64Img)),
   };
 }
 

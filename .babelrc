@@ -4,5 +4,15 @@
     "development": {
       "plugins": ["root-import", "transform-react-jsx-source"]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "cancerbase-sdk": "../platform/sdk/react-native/cancerbase-sdk/"
+        }
+      }
+    ]
+  ]
 }

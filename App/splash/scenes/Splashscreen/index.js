@@ -1,4 +1,4 @@
-import { LoginButton } from 'cancerbase-sdk';
+import { LoginButton } from '../../../../../platform/sdk/react-native/cancerbase-sdk';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Image, Alert, AsyncStorage } from 'react-native';
@@ -47,8 +47,8 @@ class Splashscreen extends Component {
 
   _loadAssetsAsync = async () => {
     const imageAssets = cacheImages([
-      require('~/App/assets/background.jpg'),
-      require('~/App/assets/logo-outlines.png'),
+      require('../../../assets/background.jpg'),
+      require('../../../assets/logo-outlines.png'),
     ]);
     return Promise.all(imageAssets);
   };
@@ -69,13 +69,13 @@ class Splashscreen extends Component {
         <View style={styles.imgWrap}>
           <Image
             style={styles.bgImg}
-            source={require('~/App/assets/background.jpg')}
+            source={require('../../../assets/background.jpg')}
           />
         </View>
         <View />
         <Image
           style={styles.logoImg}
-          source={require('~/App/assets/logo-outlines.png')}
+          source={require('../../../assets/logo-outlines.png')}
         />
         <View style={styles.buttonContainer}>
           <LoginButton
