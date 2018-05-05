@@ -18,7 +18,6 @@ class EditProfilePage extends Component {
     image:
       'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
     userDisplayName: 'name',
-    // welcomeMessage: 'welcome',
   };
 
   componentWillMount() {

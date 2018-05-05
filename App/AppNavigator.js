@@ -1,4 +1,3 @@
-import React from 'react';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 
 import TimelineNavigator from './timeline/TimelineNavigator';
@@ -7,11 +6,6 @@ import SplashNavigator from './splash/SplashNavigator';
 const AppNavigator = StackNavigator(
   {
     Splash: { screen: SplashNavigator },
-    // Timeline: {
-    //   screen: ({ navigation }) => (
-    //     <TimelineNavigator screenProps={{ rootNav: navigation }} />
-    //   ),
-    // },
     Timeline: { screen: TimelineNavigator },
   },
   {
