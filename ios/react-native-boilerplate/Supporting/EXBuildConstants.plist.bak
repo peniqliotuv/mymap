@@ -5,6 +5,6 @@
 	<key>EXPO_RUNTIME_VERSION</key>
 	<string>1.20.5</string>
 	<key>developmentUrl</key>
-	<string>exp5ab226684828480082a9429a5f53e51c://7g-6d9.peniqliotuv.mymap-mobile.exp.direct:80</string>
+	<string>exp5ab226684828480082a9429a5f53e51c://localhost:80</string>
 </dict>
 </plist>

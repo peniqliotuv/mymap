@@ -5,12 +5,25 @@ import SettingsNavigator from '../settings/SettingsNavigator';
 
 const TimelineNavigator = StackNavigator(
   {
-    Timeline: { screen: Timeline },
-    SettingsNavigator: { screen: SettingsNavigator },
+    Timeline: {
+      screen: Timeline,
+      navigationOptions: {
+        gesturesEnabled: false,
+      },
+    },
+    SettingsNavigator: {
+      screen: SettingsNavigator,
+      navigationOptions: {
+        gesturesEnabled: false,
+      },
+    },
   },
   {
     initialRouteName: 'Timeline',
     headerMode: 'none',
+    navigationOptions: {
+      gesturesEnabled: false,
+    },
   }
 );
 
