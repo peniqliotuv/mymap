@@ -21,7 +21,7 @@ export const checkCancerBaseSDKEvent = (event) => {
 export const transformCancerBaseSDKEvents = (events) => {
   // sort the events by ISO date (can be done lexicographically)
   const sortedEvents = events.sort((a, b) => {
-    return (a.date > b.date);
+    return a.date > b.date;
   });
 
   let tempDate;
@@ -34,7 +34,10 @@ export const transformCancerBaseSDKEvents = (events) => {
       const date = new Date(event.date);
 
       // make a new object representing one day
-      if (result.length === 0 || tempDate.toDateString() !== date.toDateString()) {
+      if (
+        result.length === 0 ||
+        tempDate.toDateString() !== date.toDateString()
+      ) {
         tempDate = date;
         result.push({
           date: dateToDayMonthDateYearString(date),
@@ -52,4 +55,3 @@ export const transformCancerBaseSDKEvents = (events) => {
   }
   return result;
 };
-

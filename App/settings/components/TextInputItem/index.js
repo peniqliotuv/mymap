@@ -1,40 +1,44 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { TextInput, View, Text } from 'react-native';
 import styles from './styles';
 
 class TextInputItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: this.props.text,
-            label: this.props.label,
-        };
-    }
+  static propTypes = {
+    text: PropTypes.string,
+    label: PropTypes.string,
+    onChangeText: PropTypes.func.isRequired,
+  };
 
-    componentWillReceiveProps(props) {
-        // update original states
-        this.setState({
-            text: props.text,
-        });
-    }
+  state = {
+    text: this.props.text,
+    label: this.props.label,
+  };
 
-    onChangeText = (text) => {
-        this.setState({text});
-        this.props.onChangeText({text});
-    }
+  componentWillReceiveProps(props) {
+    // update original states
+    this.setState({
+      text: props.text,
+    });
+  }
 
-    render() {
-        return (
-            <View style={styles.outer}>
-                <Text style={styles.label}>{ this.state.label }</Text>
-                <TextInput
-                    style={styles.textEdit}
-                    onChangeText={this.onChangeText}
-                    value={this.state.text}
-                />
-            </View>
-        );
-    }
+  onChangeText = (text) => {
+    this.setState({ text });
+    this.props.onChangeText({ text });
+  };
+
+  render() {
+    return (
+      <View style={styles.outer}>
+        <Text style={styles.label}>{this.state.label}</Text>
+        <TextInput
+          style={styles.textEdit}
+          onChangeText={this.onChangeText}
+          value={this.state.text}
+        />
+      </View>
+    );
+  }
 }
 
 export default TextInputItem;

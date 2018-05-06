@@ -18,10 +18,7 @@ const store = createStore(
     It allows you to monitor the state of your redux store and 'time-travel' between dispatched actions.
     This way, I can see the exact affect that each action has on the store.
   */
-  compose(
-    applyMiddleware(thunk),
-    applyMiddleware(logger),
-  )
+  compose(applyMiddleware(thunk), applyMiddleware(logger))
 );
 
 export default store;

@@ -1,7 +1,10 @@
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import { checkCancerBaseSDKEvent, transformCancerBaseSDKEvents } from '../../utils/cancerBaseSDKHelper';
+import {
+  checkCancerBaseSDKEvent,
+  transformCancerBaseSDKEvents,
+} from '../../utils/cancerBaseSDKHelper';
 
 chai.use(chaiEnzyme());
 

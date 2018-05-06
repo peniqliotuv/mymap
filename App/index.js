@@ -1,4 +1,5 @@
 import React from 'react';
+import Expo from 'expo';
 import { Provider } from 'react-redux';
 import AppNavigator from './AppNavigator';
 import store from './createStore';
@@ -10,19 +11,11 @@ import store from './createStore';
 
 // To see all the requests in the chrome Dev tools in the network tab.
 if (process.env.NODE_ENV === 'development') {
-  XMLHttpRequest = GLOBAL.originalXMLHttpRequest ?
-    GLOBAL.originalXMLHttpRequest :
-    GLOBAL.XMLHttpRequest;
-  // fetch logger
-  // global._fetch = fetch;
-  // global.fetch = function (uri, options, ...args) {
-  //   return global._fetch(uri, options, ...args).then((response) => {
-  //     // console.log('Fetch', { request: { uri, options, ...args }, response });
-  //     return response;
-  //   });
-  // };
+  XMLHttpRequest = GLOBAL.originalXMLHttpRequest
+    ? GLOBAL.originalXMLHttpRequest
+    : GLOBAL.XMLHttpRequest;
+  Expo.KeepAwake.activate();
 }
-
 
 const App = () => (
   <Provider store={store}>
@@ -30,4 +23,5 @@ const App = () => (
   </Provider>
 );
 
+Expo.registerRootComponent(App);
 export default App;

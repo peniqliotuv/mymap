@@ -4,5 +4,14 @@
     "development": {
       "plugins": ["root-import", "transform-react-jsx-source"]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./App", "../platform/sdk/react-native"],
+        "extensions": [".js", ".ios.js", ".android.js"]
+      }
+    ]
+  ]
 }

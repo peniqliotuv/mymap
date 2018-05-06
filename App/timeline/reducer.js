@@ -1,40 +1,36 @@
-import TOGGLE_EVENT from './actions'
-import SET_PREFERENCE from './actions'
+import { TOGGLE_EVENT, UPDATE_PROFILE_PICTURE_SUCCESS } from './actions';
 
 const defaultState = {
-	activeApps: [],
-	notifications: [],
+  activeApps: [],
+  imageUrl:
+    'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
 };
 
 export default (state = defaultState, action) => {
-	switch(action.type) {
-		case 'TOGGLE_EVENT':
-			const { appName } = action;
-			const activeApps = state.activeApps;
-			if (activeApps.includes(appName)) {
-				const index = activeApps.indexOf(appName);
-				activeApps.splice(index, 1);
-			} else {
-				activeApps.push(appName);
-			}
-			return {
-				...state,
-				activeApps,
-			}
-		case 'SET_PREFERENCE':
-			const { settingType } = action;
-			const notifications = state.notifications;
-			if (notifications.includes(settingType)) {
-				const index = notifications.indexOf(settingType);
-				notifications.splice(index, 1);
-			} else {
-				notifications.push(settingType);
-			}
-			return {
-				...state,
-				notifications,
-			}
-		default:
-			return state;
-	}
-}
+  switch (action.type) {
+    case TOGGLE_EVENT:
+      const { appName } = action;
+      const activeApps = state.activeApps;
+      if (activeApps.includes(appName)) {
+        const index = activeApps.indexOf(appName);
+        activeApps.splice(index, 1);
+      }
+      else {
+        activeApps.push(appName);
+      }
+      return {
+        ...state,
+        activeApps,
+      };
+    case UPDATE_PROFILE_PICTURE_SUCCESS:
+      const {
+        imageUrl = 'https://cdn.pixabay.com/photo/2015/03/03/18/58/girl-657753_1280.jpg',
+      } = action;
+      return {
+        ...state,
+        imageUrl,
+      };
+    default:
+      return state;
+  }
+};

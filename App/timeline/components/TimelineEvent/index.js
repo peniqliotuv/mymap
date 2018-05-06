@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 import s from './styles';
 import colors from '~/App/styles/colors';
 
-const TimelineEvent = ({ appName, timestamp, body, handleTimelineEventPress }) => {
+const TimelineEvent = ({
+  appName,
+  timestamp,
+  body,
+  handleTimelineEventPress,
+}) => {
   // Border Color is determined based off of the app
   let highlightColor;
   switch (appName) {
@@ -21,11 +26,20 @@ const TimelineEvent = ({ appName, timestamp, body, handleTimelineEventPress }) =
       highlightColor = colors.purple;
   }
 
-  const cardStyle = StyleSheet.flatten([s.card, { borderColor: highlightColor }]);
-  const iconStyle = StyleSheet.flatten([s.appIcon, { backgroundColor: highlightColor }]);
+  const cardStyle = StyleSheet.flatten([
+    s.card,
+    { borderColor: highlightColor },
+  ]);
+  const iconStyle = StyleSheet.flatten([
+    s.appIcon,
+    { backgroundColor: highlightColor },
+  ]);
 
   return (
-    <TouchableOpacity style={s.container} onPress={() => handleTimelineEventPress({ appName, timestamp, body })}>
+    <TouchableOpacity
+      style={s.container}
+      onPress={() => handleTimelineEventPress({ appName, timestamp, body })}
+    >
       <View style={s.dateContainer}>
         <Text style={s.date}>{timestamp}</Text>
       </View>

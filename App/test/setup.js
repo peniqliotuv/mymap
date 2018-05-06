@@ -11,5 +11,5 @@ require('react-native-mock-render/mock');
 // Set up jsdom
 const { JSDOM } = jsdom;
 
-const { document } = (new JSDOM('')).window;
+const { document } = new JSDOM('').window;
 global.document = document;

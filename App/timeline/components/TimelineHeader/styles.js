@@ -19,12 +19,8 @@ export default StyleSheet.create({
     textShadowRadius: 4,
     textShadowOffset: { width: 0, height: 4 },
   },
-  sidebarIcon: {
-
-  },
-  settingsIcon: {
-
-  },
+  sidebarIcon: {},
+  settingsIcon: {},
   image: {
     margin: 10,
     marginTop: 20,
