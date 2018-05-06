@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { TextInput, View, Text } from 'react-native';
 import styles from './styles';
 
 class TextInputItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: this.props.text,
-      label: this.props.label,
-    };
-  }
+  static propTypes = {
+    text: PropTypes.string,
+    label: PropTypes.string,
+    onChangeText: PropTypes.func.isRequired,
+  };
+
+  state = {
+    text: this.props.text,
+    label: this.props.label,
+  };
 
   componentWillReceiveProps(props) {
     // update original states

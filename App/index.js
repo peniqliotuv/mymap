@@ -1,4 +1,5 @@
 import React from 'react';
+import Expo from 'expo';
 import { Provider } from 'react-redux';
 import AppNavigator from './AppNavigator';
 import store from './createStore';
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   XMLHttpRequest = GLOBAL.originalXMLHttpRequest
     ? GLOBAL.originalXMLHttpRequest
     : GLOBAL.XMLHttpRequest;
+  Expo.KeepAwake.activate();
 }
 
 const App = () => (
@@ -21,4 +23,5 @@ const App = () => (
   </Provider>
 );
 
+Expo.registerRootComponent(App);
 export default App;

@@ -12,7 +12,6 @@ export const updateProfilePictureSuccess = makeActionCreator(
 
 export const updateProfilePicture = (base64Img) => {
   return async (dispatch) => {
-    console.log('in redux');
     const apiUrl = 'https://api.cloudinary.com/v1_1/dvocyuziz/image/upload';
     const data = {
       file: base64Img,
@@ -30,10 +29,9 @@ export const updateProfilePicture = (base64Img) => {
       });
       url = JSON.parse(res._bodyText).secure_url;
       CancerBaseSDK.user.profilePicture = url;
-      console.log(CancerBaseSDK.user.profilePicture);
     }
     catch (e) {
-      console.log(e);
+      console.warn(e);
     }
 
     dispatch(updateProfilePictureSuccess(url));

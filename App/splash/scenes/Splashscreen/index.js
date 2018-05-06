@@ -34,16 +34,15 @@ class Splashscreen extends Component {
   scopes = ['cb.appData.read', 'cb.profile', 'cb.timeline'];
 
   onCancerBaseLogin = (user) => {
-    console.log(user);
     AsyncStorage.setItem('loggedInDate', new Date().toString()).then(() => {
       this.props.fetchNotificationSubscriptions();
       this.props.navigation.navigate('Timeline');
     });
   };
 
-  onCancerBaseError = (err) => {
-    Alert.alert('Something went wrong!');
-  };
+  // onCancerBaseError = (err) => {
+  //   Alert.alert('Something went wrong!');
+  // };
 
   _loadAssetsAsync = async () => {
     const imageAssets = cacheImages([
@@ -81,7 +80,7 @@ class Splashscreen extends Component {
           <LoginButton
             scopes={this.scopes}
             onLogin={this.onCancerBaseLogin}
-            onError={this.onCancerBaseError}
+            onError={console.warn}
           />
         </View>
       </View>
