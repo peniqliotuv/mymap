@@ -58,6 +58,9 @@ export default StyleSheet.create({
   },
   scrollToTop: {
     position: 'absolute',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     top: 0,
     left: 0,
     right: 0,
